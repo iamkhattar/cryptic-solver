@@ -1,0 +1,19 @@
+{
+  "name": "version1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "datamuse": "^1.0.5",
+    "express": "^4.17.1",
+    "moby": "^1.1.2"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0"
+  }
+}
