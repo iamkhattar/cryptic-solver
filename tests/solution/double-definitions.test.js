@@ -432,3 +432,19 @@ test("A fast train, say (7) : EXPRESS", async () => {
     checkIfSolutionListContains(solutionList, expectedSolution)
   ).toBeTruthy();
 });
+
+/**
+ * Test to Check whether Stone jar (4) gives ROCK
+ */
+test("Stone jar (4) : ROCK", async () => {
+  var clue = "Stone jar";
+  var length = 4;
+
+  var expectedSolution = "ROCK";
+
+  var solutionList = await generateSolution(clue, length);
+
+  expect(
+    checkIfSolutionListContains(solutionList, expectedSolution)
+  ).toBeTruthy();
+});
