@@ -21,7 +21,7 @@ var combinations;
  * generateSolutions() generates the solution for a given clue
  */
 async function generateSolution(clue, solutionLength) {
-  await fillLists(clue, solutionLength);
+  await fillLists(clue);
   var solutionList = new Array();
   for (const currentCombination of combinations) {
     var currentSolution = generateCurrentSolution(
@@ -41,7 +41,6 @@ async function generateSolution(clue, solutionLength) {
 /**
  *
  * @param clue : Clue String
- * @param length : length of a Solution
  *
  * fillLists() does the following things:
  * 1. Formats the Clue to remove invalid characters
@@ -50,10 +49,10 @@ async function generateSolution(clue, solutionLength) {
  * 4. Generates Unique Phrases that need to be queried
  * 5. Queries API and fills synonymList
  */
-async function fillLists(clue, length) {
+async function fillLists(clue) {
   var formattedClue = validateClue(clue);
   var words = splitClue(formattedClue);
-  combinations = possibleCombinations(words);
+  combinations = possibleCombinations(words, clue);
   var unique = uniquePhrases(combinations);
   synonymList = await generateSynonyms(unique);
 }
