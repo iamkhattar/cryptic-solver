@@ -2,6 +2,7 @@ const getDoubleDefinitionSolutions = require("../double-definition/double-defini
 const doesSolutionExist = require("./does-solution-exist");
 const checkIfCombinationHasAnagramIndicator = require("../anagram/check-anagram-indicator");
 const generatePossibleDefinitions = require("../definitions/generate-possible-definitions");
+const getAnagramSolutions = require("../anagram/anagram-solutions");
 
 function generateCurrentSolution(
   currentCombination,
@@ -15,7 +16,7 @@ function generateCurrentSolution(
     synonymList
   );
   var lastDefinitions = generatePossibleDefinitions(
-    currentCombination[1],
+    currentCombination[currentCombination.length - 1],
     solutionLength,
     synonymList
   );
@@ -35,9 +36,22 @@ function generateCurrentSolution(
   }
 
   //Check for Anagrams
-  var anagramPhrase = checkIfCombinationHasAnagramIndicator(currentCombination);
-  if (anagramPhrase != false) {
-    console.log(anagramPhrase);
+  var anagramIndicator = checkIfCombinationHasAnagramIndicator(
+    currentCombination
+  );
+  if (anagramIndicator != false) {
+    var anagramSolutions = getAnagramSolutions(
+      currentCombination,
+      synonymList,
+      firstDefinitions,
+      lastDefinitions,
+      anagramIndicator
+    );
+    anagramSolutions.forEach(currentAnagramSolution => {
+      if (!doesSolutionExist(solutionList, currentAnagramSolution)) {
+        solutionList.push(currentAnagramSolution);
+      }
+    });
   }
 
   return solutionList;

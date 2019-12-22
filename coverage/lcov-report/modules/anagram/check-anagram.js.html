@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for modules/definitions/generate-possible-definitions.js</title>
+    <title>Code coverage report for modules/anagram/check-anagram.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="..\..\prettify.css" />
     <link rel="stylesheet" href="..\..\base.css" />
@@ -16,13 +16,13 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="..\..\index.html">All files</a> / <a href="index.html">modules/definitions</a> generate-possible-definitions.js
+      <a href="..\..\index.html">All files</a> / <a href="index.html">modules/anagram</a> check-anagram.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">94.74% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>11/11</span>
+        <span class='fraction'>18/19</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/2</span>
+        <span class='fraction'>1/1</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">94.12% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>11/11</span>
+        <span class='fraction'>16/17</span>
       </div>
     </div>
     <p class="quiet">
@@ -74,62 +74,65 @@
 <a name='L26'></a><a href='#L26'>26</a>
 <a name='L27'></a><a href='#L27'>27</a>
 <a name='L28'></a><a href='#L28'>28</a>
-<a name='L29'></a><a href='#L29'>29</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1884x</span>
+<span class="cline-any cline-yes">1884x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1884x</span>
+<span class="cline-any cline-yes">1773x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">111x</span>
+<span class="cline-any cline-yes">111x</span>
+<span class="cline-any cline-yes">111x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">111x</span>
+<span class="cline-any cline-yes">444x</span>
+<span class="cline-any cline-yes">444x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">111x</span>
+<span class="cline-any cline-yes">135x</span>
+<span class="cline-any cline-yes">135x</span>
+<span class="cline-any cline-yes">111x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">292x</span>
-<span class="cline-any cline-yes">292x</span>
-<span class="cline-any cline-yes">34x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">292x</span>
-<span class="cline-any cline-yes">3166x</span>
-<span class="cline-any cline-yes">291x</span>
-<span class="cline-any cline-yes">291x</span>
-<span class="cline-any cline-yes">76440x</span>
-<span class="cline-any cline-yes">9175x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">292x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
- * @param word : Word for which possible definitions have to be generated
- * @param definitionLength : Length of definitions
- * @param synonymList : List of Synonyms
- *
- * generatePossibleDefinitions() genereates all possible definitions of a given word considering its length constraint
- */
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">function checkAnagram(word1, word2) {
+  word1 = word1.replace(/\s+/g, "");
+  word2 = word2.replace(/\s+/g, "");
 &nbsp;
-function generatePossibleDefinitions(word, definitionLength, synonymList) {
-  var definitions = new Array();
-  if (word.length == definitionLength) {
-    definitions.push(word);
+  if (word1.length != word2.length) {
+    return false;
   }
-  for (const currentSynonym of synonymList) {
-    if (currentSynonym["word"] == word) {
-      var possibleSynonyms = currentSynonym["synonyms"];
-      possibleSynonyms.forEach(currentSynonym =&gt; {
-        if (currentSynonym.length == definitionLength) {
-          definitions.push(currentSynonym);
-        }
-      });
+&nbsp;
+  var a = word1.toLowerCase();
+  var b = word2.toLowerCase();
+  var counts = [];
+&nbsp;
+  for (var i = 0; i &lt; a.length; i++) {
+    var index = a.charCodeAt(i) - 97;
+    counts[index] = (counts[index] || 0) + 1;
+  }
+&nbsp;
+  for (var i = 0; i &lt; b.length; i++) {
+    var index = b.charCodeAt(i) - 97;
+    if (!counts[index]) {
+      return false;
+    } else {
+      counts[index]--;
     }
   }
-&nbsp;
-  return definitions;
+<span class="cstat-no" title="statement not covered" >  return true;</span>
 }
 &nbsp;
-module.exports = generatePossibleDefinitions;
+module.exports = checkAnagram;
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->

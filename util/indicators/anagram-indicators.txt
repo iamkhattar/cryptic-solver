@@ -423,7 +423,6 @@ frightfully
 frisky
 frolicking
 frolicsome
-from
 fuddled
 fudge
 function
@@ -656,6 +655,7 @@ misshapen
 misspell
 mistake
 mistake mistreated
+sends out to
 mistaken
 mistreat
 misuse
