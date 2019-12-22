@@ -1,41 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1576984840299" clover="3.2.0">
-  <project timestamp="1576984840299" name="All files">
-    <metrics statements="169" coveredstatements="169" conditionals="54" coveredconditionals="47" methods="29" coveredmethods="29" elements="252" coveredelements="245" complexity="0" loc="169" ncloc="169" packages="6" files="11" classes="11"/>
+<coverage generated="1577035671124" clover="3.2.0">
+  <project timestamp="1577035671125" name="All files">
+    <metrics statements="186" coveredstatements="186" conditionals="60" coveredconditionals="53" methods="32" coveredmethods="32" elements="278" coveredelements="271" complexity="0" loc="186" ncloc="186" packages="7" files="12" classes="12"/>
+    <package name="modules.anagram">
+      <metrics statements="13" coveredstatements="13" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
+      <file name="check-anagram-indicator.js" path="D:\Final Project\version1\modules\anagram\check-anagram-indicator.js">
+        <metrics statements="13" coveredstatements="13" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="11" count="144" type="stmt"/>
+        <line num="12" count="144" type="stmt"/>
+        <line num="13" count="406" type="cond" truecount="2" falsecount="0"/>
+        <line num="14" count="25" type="stmt"/>
+        <line num="17" count="144" type="stmt"/>
+        <line num="28" count="406" type="stmt"/>
+        <line num="33" count="406" type="stmt"/>
+        <line num="34" count="473396" type="stmt"/>
+        <line num="37" count="406" type="cond" truecount="2" falsecount="0"/>
+        <line num="38" count="25" type="stmt"/>
+        <line num="40" count="381" type="stmt"/>
+        <line num="43" count="1" type="stmt"/>
+      </file>
+    </package>
     <package name="modules.definitions">
       <metrics statements="11" coveredstatements="11" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
       <file name="generate-possible-definitions.js" path="D:\Final Project\version1\modules\definitions\generate-possible-definitions.js">
         <metrics statements="11" coveredstatements="11" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
-        <line num="10" count="130" type="stmt"/>
-        <line num="11" count="130" type="cond" truecount="2" falsecount="0"/>
-        <line num="12" count="10" type="stmt"/>
-        <line num="14" count="130" type="stmt"/>
-        <line num="15" count="1134" type="cond" truecount="2" falsecount="0"/>
-        <line num="16" count="129" type="stmt"/>
-        <line num="17" count="129" type="stmt"/>
-        <line num="18" count="28000" type="cond" truecount="2" falsecount="0"/>
-        <line num="19" count="3357" type="stmt"/>
-        <line num="25" count="130" type="stmt"/>
+        <line num="10" count="292" type="stmt"/>
+        <line num="11" count="292" type="cond" truecount="2" falsecount="0"/>
+        <line num="12" count="33" type="stmt"/>
+        <line num="14" count="292" type="stmt"/>
+        <line num="15" count="3166" type="cond" truecount="2" falsecount="0"/>
+        <line num="16" count="291" type="stmt"/>
+        <line num="17" count="291" type="stmt"/>
+        <line num="18" count="65227" type="cond" truecount="2" falsecount="0"/>
+        <line num="19" count="8065" type="stmt"/>
+        <line num="25" count="292" type="stmt"/>
         <line num="28" count="3" type="stmt"/>
       </file>
     </package>
     <package name="modules.double-definition">
-      <metrics statements="13" coveredstatements="13" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+      <metrics statements="10" coveredstatements="10" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
       <file name="double-definition-solutions.js" path="D:\Final Project\version1\modules\double-definition\double-definition-solutions.js">
-        <metrics statements="13" coveredstatements="13" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="15" count="64" type="stmt"/>
-        <line num="16" count="64" type="stmt"/>
+        <metrics statements="10" coveredstatements="10" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+        <line num="9" count="64" type="stmt"/>
+        <line num="11" count="64" type="stmt"/>
+        <line num="12" count="1772" type="cond" truecount="2" falsecount="0"/>
+        <line num="13" count="105" type="stmt"/>
+        <line num="14" count="105" type="stmt"/>
+        <line num="15" count="105" type="stmt"/>
+        <line num="16" count="105" type="stmt"/>
+        <line num="17" count="105" type="stmt"/>
         <line num="21" count="64" type="stmt"/>
-        <line num="27" count="64" type="stmt"/>
-        <line num="28" count="1772" type="cond" truecount="2" falsecount="0"/>
-        <line num="29" count="105" type="stmt"/>
-        <line num="30" count="105" type="stmt"/>
-        <line num="31" count="105" type="stmt"/>
-        <line num="32" count="105" type="stmt"/>
-        <line num="33" count="105" type="stmt"/>
-        <line num="37" count="64" type="stmt"/>
-        <line num="40" count="2" type="stmt"/>
+        <line num="24" count="2" type="stmt"/>
       </file>
     </package>
     <package name="modules.format">
@@ -119,7 +135,7 @@
       </file>
     </package>
     <package name="modules.solution">
-      <metrics statements="37" coveredstatements="37" conditionals="8" coveredconditionals="7" methods="7" coveredmethods="7"/>
+      <metrics statements="44" coveredstatements="44" conditionals="10" coveredconditionals="9" methods="7" coveredmethods="7"/>
       <file name="does-solution-exist.js" path="D:\Final Project\version1\modules\solution\does-solution-exist.js">
         <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
         <line num="2" count="192" type="stmt"/>
@@ -130,17 +146,24 @@
         <line num="13" count="2" type="stmt"/>
       </file>
       <file name="generate-current-solution.js" path="D:\Final Project\version1\modules\solution\generate-current-solution.js">
-        <metrics statements="10" coveredstatements="10" conditionals="4" coveredconditionals="3" methods="2" coveredmethods="2"/>
+        <metrics statements="17" coveredstatements="17" conditionals="6" coveredconditionals="5" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
-        <line num="9" count="144" type="stmt"/>
-        <line num="12" count="144" type="cond" truecount="2" falsecount="0"/>
-        <line num="13" count="63" type="stmt"/>
-        <line num="19" count="63" type="stmt"/>
-        <line num="20" count="95" type="cond" truecount="1" falsecount="1"/>
-        <line num="21" count="95" type="stmt"/>
-        <line num="26" count="144" type="stmt"/>
-        <line num="29" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="11" count="144" type="stmt"/>
+        <line num="12" count="144" type="stmt"/>
+        <line num="17" count="144" type="stmt"/>
+        <line num="24" count="144" type="cond" truecount="2" falsecount="0"/>
+        <line num="25" count="63" type="stmt"/>
+        <line num="30" count="63" type="stmt"/>
+        <line num="31" count="95" type="cond" truecount="1" falsecount="1"/>
+        <line num="32" count="95" type="stmt"/>
+        <line num="38" count="144" type="stmt"/>
+        <line num="39" count="144" type="cond" truecount="2" falsecount="0"/>
+        <line num="40" count="21" type="stmt"/>
+        <line num="43" count="144" type="stmt"/>
+        <line num="46" count="1" type="stmt"/>
       </file>
       <file name="generate-solution.js" path="D:\Final Project\version1\modules\solution\generate-solution.js">
         <metrics statements="21" coveredstatements="21" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3"/>

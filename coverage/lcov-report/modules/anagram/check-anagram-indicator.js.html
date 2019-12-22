@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for modules/solution/generate-current-solution.js</title>
+    <title>Code coverage report for modules/anagram/check-anagram-indicator.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="..\..\prettify.css" />
     <link rel="stylesheet" href="..\..\base.css" />
@@ -16,28 +16,28 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="..\..\index.html">All files</a> / <a href="index.html">modules/solution</a> generate-current-solution.js
+      <a href="..\..\index.html">All files</a> / <a href="index.html">modules/anagram</a> check-anagram-indicator.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>17/17</span>
+        <span class='fraction'>14/14</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">83.33% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>5/6</span>
+        <span class='fraction'>4/4</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/2</span>
+        <span class='fraction'>3/3</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>17/17</span>
+        <span class='fraction'>13/13</span>
       </div>
     </div>
     <p class="quiet">
@@ -89,13 +89,10 @@
 <a name='L41'></a><a href='#L41'>41</a>
 <a name='L42'></a><a href='#L42'>42</a>
 <a name='L43'></a><a href='#L43'>43</a>
-<a name='L44'></a><a href='#L44'>44</a>
-<a name='L45'></a><a href='#L45'>45</a>
-<a name='L46'></a><a href='#L46'>46</a>
-<a name='L47'></a><a href='#L47'>47</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L44'></a><a href='#L44'>44</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -104,8 +101,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">144x</span>
 <span class="cline-any cline-yes">144x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">406x</span>
+<span class="cline-any cline-yes">25x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">144x</span>
@@ -115,75 +112,69 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">144x</span>
-<span class="cline-any cline-yes">63x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">63x</span>
-<span class="cline-any cline-yes">95x</span>
-<span class="cline-any cline-yes">95x</span>
+<span class="cline-any cline-yes">406x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">144x</span>
-<span class="cline-any cline-yes">144x</span>
-<span class="cline-any cline-yes">21x</span>
+<span class="cline-any cline-yes">406x</span>
+<span class="cline-any cline-yes">473396x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">144x</span>
+<span class="cline-any cline-yes">406x</span>
+<span class="cline-any cline-yes">25x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">381x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const getDoubleDefinitionSolutions = require("../double-definition/double-definition-solutions");
-const doesSolutionExist = require("./does-solution-exist");
-const checkIfCombinationHasAnagramIndicator = require("../anagram/check-anagram-indicator");
-const generatePossibleDefinitions = require("../definitions/generate-possible-definitions");
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var fs = require("fs");
 &nbsp;
-function generateCurrentSolution(
-  currentCombination,
-  solutionLength,
-  synonymList
-) {
-  var solutionList = new Array();
-  var firstDefinitions = generatePossibleDefinitions(
-    currentCombination[0],
-    solutionLength,
-    synonymList
-  );
-  var lastDefinitions = generatePossibleDefinitions(
-    currentCombination[1],
-    solutionLength,
-    synonymList
-  );
-&nbsp;
-  //Check for Double Definition
-  if (currentCombination.length == 2) {
-    var doubleDefinitionSolutions = getDoubleDefinitionSolutions(
-      firstDefinitions,
-      lastDefinitions
-    );
-&nbsp;
-    doubleDefinitionSolutions.forEach(currentDoubleDefinitionSolution =&gt; {
-      <span class="missing-if-branch" title="else path not taken" >E</span>if (!doesSolutionExist(solutionList, currentDoubleDefinitionSolution)) {
-        solutionList.push(currentDoubleDefinitionSolution);
-      }
-    });
-  }
-&nbsp;
-  //Check for Anagrams
-  var anagramPhrase = checkIfCombinationHasAnagramIndicator(currentCombination);
-  if (anagramPhrase != false) {
-    console.log(anagramPhrase);
-  }
-&nbsp;
-  return solutionList;
+/**
+ *
+ * @param currentCombination : Combination to be checked
+ * @return flag : if there is an anagram indicator flag is the idicator else flag is false
+ *
+ * checkIfCombinationHasAnagramIndicator() checks if the combination ahs an anagram indicator and returns it else returns false
+ */
+function checkIfCombinationHasAnagramIndicator(currentCombination) {
+  var flag = false;
+  currentCombination.forEach(currentPhrase =&gt; {
+    if (isPhraseIndicator(currentPhrase)) {
+      flag = currentPhrase;
+    }
+  });
+  return flag;
 }
 &nbsp;
-module.exports = generateCurrentSolution;
+/**
+ *
+ * @param phrase : current phrase to be checked
+ * @return : true if phrase is indicator, false if not
+ *
+ * isPhraseIndicator() is a helper function to check whether a given phrase is an anagram indicator or not
+ */
+function isPhraseIndicator(phrase) {
+  var array = fs
+    .readFileSync("util/indicators/anagram-indicators.txt")
+    .toString()
+    .split("\n");
+&nbsp;
+  for (var i = 0; i &lt; array.length; i++) {
+    array[i] = array[i].replace(/[\r\n]+/gm, "");
+  }
+&nbsp;
+  if (array.includes(phrase)) {
+    return true;
+  }
+  return false;
+}
+&nbsp;
+module.exports = checkIfCombinationHasAnagramIndicator;
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
