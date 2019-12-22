@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1576982011420" clover="3.2.0">
-  <project timestamp="1576982011420" name="All files">
-    <metrics statements="168" coveredstatements="168" conditionals="54" coveredconditionals="47" methods="29" coveredmethods="29" elements="251" coveredelements="244" complexity="0" loc="168" ncloc="168" packages="6" files="11" classes="11"/>
+<coverage generated="1576984840299" clover="3.2.0">
+  <project timestamp="1576984840299" name="All files">
+    <metrics statements="169" coveredstatements="169" conditionals="54" coveredconditionals="47" methods="29" coveredmethods="29" elements="252" coveredelements="245" complexity="0" loc="169" ncloc="169" packages="6" files="11" classes="11"/>
     <package name="modules.definitions">
       <metrics statements="11" coveredstatements="11" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
       <file name="generate-possible-definitions.js" path="D:\Final Project\version1\modules\definitions\generate-possible-definitions.js">
@@ -20,9 +20,9 @@
       </file>
     </package>
     <package name="modules.double-definition">
-      <metrics statements="12" coveredstatements="12" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+      <metrics statements="13" coveredstatements="13" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
       <file name="double-definition-solutions.js" path="D:\Final Project\version1\modules\double-definition\double-definition-solutions.js">
-        <metrics statements="12" coveredstatements="12" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+        <metrics statements="13" coveredstatements="13" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
         <line num="1" count="2" type="stmt"/>
         <line num="15" count="64" type="stmt"/>
         <line num="16" count="64" type="stmt"/>
@@ -33,8 +33,9 @@
         <line num="30" count="105" type="stmt"/>
         <line num="31" count="105" type="stmt"/>
         <line num="32" count="105" type="stmt"/>
-        <line num="36" count="64" type="stmt"/>
-        <line num="39" count="2" type="stmt"/>
+        <line num="33" count="105" type="stmt"/>
+        <line num="37" count="64" type="stmt"/>
+        <line num="40" count="2" type="stmt"/>
       </file>
     </package>
     <package name="modules.format">
