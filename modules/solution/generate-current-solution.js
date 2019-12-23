@@ -30,6 +30,14 @@ function generateCurrentSolution(
 
     doubleDefinitionSolutions.forEach(currentDoubleDefinitionSolution => {
       if (!doesSolutionExist(solutionList, currentDoubleDefinitionSolution)) {
+        currentDoubleDefinitionSolution["reason"] =
+          "This clue is a Double Definition. The first definition is '" +
+          currentCombination[0].toUpperCase() +
+          "' and the second definition is '" +
+          currentCombination[1].toUpperCase() +
+          "'. " +
+          currentDoubleDefinitionSolution["solution"] +
+          " is a synonym to both definitions";
         solutionList.push(currentDoubleDefinitionSolution);
       }
     });
