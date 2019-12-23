@@ -336,3 +336,35 @@ test("Chaperone shredded corsets (7): ESCORTS", async () => {
     checkIfSolutionListContains(solutionList, expectedSolution)
   ).toBeTruthy();
 });
+
+/**
+ * Test to Check whether Go near fresh fruit (6) gives ORANGE
+ */
+test("Go near fresh fruit (6): ORANGE", async () => {
+  var clue = "Go near fresh fruit";
+  var length = 6;
+
+  var expectedSolution = "ORANGE";
+
+  var solutionList = await generateSolution(clue, length);
+
+  expect(
+    checkIfSolutionListContains(solutionList, expectedSolution)
+  ).toBeTruthy();
+});
+
+/**
+ * Test to Check whether Keeps dissolving in tear (7) gives RETAINS
+ */
+test("Keeps dissolving in tear (7): RETAINS", async () => {
+  var clue = "Keeps dissolving in tears";
+  var length = 7;
+
+  var expectedSolution = "RETAINS";
+
+  var solutionList = await generateSolution(clue, length);
+
+  expect(
+    checkIfSolutionListContains(solutionList, expectedSolution)
+  ).toBeTruthy();
+});
