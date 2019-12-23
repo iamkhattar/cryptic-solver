@@ -1,5 +1,4 @@
 /**
- *
  * @param word1 : First Word to be checked
  * @param word2 : Second Word to be checked
  * @return : true if they are anagrams, false if they are not

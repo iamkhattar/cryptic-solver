@@ -4,4 +4,11 @@ All notable changes to this project will be documented in this file.
 [1.0.0] - 22-12-2019
 - Double Definition Clues are now solvable
 - Single Word limitation removed
-- Tests for Double Definitions Written
+- Tests for Double Definitions added
+
+[1.1.0] - 23-12-2019
+- Anagram Clues are now solvable
+- Combination generation algorithm changed
+
+[1.1.1] - 23-12-2019
+- Tests for Anagrams added
