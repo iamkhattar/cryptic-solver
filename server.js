@@ -5,4 +5,4 @@ async function driver(clue, length) {
   console.log(solution);
 }
 
-driver("Mad dog becomes an something to worship", 3);
+driver("Unusually tough monster", 5);
