@@ -1,6 +1,16 @@
 const checkAnagram = require("./check-anagram");
 const getSynonyms = require("../thesaurus/get-synonyms");
 
+/**
+ *
+ * @param currentCombination : current combination to be checked
+ * @param synonymList : list of synonyms
+ * @param firstDefinitions : possible definitions for first phrase
+ * @param lastDefinitions : possible definitions for last phrase
+ * @param anagramIndicator : anagram indicator
+ *
+ * getAnagramSolutions() generates all possible anagram solutions for a given combination
+ */
 function getAnagramSolution(
   currentCombination,
   synonymList,

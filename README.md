@@ -8,7 +8,7 @@ Cryptic Solver is a web application developed to solve cryptic crossword clues u
   npm install
 ```
 
-## Run
+## Run Application through IDE
 
 ```javascript
 const getSolution = require("./modules/solution/generate-solution");
@@ -17,6 +17,12 @@ async function driver(clue, length) {
   console.log(solution);
 }
 driver(clue, length);
+```
+
+## Test Application
+
+```bash
+  npm test
 ```
 
 ## Usage
