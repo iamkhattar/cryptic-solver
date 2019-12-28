@@ -11,7 +11,6 @@ Cryptic Solver is a web application developed to solve cryptic crossword clues u
 ## Run
 
 ```javascript
-const getSolution = require("./modules/solution/generate-solution");
 async function runningFunction(clue, length) {
   return await getSolution(clue, length);
 }
