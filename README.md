@@ -2,6 +2,21 @@
 
 Cryptic Solver is a web application developed to solve cryptic crossword clues using the MERN Stack.
 
+## Installation
+
+```bash
+  npm install
+```
+
+## Run
+
+```javascript
+const getSolution = require("./modules/solution/generate-solution");
+async function runningFunction(clue, length) {
+  return await getSolution(clue, length);
+}
+```
+
 ## Usage
 
 Please visit [Cryptic Solver](https://devweb2019.cis.strath.ac.uk/vib16216-nodejs/ "Cryptic Solver") to use the application.
