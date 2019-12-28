@@ -1,12 +1,8 @@
 const getSolution = require("./modules/solution/generate-solution");
 
-async function test() {
-  var solution = await getSolution(
-    "Mad dog becomes an something to worship",
-    3
-  );
-
+async function driver(clue, length) {
+  var solution = await getSolution(clue, length);
   console.log(solution);
 }
 
-test();
+driver("Mad dog becomes an something to worship", 3);
