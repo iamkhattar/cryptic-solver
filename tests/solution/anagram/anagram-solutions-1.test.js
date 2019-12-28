@@ -178,29 +178,13 @@ test("Built Roman grand house (5): MANOR", async () => {
 });
 
 /**
- * Test to Check whether Upset piper eats canape (9) gives APPETISER
+ * Test to Check whether Mad dog becomes an something to worship (3) gives GOD
  */
-test("Upset piper eats canape (9): APPETISER", async () => {
-  var clue = "Upset piper eats canape";
-  var length = 9;
+test("Mad dog becomes an something to worship (3): GOD", async () => {
+  var clue = "Mad dog becomes an something to worship";
+  var length = 3;
 
-  var expectedSolution = "APPETISER";
-
-  var solutionList = await generateSolution(clue, length);
-
-  expect(
-    checkIfSolutionListContains(solutionList, expectedSolution)
-  ).toBeTruthy();
-});
-
-/**
- * Test to Check whether Badly pare the fruit (4) gives PEAR
- */
-test("Badly pare the fruit (4): PEAR", async () => {
-  var clue = "Badly pare the fruit";
-  var length = 4;
-
-  var expectedSolution = "PEAR";
+  var expectedSolution = "GOD";
 
   var solutionList = await generateSolution(clue, length);
 
