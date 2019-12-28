@@ -1,5 +1,3 @@
-# Cryptic Solver
-
 ![Cryptic Solver Logo](https://devweb2019.cis.strath.ac.uk/~vib16216/CrypticSolverPublic/readme-logo.jpg)
 
 Cryptic Solver is a web application developed to solve cryptic crossword clues using the MERN Stack.
