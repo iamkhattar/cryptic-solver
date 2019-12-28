@@ -21,7 +21,7 @@ driver(clue, length);
 
 ## Usage
 
-Please visit [Cryptic Solver](https://devweb2019.cis.strath.ac.uk/vib16216-nodejs/ "Cryptic Solver") to use the application.
+Please visit [Cryptic Solver](https://devweb2019.cis.strath.ac.uk/vib16216-nodejs/ "Cryptic Solver") to use the web application.
 
 ## Types of clues that can be solved
 
