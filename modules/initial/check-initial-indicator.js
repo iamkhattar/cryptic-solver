@@ -2,12 +2,12 @@ var fs = require("fs");
 
 /**
  *
- * @param currentCombination : Combination to be checked
- * @return flag : if there is an anagram indicator flag is the idicator else flag is false
+ * @param currentCombination : combination to be checked
+ * @return flag : if there is an initial letter indicator flag is the idicator else flag is false
  *
- * checkIfCombinationHasAnagramIndicator() checks if the combination has an anagram indicator and returns it else returns false
+ * checkIfCombinationHasInitialIndicator() checks if the combination has an initial letter indicator and returns it else returns false
  */
-function checkIfCombinationHasAnagramIndicator(currentCombination) {
+function checkIfCombinationHasInitialIndicator(currentCombination) {
   var flag = false;
   currentCombination.forEach(currentPhrase => {
     if (isPhraseIndicator(currentPhrase)) {
@@ -22,11 +22,11 @@ function checkIfCombinationHasAnagramIndicator(currentCombination) {
  * @param phrase : current phrase to be checked
  * @return : true if phrase is indicator, false if not
  *
- * isPhraseIndicator() is a helper function to check whether a given phrase is an anagram indicator or not
+ * isPhraseIndicator() is a helper function to check whether a given phrase is an initial indicator or not
  */
 function isPhraseIndicator(phrase) {
   var array = fs
-    .readFileSync("util/indicators/anagram-indicators.txt")
+    .readFileSync("util/indicators/initial-indicators.txt")
     .toString()
     .split("\n");
 
@@ -39,5 +39,4 @@ function isPhraseIndicator(phrase) {
   }
   return false;
 }
-
-module.exports = checkIfCombinationHasAnagramIndicator;
+module.exports = checkIfCombinationHasInitialIndicator;
