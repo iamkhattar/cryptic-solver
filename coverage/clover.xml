@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1577071644838" clover="3.2.0">
-  <project timestamp="1577071644838" name="All files">
+<coverage generated="1577076568248" clover="3.2.0">
+  <project timestamp="1577076568248" name="All files">
     <metrics statements="206" coveredstatements="206" conditionals="57" coveredconditionals="53" methods="38" coveredmethods="38" elements="301" coveredelements="297" complexity="0" loc="206" ncloc="206" packages="7" files="15" classes="15"/>
     <package name="modules.anagram">
       <metrics statements="69" coveredstatements="69" conditionals="18" coveredconditionals="18" methods="9" coveredmethods="9"/>
