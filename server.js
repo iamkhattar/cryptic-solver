@@ -5,4 +5,7 @@ async function driver(clue, length) {
   console.log(solution);
 }
 
-driver("Unusually tough monster", 5);
+driver(
+  "At first, actor needing new identity emulates orphan in musical theatre",
+  5
+);

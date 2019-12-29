@@ -1,8 +1,10 @@
 const getDoubleDefinitionSolutions = require("../double-definition/double-definition-solutions");
 const doesSolutionExist = require("./does-solution-exist");
-const checkIfCombinationHasAnagramIndicator = require("../anagram/check-anagram-indicator");
 const generatePossibleDefinitions = require("../definitions/generate-possible-definitions");
+const checkIfCombinationHasAnagramIndicator = require("../anagram/check-anagram-indicator");
 const getAnagramSolutions = require("../anagram/anagram-solutions");
+const checkIfCombinationHasInitialIndicator = require("../initial/check-initial-indicator");
+const getInitialSolutions = require("../initial/initial-solutions");
 
 function generateCurrentSolution(
   currentCombination,
@@ -21,7 +23,7 @@ function generateCurrentSolution(
     synonymList
   );
 
-  //Check for Double Definition
+  //Check for Double Definition Clues
   if (currentCombination.length == 2) {
     var doubleDefinitionSolutions = getDoubleDefinitionSolutions(
       firstDefinitions,
@@ -43,7 +45,7 @@ function generateCurrentSolution(
     });
   }
 
-  //Check for Anagrams
+  //Check for Anagram Clues
   var anagramIndicator = checkIfCombinationHasAnagramIndicator(
     currentCombination
   );
@@ -62,6 +64,24 @@ function generateCurrentSolution(
     });
   }
 
+  //Check for Initial Letter Clues
+  var initialIndicator = checkIfCombinationHasInitialIndicator(
+    currentCombination
+  );
+  if (initialIndicator != false) {
+    var initialSolutions = getInitialSolutions(
+      currentCombination,
+      firstDefinitions,
+      lastDefinitions,
+      initialIndicator
+    );
+
+    initialSolutions.forEach(currentInitialSolution => {
+      if (!doesSolutionExist(solutionList, currentInitialSolution)) {
+        solutionList.push(currentInitialSolution);
+      }
+    });
+  }
   return solutionList;
 }
 
