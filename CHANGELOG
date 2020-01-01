@@ -16,3 +16,8 @@ All notable changes to this project will be documented in this file.
 [1.1.2] - 28-12-2019
 - Anagram logic improved
 - Anagram reasoning fixed
+
+[1.2.1] - 01-01-2020
+- Initial Clues are now solvable
+- Initial Clues show the correct reasoning
+- Datamuse query code changed to increase performance

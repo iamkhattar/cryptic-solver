@@ -1,5 +1,6 @@
 const moby = require("moby");
-const datamuse = require("datamuse");
+//const datamuse = require("datamuse");
+const datamuse = require("../datamuse/datamuse-request");
 
 /**
  *
@@ -9,7 +10,8 @@ const datamuse = require("datamuse");
 async function getWordplays(uniquePhrases) {
   var promiseArray = new Array();
   uniquePhrases.forEach(currentPhrase => {
-    promiseArray.push(datamuse.words({ ml: currentPhrase }));
+    //promiseArray.push(datamuse.words({ ml: currentPhrase }));
+    promiseArray.push(datamuse(currentPhrase));
   });
 
   var p = await Promise.all(promiseArray);
@@ -22,7 +24,8 @@ async function getWordplays(uniquePhrases) {
 
     var search = moby.search(currentWord);
     var rev = moby.reverseSearch(currentWord);
-    var currentData = p[i];
+    //var currentData = p[i];
+    var currentData = JSON.parse(p[i].body);
 
     if (search != undefined) {
       search.forEach(element => {

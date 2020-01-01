@@ -33,6 +33,7 @@ Please visit [Cryptic Solver](https://devweb2019.cis.strath.ac.uk/vib16216-nodej
 
 1. Double Definition
 2. Anagram
+3. Initial Letter
 
 ## Clues Solved Successfully
 
