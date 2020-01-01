@@ -10,7 +10,4 @@ async function driver(clue, length) {
   console.timeEnd("time");
 }
 
-driver(
-  "At first, actor needing new identity emulates orphan in musical theatre",
-  5
-);
+driver("Youngster initially babbles about being young", 4);

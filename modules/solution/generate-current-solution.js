@@ -23,28 +23,6 @@ function generateCurrentSolution(
     synonymList
   );
 
-  //Check for Double Definition Clues
-  if (currentCombination.length == 2) {
-    var doubleDefinitionSolutions = getDoubleDefinitionSolutions(
-      firstDefinitions,
-      lastDefinitions
-    );
-
-    doubleDefinitionSolutions.forEach(currentDoubleDefinitionSolution => {
-      if (!doesSolutionExist(solutionList, currentDoubleDefinitionSolution)) {
-        currentDoubleDefinitionSolution["reason"] =
-          "This clue is a Double Definition. The first definition is '" +
-          currentCombination[0].toUpperCase() +
-          "' and the second definition is '" +
-          currentCombination[1].toUpperCase() +
-          "'. " +
-          currentDoubleDefinitionSolution["solution"] +
-          " is a synonym to both definitions";
-        solutionList.push(currentDoubleDefinitionSolution);
-      }
-    });
-  }
-
   //Check for Anagram Clues
   var anagramIndicator = checkIfCombinationHasAnagramIndicator(
     currentCombination
@@ -79,6 +57,28 @@ function generateCurrentSolution(
     initialSolutions.forEach(currentInitialSolution => {
       if (!doesSolutionExist(solutionList, currentInitialSolution)) {
         solutionList.push(currentInitialSolution);
+      }
+    });
+  }
+
+  //Check for Double Definition Clues
+  if (currentCombination.length == 2) {
+    var doubleDefinitionSolutions = getDoubleDefinitionSolutions(
+      firstDefinitions,
+      lastDefinitions
+    );
+
+    doubleDefinitionSolutions.forEach(currentDoubleDefinitionSolution => {
+      if (!doesSolutionExist(solutionList, currentDoubleDefinitionSolution)) {
+        currentDoubleDefinitionSolution["reason"] =
+          "This clue is a Double Definition. The first definition is '" +
+          currentCombination[0].toUpperCase() +
+          "' and the second definition is '" +
+          currentCombination[1].toUpperCase() +
+          "'. " +
+          currentDoubleDefinitionSolution["solution"] +
+          " is a synonym to both definitions";
+        solutionList.push(currentDoubleDefinitionSolution);
       }
     });
   }
