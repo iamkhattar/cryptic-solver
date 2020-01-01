@@ -96,3 +96,19 @@ test("Black and white lamb starts to cry (4) : BAWL", async () => {
     checkIfSolutionListContains(solutionList, expectedSolution)
   ).toBeTruthy();
 });
+
+/**
+ * Test to Youngster initially babbles about being young (4) gives BABY
+ */
+test("Youngster initially babbles about being young (4) : BABY", async () => {
+  var clue = "Youngster initially babbles about being young";
+  var length = 4;
+
+  var expectedSolution = "BABY";
+
+  var solutionList = await generateSolution(clue, length);
+
+  expect(
+    checkIfSolutionListContains(solutionList, expectedSolution)
+  ).toBeTruthy();
+});
