@@ -38,6 +38,7 @@ Please visit [Cryptic Solver](https://devweb2019.cis.strath.ac.uk/vib16216-nodej
 2. Anagram
 3. Initial Letter
 4. Reversal
+5. Hidden Clues
 
 ## Clues Solved Successfully
 

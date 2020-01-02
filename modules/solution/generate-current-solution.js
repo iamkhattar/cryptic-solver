@@ -17,6 +17,10 @@ const getInitialSolutions = require("../initial/initial-solutions");
 const checkIfCombinationHasReversalIndicator = require("../reversal/check-reversal-indicator");
 const getReversalSolutions = require("../reversal/reversal-solutions");
 
+//Hidden Clues Related imports
+const checkIfCombinationHasHiddenIndicator = require("../hidden/check-hidden-indicator");
+const getHiddenSolutions = require("../hidden/hidden-solutions");
+
 function generateCurrentSolution(
   currentCombination,
   solutionLength,
@@ -33,6 +37,24 @@ function generateCurrentSolution(
     solutionLength,
     synonymList
   );
+
+  //Check for Hidden Clues
+  var hiddenIndicator = checkIfCombinationHasHiddenIndicator(
+    currentCombination
+  );
+  if (hiddenIndicator != false) {
+    var hiddenSolutions = getHiddenSolutions(
+      currentCombination,
+      firstDefinitions,
+      lastDefinitions,
+      hiddenIndicator
+    );
+    hiddenSolutions.forEach(currentHiddenSolutions => {
+      if (!doesSolutionExist(solutionList, currentHiddenSolutions)) {
+        solutionList.push(currentHiddenSolutions);
+      }
+    });
+  }
 
   //Check for Reversal Clues
   var reversalIndicator = checkIfCombinationHasReversalIndicator(
