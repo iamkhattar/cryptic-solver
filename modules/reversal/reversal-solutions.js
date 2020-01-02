@@ -1,6 +1,16 @@
 const reversePhrase = require("../reversal/reverse-phrase");
 const getSynonyms = require("../thesaurus/get-synonyms");
 
+/**
+ *
+ * @param currentCombination : current combination to be checked
+ * @param synonymList : list of synonyms
+ * @param firstDefinitions : possible definitions for first phrase
+ * @param lastDefinitions : possible definitions for last phrase
+ * @param reversalIndicator : reversal indicator
+ *
+ * getReversalSolution() generates all possible reversal solutions for a given combination
+ */
 function getReversalSolution(
   currentCombination,
   synonymList,

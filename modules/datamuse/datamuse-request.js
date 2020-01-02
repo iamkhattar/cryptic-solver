@@ -2,7 +2,9 @@
 
 const https = require("https");
 const url = "https://api.datamuse.com/words?ml=";
-
+/**
+ * Module for querying Datamuse API
+ */
 module.exports = (urlOptions, data = "") => {
   const datamuseUrl = url + urlOptions;
   return new Promise((resolve, reject) => {
