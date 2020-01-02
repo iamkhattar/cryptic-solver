@@ -10,4 +10,4 @@ async function driver(clue, length) {
   console.timeEnd("time");
 }
 
-driver("Youngster initially babbles about being young", 4);
+driver("Agree with the backward academic fellow", 3);

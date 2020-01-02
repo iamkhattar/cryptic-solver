@@ -1,10 +1,21 @@
-const getDoubleDefinitionSolutions = require("../double-definition/double-definition-solutions");
+//General imports
 const doesSolutionExist = require("./does-solution-exist");
 const generatePossibleDefinitions = require("../definitions/generate-possible-definitions");
+
+//Double Definition related imports
+const getDoubleDefinitionSolutions = require("../double-definition/double-definition-solutions");
+
+//Anagram Related imports
 const checkIfCombinationHasAnagramIndicator = require("../anagram/check-anagram-indicator");
 const getAnagramSolutions = require("../anagram/anagram-solutions");
+
+//Initial Clues Related imports
 const checkIfCombinationHasInitialIndicator = require("../initial/check-initial-indicator");
 const getInitialSolutions = require("../initial/initial-solutions");
+
+//Reversal Clues Related imports
+const checkIfCombinationHasReversalIndicator = require("../reversal/check-reversal-indicator");
+const getReversalSolutions = require("../reversal/reversal-solutions");
 
 function generateCurrentSolution(
   currentCombination,
@@ -22,6 +33,26 @@ function generateCurrentSolution(
     solutionLength,
     synonymList
   );
+
+  //Check for Reversal Clues
+  var reversalIndicator = checkIfCombinationHasReversalIndicator(
+    currentCombination
+  );
+  if (reversalIndicator != false) {
+    var reversalSolutions = getReversalSolutions(
+      currentCombination,
+      synonymList,
+      firstDefinitions,
+      lastDefinitions,
+      reversalIndicator
+    );
+
+    reversalSolutions.forEach(currentReversalSolution => {
+      if (!doesSolutionExist(solutionList, currentReversalSolution)) {
+        solutionList.push(currentReversalSolution);
+      }
+    });
+  }
 
   //Check for Anagram Clues
   var anagramIndicator = checkIfCombinationHasAnagramIndicator(

@@ -4,12 +4,11 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "jest --coverage --runInBand"
+    "test": "jest --coverage --runInBand --detectOpenHandles"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "datamuse": "^1.0.5",
     "express": "^4.17.1",
     "moby": "^1.1.2"
   },
