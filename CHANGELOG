@@ -24,3 +24,7 @@ All notable changes to this project will be documented in this file.
 
 [1.2.1] - 01-01-2020
 - Tests added for Initial Clues
+
+[1.3.0] - 02-10-2020
+- Reversal clues now work
+- Still need to write comments and tests

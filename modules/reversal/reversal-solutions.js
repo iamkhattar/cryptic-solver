@@ -18,7 +18,7 @@ function getReversalSolution(
         var currentSolution = new Array();
         currentSolution["solution"] = currentDefinition.toUpperCase();
         currentSolution["reason"] =
-          "This clue is an Reversal. The reversal indicator is " +
+          "This clue is a Reversal Clue. The reversal indicator is " +
           reversalIndicator.toUpperCase() +
           ". The definition is " +
           currentCombination[0].toUpperCase() +

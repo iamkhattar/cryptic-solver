@@ -10,4 +10,4 @@ async function driver(clue, length) {
   console.timeEnd("time");
 }
 
-driver("Agree with the backward academic fellow", 3);
+driver("Returned beer fit for a king", 5);

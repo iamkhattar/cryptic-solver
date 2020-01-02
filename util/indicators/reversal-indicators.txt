@@ -78,6 +78,7 @@ retrograde
 retrospective
 return
 returning
+returned
 reverse
 reversed
 reversing
@@ -199,6 +200,7 @@ rouse
 send back
 send up
 serve up
+serve up a
 set up
 setback
 soaring
