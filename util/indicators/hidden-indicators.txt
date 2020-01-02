@@ -9,6 +9,8 @@ buried in
 camouflages
 case
 casing
+cover
+covers
 central
 centre
 characters
