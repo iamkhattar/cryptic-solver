@@ -13,7 +13,10 @@ Cryptic Solver is a web application developed to solve cryptic crossword clues u
 ```javascript
 const getSolution = require("./modules/solution/generate-solution");
 async function driver(clue, length) {
-  var solution = await getSolution(clue, length);
+  var solution = await getSolution(clue, length).catch(err => {
+    console.log("Server Error");
+    process.exit();
+  });
   console.log(solution);
 }
 driver(clue, length);
