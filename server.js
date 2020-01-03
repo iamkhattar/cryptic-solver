@@ -10,4 +10,4 @@ async function driver(clue, length) {
   console.timeEnd("time");
 }
 
-driver("Returning from Acre, talked afterwards", 5);
+driver("Swan's tragic play: starting in Dundee, it ends there", 5);

@@ -21,6 +21,10 @@ const getReversalSolutions = require("../reversal/reversal-solutions");
 const checkIfCombinationHasHiddenIndicator = require("../hidden/check-hidden-indicator");
 const getHiddenSolutions = require("../hidden/hidden-solutions");
 
+//Final Clues Related imports
+const checkIfCombinationHasFinalIndicator = require("../final/check-final-indicator");
+const getFinalSolutions = require("../final/final-solutions");
+
 function generateCurrentSolution(
   currentCombination,
   solutionLength,
@@ -112,6 +116,17 @@ function generateCurrentSolution(
         solutionList.push(currentInitialSolution);
       }
     });
+  }
+
+  //Check for Final Letter Clues
+  var finalIndicator = checkIfCombinationHasFinalIndicator(currentCombination);
+  if (finalIndicator != false) {
+    var finalSolutions = getFinalSolutions(
+      currentCombination,
+      firstDefinitions,
+      lastDefinitions,
+      finalIndicator
+    );
   }
 
   //Check for Double Definition Clues
