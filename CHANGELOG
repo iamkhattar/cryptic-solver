@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file.
 
 [1.5.1] - 03-10-2020
 - Final Clues Tests added
+- Tests timeout increased
 
 [1.5.0] - 03-10-2020
 - Final Clues Now work
