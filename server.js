@@ -10,4 +10,4 @@ async function driver(clue, length) {
   console.timeEnd("time");
 }
 
-driver("Swan tragic play: starting in Dundee, it ends there", 6);
+driver("What's in Latin sign, if I can translate, is unimportant", 13);

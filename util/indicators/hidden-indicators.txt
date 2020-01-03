@@ -13,6 +13,7 @@ cover
 covers
 central
 centre
+clutches
 characters
 close to
 concealed
