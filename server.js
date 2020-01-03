@@ -10,4 +10,4 @@ async function driver(clue, length) {
   console.timeEnd("time");
 }
 
-driver("Informer finally reports on the extra cook", 5);
+driver("Swan tragic play: starting in Dundee, it ends there", 6);

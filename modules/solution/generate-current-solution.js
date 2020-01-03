@@ -127,6 +127,11 @@ function generateCurrentSolution(
       lastDefinitions,
       finalIndicator
     );
+    finalSolutions.forEach(currentFinalSolution => {
+      if (!doesSolutionExist(solutionList, currentFinalSolution)) {
+        solutionList.push(currentFinalSolution);
+      }
+    });
   }
 
   //Check for Double Definition Clues

@@ -1,4 +1,3 @@
-const getSynonyms = require("../thesaurus/get-synonyms");
 const getInitialLetters = require("../initial/initial-letters");
 
 function getInitialSolutions(
