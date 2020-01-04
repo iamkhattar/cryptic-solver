@@ -121,23 +121,6 @@ test("Insane damn yeti is explosive (8): DYNAMITE", async () => {
 });
 
 /**
- * Test to Check whether Perilous sea dog? Run all over the place! (9) gives DANGEROUS
- */
-test("Perilous sea dog? Run all over the place! (9): DANGEROUS", async () => {
-  jest.setTimeout(50000);
-  var clue = "Perilous sea dog? Run all over the place!";
-  var length = 9;
-
-  var expectedSolution = "DANGEROUS";
-
-  var solutionList = await generateSolution(clue, length);
-
-  expect(
-    checkIfSolutionListContains(solutionList, expectedSolution)
-  ).toBeTruthy();
-});
-
-/**
  * Test to Check whether Unusually remote extraterrestrial object (6) gives METEOR
  */
 test("Unusually remote extraterrestrial object (6): METEOR", async () => {
