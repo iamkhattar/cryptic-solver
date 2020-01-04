@@ -16,6 +16,10 @@ function getDeletionSolutions(
   deletionIndicator
 ) {
   var solutionList = new Array();
+  //First Definitions
+  for (var i = 1; i < currentCombination.length; i++) {
+    var currentPhrase = currentCombination[i];
+  }
   return solutionList;
 }
 
