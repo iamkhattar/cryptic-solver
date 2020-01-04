@@ -1,4 +1,8 @@
 var fs = require("fs");
+
+/**
+ * getStates() reads the state.txt file in util/lists and returns the contents of it in an array
+ */
 function getStates() {
   var array = fs
     .readFileSync("util/lists/state.txt")
