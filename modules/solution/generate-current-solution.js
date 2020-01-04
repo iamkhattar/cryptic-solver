@@ -150,6 +150,11 @@ function generateCurrentSolution(
       lastDefinitions,
       deletionIndicator
     );
+    deletionSolutions.forEach(currentDeletionSolution => {
+      if (!doesSolutionExist(solutionList, currentDeletionSolution)) {
+        solutionList.push(currentDeletionSolution);
+      }
+    });
   }
 
   //Check for Double Definition Clues
