@@ -2,6 +2,8 @@ const moby = require("moby");
 //const datamuse = require("datamuse");
 const datamuse = require("../datamuse/datamuse-request");
 
+const checkLists = require("../lists/check-lists");
+
 /**
  *
  * @param uniquePhrases : phrases for which synonyms have to be generated
@@ -42,6 +44,13 @@ async function getWordplays(uniquePhrases) {
     currentData.forEach(element => {
       if (!synonyms.includes(element.word)) synonyms.push(element.word);
     });
+
+    var lists = checkLists(currentWord);
+    if (lists != false) {
+      lists.forEach(element => {
+        if (!synonyms.includes(element)) synonyms.push(element);
+      });
+    }
 
     currentSolution["word"] = currentWord;
     currentSolution["synonyms"] = synonyms;
