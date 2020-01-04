@@ -1,4 +1,6 @@
 const getStates = require("./get-states");
+const getCountrys = require("./get-countrys");
+const getSigns = require("./get-signs");
 
 /**
  *
@@ -9,8 +11,11 @@ const getStates = require("./get-states");
 function getSynonymsFromLists(phrase) {
   if (phrase == "state" || phrase == "states") {
     return getStates();
+  } else if (phrase == "country" || phrase == "countrys") {
+    return getCountrys();
+  } else if (phrase == "sign" || phrase == "signs") {
+    return getSigns();
   }
-
   return false;
 }
 
