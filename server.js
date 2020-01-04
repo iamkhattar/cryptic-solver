@@ -10,4 +10,4 @@ async function driver(clue, length) {
   console.timeEnd("time");
 }
 
-driver("State first if one wants advice", 4);
+driver("Almost obstruct an alliance", 4);

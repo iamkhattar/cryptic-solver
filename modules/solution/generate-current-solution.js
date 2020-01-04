@@ -25,6 +25,10 @@ const getHiddenSolutions = require("../hidden/hidden-solutions");
 const checkIfCombinationHasFinalIndicator = require("../final/check-final-indicator");
 const getFinalSolutions = require("../final/final-solutions");
 
+//Deletion Clues Related imports
+const checkIfCombinationHasDeletionIndicator = require("../deletion/check-deletion-indicator");
+const getDeletionSolutions = require("../deletion/deletion-solutions");
+
 function generateCurrentSolution(
   currentCombination,
   solutionLength,
@@ -132,6 +136,20 @@ function generateCurrentSolution(
         solutionList.push(currentFinalSolution);
       }
     });
+  }
+
+  //Deletion Clues
+  var deletionIndicator = checkIfCombinationHasDeletionIndicator(
+    currentCombination
+  );
+  if (deletionIndicator != false) {
+    var deletionSolutions = getDeletionSolutions(
+      currentCombination,
+      synonymList,
+      firstDefinitions,
+      lastDefinitions,
+      deletionIndicator
+    );
   }
 
   //Check for Double Definition Clues
