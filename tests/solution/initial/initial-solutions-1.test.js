@@ -87,7 +87,7 @@ test("Starts to serve time in Russian prison (4) : STIR", async () => {
 });
 
 /**
- * Test to Black and white lamb starts to cry (4) gives BAWL
+ * Test to check whether Black and white lamb starts to cry (4) gives BAWL
  */
 test("Black and white lamb starts to cry (4) : BAWL", async () => {
   jest.setTimeout(50000);
@@ -104,7 +104,7 @@ test("Black and white lamb starts to cry (4) : BAWL", async () => {
 });
 
 /**
- * Test to Youngster initially babbles about being young (4) gives BABY
+ * Test to check whether Youngster initially babbles about being young (4) gives BABY
  */
 test("Youngster initially babbles about being young (4) : BABY", async () => {
   jest.setTimeout(50000);
@@ -112,6 +112,23 @@ test("Youngster initially babbles about being young (4) : BABY", async () => {
   var length = 4;
 
   var expectedSolution = "BABY";
+
+  var solutionList = await generateSolution(clue, length);
+
+  expect(
+    checkIfSolutionListContains(solutionList, expectedSolution)
+  ).toBeTruthy();
+});
+
+/**
+ * Test to check whether State first if one wants advice (4) gives IOWA
+ */
+test("State first if one wants advice (4) : IOWA", async () => {
+  jest.setTimeout(50000);
+  var clue = "State first if one wants advice";
+  var length = 4;
+
+  var expectedSolution = "IOWA";
 
   var solutionList = await generateSolution(clue, length);
 
