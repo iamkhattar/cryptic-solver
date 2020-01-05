@@ -29,6 +29,9 @@ const getFinalSolutions = require("../final/final-solutions");
 const checkIfCombinationHasDeletionIndicator = require("../deletion/check-deletion-indicator");
 const getDeletionSolutions = require("../deletion/deletion-solutions");
 
+//Alternate Clues Related imports
+const getAlternateSolutions = require("../alternate/alternate-solutions");
+
 function generateCurrentSolution(
   currentCombination,
   solutionLength,
@@ -156,6 +159,18 @@ function generateCurrentSolution(
       }
     });
   }
+
+  //Alternate Letter Clues
+  var alternateSolutions = getAlternateSolutions(
+    currentCombination,
+    firstDefinitions,
+    lastDefinitions
+  );
+  alternateSolutions.forEach(currentAlternateSolutions => {
+    if (!doesSolutionExist(solutionList, currentAlternateSolutions)) {
+      solutionList.push(currentAlternateSolutions);
+    }
+  });
 
   //Check for Double Definition Clues
   if (currentCombination.length == 2) {

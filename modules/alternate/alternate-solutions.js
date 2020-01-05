@@ -1,40 +1,37 @@
-const getInitialLetters = require("../initial/initial-letters");
+const getOddLetters = require("./odd-letters");
+const getEvenLetters = require("./even-letters");
 
 /**
  *
  * @param {*} currentCombination : Current Combination
  * @param {*} firstDefinitions : List of possible definitions for first phrase
  * @param {*} lastDefinitions : List of possible definitions for last phrase
- * @param {*} initialIndicator : Initial Indicators
  *
- * getInitialSolutions() generates all possible initial letter solutions for a given combination and returns it
+ * getAlternateSolutions() generates all possible alternate letter solutions for a given combinatio and returns it
  */
-function getInitialSolutions(
+function getAlternateSolutions(
   currentCombination,
   firstDefinitions,
-  lastDefinitions,
-  initialIndicator
+  lastDefinitions
 ) {
   var solutionList = new Array();
-
   //First Definitions
   for (var i = 1; i < currentCombination.length; i++) {
     var currentPhrase = currentCombination[i];
-    var initialLetters = getInitialLetters(currentPhrase);
+    var oddLetters = getOddLetters(currentPhrase);
+    var evenLetters = getEvenLetters(currentPhrase);
     firstDefinitions.forEach(currentDefinition => {
-      if (currentDefinition == initialLetters) {
+      if (currentDefinition == oddLetters || currentDefinition == evenLetters) {
         var currentSolution = new Array();
         currentSolution["solution"] = currentDefinition.toUpperCase();
         currentSolution["reason"] =
-          "This clue is an Initial Letter Clue. The initial indicator is " +
-          initialIndicator.toUpperCase() +
-          ". The definition is " +
+          "This clue is an Alternate Letter Clue. The definition is " +
           currentCombination[0].toUpperCase() +
           ". " +
           currentDefinition.toUpperCase() +
           " is a synonym of " +
           currentCombination[0].toUpperCase() +
-          ". Initial letters of " +
+          ". Alternate letters of " +
           currentPhrase.toUpperCase() +
           " gives " +
           currentDefinition.toUpperCase();
@@ -47,21 +44,21 @@ function getInitialSolutions(
   //Last Definitions
   for (var i = 0; i < currentCombination.length - 1; i++) {
     var currentPhrase = currentCombination[i];
-    var initialLetters = getInitialLetters(currentPhrase);
+
+    var oddLetters = getOddLetters(currentPhrase);
+    var evenLetters = getEvenLetters(currentPhrase);
     lastDefinitions.forEach(currentDefinition => {
-      if (currentDefinition == initialLetters) {
+      if (currentDefinition == oddLetters || currentDefinition == evenLetters) {
         var currentSolution = new Array();
         currentSolution["solution"] = currentDefinition.toUpperCase();
         currentSolution["reason"] =
-          "This clue is an Initial Letter Clue. The initial indicator is " +
-          initialIndicator.toUpperCase() +
-          ". The definition is " +
+          "This clue is an Alternate Letter Clue. The definition is " +
           currentCombination[currentCombination.length - 1].toUpperCase() +
           ". " +
           currentDefinition.toUpperCase() +
           " is a synonym of " +
           currentCombination[currentCombination.length - 1].toUpperCase() +
-          ". Initial letters of " +
+          ". Alternate letters of " +
           currentPhrase.toUpperCase() +
           " gives " +
           currentDefinition.toUpperCase();
@@ -73,5 +70,4 @@ function getInitialSolutions(
 
   return solutionList;
 }
-
-module.exports = getInitialSolutions;
+module.exports = getAlternateSolutions;
