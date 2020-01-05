@@ -10,4 +10,4 @@ async function driver(clue, length) {
   console.timeEnd("time");
 }
 
-driver("Suggest not starting in a flabby way", 5);
+driver("Plunderer loses head to go mad", 5);

@@ -40,6 +40,7 @@ Please visit [Cryptic Solver](https://devweb2019.cis.strath.ac.uk/vib16216-nodej
 4. Reversal
 5. Hidden
 6. Final Letter
+7. Deletion Clues
 
 ## Clues Solved Successfully
 

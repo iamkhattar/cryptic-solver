@@ -1,6 +1,10 @@
 Changelog
 All notable changes to this project will be documented in this file.
 
+[1.7.0] - 05-10-2020
+- Deletion Clues now work
+- Tests will be written in next version
+
 [1.6.0] - 04-10-2020
 - Custom Country List added
 - Custom Sign List added
