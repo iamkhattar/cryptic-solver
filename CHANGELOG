@@ -1,6 +1,9 @@
 Changelog
 All notable changes to this project will be documented in this file.
 
+[1.7.1] - 06-10-2020
+- Tests added for Deletion Clues
+
 [1.7.0] - 05-10-2020
 - Deletion Clues now work
 - Tests will be written in next version
