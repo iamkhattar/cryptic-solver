@@ -10,4 +10,4 @@ async function driver(clue, length) {
   console.timeEnd("time");
 }
 
-driver("Unluckily discounting the odds in nail bars", 4);
+driver("Harmony, say, in act evens out", 4);

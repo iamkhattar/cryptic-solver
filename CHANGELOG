@@ -1,8 +1,11 @@
 Changelog
 All notable changes to this project will be documented in this file.
 
+[1.8.1] - 06-10-2020
+- Tests added for Alternate letter Clues
+
 [1.8.0] - 06-10-2020
-- Alternate Clues now work
+- Alternate Letter Clues now work
 - Tests will be added in next version
 
 [1.7.1] - 06-10-2020
