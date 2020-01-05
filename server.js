@@ -10,4 +10,4 @@ async function driver(clue, length) {
   console.timeEnd("time");
 }
 
-driver("Almost obstruct an alliance", 4);
+driver("Suggest not starting in a flabby way", 5);
