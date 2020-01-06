@@ -10,4 +10,4 @@ async function driver(clue, length) {
   console.timeEnd("time");
 }
 
-driver("Harmony, say, in act evens out", 4);
+driver("Ox devours North American", 4);

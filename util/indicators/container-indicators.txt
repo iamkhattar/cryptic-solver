@@ -1,4 +1,5 @@
 abduct
+outside
 aboard
 about
 absorb
@@ -110,7 +111,6 @@ disrupt
 dissect
 disturb​
 dive in
-divide
 do
 don
 drape
@@ -345,7 +345,6 @@ set in
 set upon
 ​setting
 shackle
-shelter
 shelter in
 shield
 shoulder
@@ -665,7 +664,6 @@ takes in
 traps
 without
 wraps
-
 about
 admit
 admits
@@ -736,7 +734,6 @@ ring
 ringing
 rings
 round
-shelter
 sheltering
 shelters
 surround
@@ -789,6 +786,7 @@ occupying
 packing
 parting
 penetrating
+devours
 piercing
 ringed
 separating

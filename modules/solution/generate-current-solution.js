@@ -32,6 +32,9 @@ const getDeletionSolutions = require("../deletion/deletion-solutions");
 //Alternate Clues Related imports
 const getAlternateSolutions = require("../alternate/alternate-solutions");
 
+//Container Clues Related imports
+const checkIfCombinationHasContainerIndicator = require("../container/check-container-indicator");
+
 function generateCurrentSolution(
   currentCombination,
   solutionLength,
@@ -171,6 +174,14 @@ function generateCurrentSolution(
       solutionList.push(currentAlternateSolutions);
     }
   });
+
+  //Container Clues
+  var containerIndicator = checkIfCombinationHasContainerIndicator(
+    currentCombination
+  );
+  if (containerIndicator != false) {
+    console.log(containerIndicator);
+  }
 
   //Check for Double Definition Clues
   if (currentCombination.length == 2) {
