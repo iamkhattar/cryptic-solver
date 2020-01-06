@@ -27,19 +27,13 @@ function getReversalSolution(
       if (currentDefinition == reversePhrase(currentPhrase)) {
         var currentSolution = new Array();
         currentSolution["solution"] = currentDefinition.toUpperCase();
-        currentSolution["reason"] =
-          "This clue is a Reversal Clue. The reversal indicator is " +
-          reversalIndicator.toUpperCase() +
-          ". The definition is " +
-          currentCombination[0].toUpperCase() +
-          ". " +
-          currentDefinition.toUpperCase() +
-          " is a synonym of " +
-          currentCombination[0].toUpperCase() +
-          ". If we reverse " +
-          currentPhrase.toUpperCase() +
-          " we get " +
-          currentDefinition.toUpperCase();
+        var reason = getDirectReason(
+          currentCombination[0],
+          currentDefinition,
+          currentPhrase,
+          reversalIndicator
+        );
+        currentSolution["reason"] = reason;
         currentSolution["percentage"] = Math.floor(Math.random() * 100) + 1;
         solutionList.push(currentSolution);
       }
@@ -50,23 +44,14 @@ function getReversalSolution(
         if (reversePhrase(currentSynonym) == currentDefinition) {
           var currentSolution = new Array();
           currentSolution["solution"] = currentDefinition.toUpperCase();
-          currentSolution["reason"] =
-            "This clue is a Reversal Clue. The reversal indicator is " +
-            reversalIndicator.toUpperCase() +
-            ". The definition is " +
-            currentCombination[0].toUpperCase() +
-            ". " +
-            currentDefinition.toUpperCase() +
-            " is a synonym of " +
-            currentCombination[0].toUpperCase() +
-            ". " +
-            currentSynonym.toUpperCase() +
-            " is a synonym of " +
-            currentPhrase.toUpperCase() +
-            ". If we reverse " +
-            currentSynonym.toUpperCase() +
-            " we get " +
-            currentDefinition.toUpperCase();
+          var reason = getIndirectReason(
+            currentCombination[0],
+            currentDefinition,
+            currentPhrase,
+            currentSynonym,
+            reversalIndicator
+          );
+          currentSolution["reason"] = reason;
           currentSolution["percentage"] = Math.floor(Math.random() * 100) + 1;
           solutionList.push(currentSolution);
         }
@@ -82,46 +67,31 @@ function getReversalSolution(
       if (currentDefinition == reversePhrase(currentPhrase)) {
         var currentSolution = new Array();
         currentSolution["solution"] = currentDefinition.toUpperCase();
-        currentSolution["reason"] =
-          "This clue is a Reversal Clue. The reversal indicator is " +
-          reversalIndicator.toUpperCase() +
-          ". The definition is " +
-          currentCombination[currentCombination.length - 1].toUpperCase() +
-          ". " +
-          currentDefinition.toUpperCase() +
-          " is a synonym of " +
-          currentCombination[currentCombination.length - 1].toUpperCase() +
-          ". If we reverse " +
-          currentPhrase.toUpperCase() +
-          " we get " +
-          currentDefinition.toUpperCase();
+        var reason = getDirectReason(
+          currentCombination[currentCombination.length - 1],
+          currentDefinition,
+          currentPhrase,
+          reversalIndicator
+        );
+        currentSolution["reason"] = reason;
         currentSolution["percentage"] = Math.floor(Math.random() * 100) + 1;
 
         solutionList.push(currentSolution);
       }
-      //Indirect Anagram
+      //Indirect Reversal
       var currentSynonyms = getSynonyms(synonymList, currentPhrase);
       currentSynonyms.forEach(currentSynonym => {
         if (reversePhrase(currentSynonym) == currentDefinition) {
           var currentSolution = new Array();
           currentSolution["solution"] = currentDefinition.toUpperCase();
-          currentSolution["reason"] =
-            "This clue is a Reversal Clue. The reversal indicator is " +
-            reversalIndicator.toUpperCase() +
-            ". The definition is " +
-            currentCombination[currentCombination.length - 1].toUpperCase() +
-            ". " +
-            currentDefinition.toUpperCase() +
-            " is a synonym of " +
-            currentCombination[currentCombination.length - 1].toUpperCase() +
-            ". " +
-            currentSynonym.toUpperCase() +
-            " is a synonym of " +
-            currentPhrase.toUpperCase() +
-            ". If we reverse " +
-            currentSynonym.toUpperCase() +
-            " we get " +
-            currentDefinition.toUpperCase();
+          var reason = getIndirectReason(
+            currentCombination[currentCombination.length - 1],
+            currentDefinition,
+            currentPhrase,
+            currentSynonym,
+            reversalIndicator
+          );
+          currentSolution["reason"] = reason;
           currentSolution["percentage"] = Math.floor(Math.random() * 100) + 1;
           solutionList.push(currentSolution);
         }
@@ -130,6 +100,69 @@ function getReversalSolution(
   }
 
   return solutionList;
+}
+
+/**
+ *
+ * @param definition : Definition in combination
+ * @param definitionSyn : Synonym of definition
+ * @param phrase : Phrase for which reversal has taken place
+ * @param indicator : Reversal Indicator
+ *
+ * getDirectReason() generates the reason string for a direct reversal and returns it
+ */
+function getDirectReason(definition, definitionSyn, phrase, indicator) {
+  return (
+    "This clue is a Reversal Clue. The reversal indicator is " +
+    indicator.toUpperCase() +
+    ". The definition is " +
+    definition.toUpperCase() +
+    ". " +
+    definitionSyn.toUpperCase() +
+    " is a synonym of " +
+    definition.toUpperCase() +
+    ". If we reverse " +
+    phrase.toUpperCase() +
+    " we get " +
+    definitionSyn.toUpperCase()
+  );
+}
+
+/**
+ *
+ * @param definition : Definition in combination
+ * @param definitionSyn : Synonym for definition
+ * @param phrase : Phrase whose synonym is reversed
+ * @param phraseSyn : Reversal phrase
+ * @param indicator : Reversal indicators
+ *
+ * getIndirectReason() generates string for indirect reversals and returns it
+ */
+function getIndirectReason(
+  definition,
+  definitionSyn,
+  phrase,
+  phraseSyn,
+  indicator
+) {
+  return (
+    "This clue is a Reversal Clue. The reversal indicator is " +
+    indicator.toUpperCase() +
+    ". The definition is " +
+    definition.toUpperCase() +
+    ". " +
+    definitionSyn.toUpperCase() +
+    " is a synonym of " +
+    definition.toUpperCase() +
+    ". " +
+    phraseSyn.toUpperCase() +
+    " is a synonym of " +
+    phrase.toUpperCase() +
+    ". If we reverse " +
+    phraseSyn.toUpperCase() +
+    " we get " +
+    definitionSyn.toUpperCase()
+  );
 }
 
 module.exports = getReversalSolution;
