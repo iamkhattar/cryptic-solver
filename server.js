@@ -10,4 +10,4 @@ async function driver(clue, length) {
   console.timeEnd("time");
 }
 
-driver("Unluckily discounting the odds in nail bars", 4);
+driver("Lover to get shot of in Derby", 9);

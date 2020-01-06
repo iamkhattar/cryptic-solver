@@ -30,19 +30,13 @@ function getAnagramSolution(
       ) {
         var currentSolution = new Array();
         currentSolution["solution"] = currentDefinition.toUpperCase();
-        currentSolution["reason"] =
-          "This clue is an Anagram Clue. The anagram indicator is " +
-          anagramIndicator.toUpperCase() +
-          ". The definition is " +
-          currentCombination[0].toUpperCase() +
-          ". " +
-          currentDefinition.toUpperCase() +
-          " is a synonym of " +
-          currentCombination[0].toUpperCase() +
-          ". If we anagram " +
-          currentPhrase.toUpperCase() +
-          " we get " +
-          currentDefinition.toUpperCase();
+        var reason = getDirectReason(
+          currentCombination[0],
+          currentDefinition,
+          currentPhrase,
+          anagramIndicator
+        );
+        currentSolution["reason"] = reason;
         currentSolution["percentage"] = Math.floor(Math.random() * 100) + 1;
         solutionList.push(currentSolution);
       }
@@ -56,23 +50,14 @@ function getAnagramSolution(
         ) {
           var currentSolution = new Array();
           currentSolution["solution"] = currentDefinition.toUpperCase();
-          currentSolution["reason"] =
-            "This clue is an Anagram Clue. The anagram indicator is " +
-            anagramIndicator.toUpperCase() +
-            ". The definition is " +
-            currentCombination[0].toUpperCase() +
-            ". " +
-            currentDefinition.toUpperCase() +
-            " is a synonym of " +
-            currentCombination[0].toUpperCase() +
-            ". " +
-            currentSynonym.toUpperCase() +
-            " is a synonym of " +
-            currentPhrase.toUpperCase() +
-            ". If we anagram " +
-            currentSynonym.toUpperCase() +
-            " we get " +
-            currentDefinition.toUpperCase();
+          var reason = getIndirectReason(
+            currentCombination[0],
+            currentDefinition,
+            currentPhrase,
+            currentSynonym,
+            anagramIndicator
+          );
+          currentSolution["reason"] = reason;
           currentSolution["percentage"] = Math.floor(Math.random() * 100) + 1;
           solutionList.push(currentSolution);
         }
@@ -91,19 +76,13 @@ function getAnagramSolution(
       ) {
         var currentSolution = new Array();
         currentSolution["solution"] = currentDefinition.toUpperCase();
-        currentSolution["reason"] =
-          "This clue is an Anagram Clue. The anagram indicator is " +
-          anagramIndicator.toUpperCase() +
-          ". The definition is " +
-          currentCombination[currentCombination.length - 1].toUpperCase() +
-          ". " +
-          currentDefinition.toUpperCase() +
-          " is a synonym of " +
-          currentCombination[currentCombination.length - 1].toUpperCase() +
-          ". If we anagram " +
-          currentPhrase.toUpperCase() +
-          " we get " +
-          currentDefinition.toUpperCase();
+        var reason = getDirectReason(
+          currentCombination[currentCombination.length - 1],
+          currentDefinition,
+          currentPhrase,
+          anagramIndicator
+        );
+        currentSolution["reason"] = reason;
         currentSolution["percentage"] = Math.floor(Math.random() * 100) + 1;
 
         solutionList.push(currentSolution);
@@ -117,23 +96,14 @@ function getAnagramSolution(
         ) {
           var currentSolution = new Array();
           currentSolution["solution"] = currentDefinition.toUpperCase();
-          currentSolution["reason"] =
-            "This clue is an Anagram Clue. The anagram indicator is " +
-            anagramIndicator.toUpperCase() +
-            ". The definition is " +
-            currentCombination[currentCombination.length - 1].toUpperCase() +
-            ". " +
-            currentDefinition.toUpperCase() +
-            " is a synonym of " +
-            currentCombination[currentCombination.length - 1].toUpperCase() +
-            ". " +
-            currentSynonym.toUpperCase() +
-            " is a synonym of " +
-            currentPhrase.toUpperCase() +
-            ". If we anagram " +
-            currentSynonym.toUpperCase() +
-            " we get " +
-            currentDefinition.toUpperCase();
+          var reason = getIndirectReason(
+            currentCombination[currentCombination.length - 1],
+            currentDefinition,
+            currentPhrase,
+            currentSynonym,
+            anagramIndicator
+          );
+          currentSolution["reason"] = reason;
           currentSolution["percentage"] = Math.floor(Math.random() * 100) + 1;
           solutionList.push(currentSolution);
         }
@@ -142,6 +112,50 @@ function getAnagramSolution(
   }
 
   return solutionList;
+}
+
+function getDirectReason(definition, definitionSyn, phrase, indicator) {
+  return (
+    "This clue is an Anagram Clue. The anagram indicator is " +
+    indicator.toUpperCase() +
+    ". The definition is " +
+    definition.toUpperCase() +
+    ". " +
+    definitionSyn.toUpperCase() +
+    " is a synonym of " +
+    definition.toUpperCase() +
+    ". If we anagram " +
+    phrase.toUpperCase() +
+    " we get " +
+    definitionSyn.toUpperCase()
+  );
+}
+
+function getIndirectReason(
+  definition,
+  definitionSyn,
+  phrase,
+  phraseSyn,
+  indicator
+) {
+  return (
+    "This clue is an Anagram Clue. The anagram indicator is " +
+    indicator.toUpperCase() +
+    ". The definition is " +
+    definition.toUpperCase() +
+    ". " +
+    definitionSyn.toUpperCase() +
+    " is a synonym of " +
+    definition.toUpperCase() +
+    ". " +
+    phraseSyn.toUpperCase() +
+    " is a synonym of " +
+    phrase.toUpperCase() +
+    ". If we anagram " +
+    phraseSyn.toUpperCase() +
+    " we get " +
+    definitionSyn.toUpperCase()
+  );
 }
 
 module.exports = getAnagramSolution;

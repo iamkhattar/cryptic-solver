@@ -66,6 +66,8 @@ function getAlternateSolutions(
  * @param definition : Definition in clue
  * @param definitionSyn : Synonym of definition
  * @param phrase : Phrase for which alternate letters have to be generated
+ *
+ * getReason() generates reason string for alternate letter clues
  */
 function getReason(definition, definitionSyn, phrase) {
   return (
@@ -81,4 +83,5 @@ function getReason(definition, definitionSyn, phrase) {
     definitionSyn.toUpperCase()
   );
 }
+
 module.exports = getAlternateSolutions;
