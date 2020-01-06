@@ -10,4 +10,4 @@ async function driver(clue, length) {
   console.timeEnd("time");
 }
 
-driver("Tired agent outside shelter", 6);
+driver("Unluckily discounting the odds in nail bars", 4);

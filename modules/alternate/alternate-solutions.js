@@ -24,17 +24,12 @@ function getAlternateSolutions(
       if (currentDefinition == oddLetters || currentDefinition == evenLetters) {
         var currentSolution = new Array();
         currentSolution["solution"] = currentDefinition.toUpperCase();
-        currentSolution["reason"] =
-          "This clue is an Alternate Letter Clue. The definition is " +
-          currentCombination[0].toUpperCase() +
-          ". " +
-          currentDefinition.toUpperCase() +
-          " is a synonym of " +
-          currentCombination[0].toUpperCase() +
-          ". Alternate letters of " +
-          currentPhrase.toUpperCase() +
-          " gives " +
-          currentDefinition.toUpperCase();
+        var reason = getReason(
+          currentCombination[0],
+          currentDefinition,
+          currentPhrase
+        );
+        currentSolution["reason"] = reason;
         currentSolution["percentage"] = Math.floor(Math.random() * 100) + 1;
         solutionList.push(currentSolution);
       }
@@ -51,17 +46,12 @@ function getAlternateSolutions(
       if (currentDefinition == oddLetters || currentDefinition == evenLetters) {
         var currentSolution = new Array();
         currentSolution["solution"] = currentDefinition.toUpperCase();
-        currentSolution["reason"] =
-          "This clue is an Alternate Letter Clue. The definition is " +
-          currentCombination[currentCombination.length - 1].toUpperCase() +
-          ". " +
-          currentDefinition.toUpperCase() +
-          " is a synonym of " +
-          currentCombination[currentCombination.length - 1].toUpperCase() +
-          ". Alternate letters of " +
-          currentPhrase.toUpperCase() +
-          " gives " +
-          currentDefinition.toUpperCase();
+        var reason = getReason(
+          currentCombination[currentCombination.length - 1],
+          currentDefinition,
+          currentPhrase
+        );
+        currentSolution["reason"] = reason;
         currentSolution["percentage"] = Math.floor(Math.random() * 100) + 1;
         solutionList.push(currentSolution);
       }
@@ -69,5 +59,26 @@ function getAlternateSolutions(
   }
 
   return solutionList;
+}
+
+/**
+ *
+ * @param definition : Definition in clue
+ * @param definitionSyn : Synonym of definition
+ * @param phrase : Phrase for which alternate letters have to be generated
+ */
+function getReason(definition, definitionSyn, phrase) {
+  return (
+    "This clue is an Alternate Letter Clue. The definition is " +
+    definition.toUpperCase() +
+    ". " +
+    definitionSyn.toUpperCase() +
+    " is a synonym of " +
+    definition.toUpperCase() +
+    ". Alternate letters of " +
+    phrase.toUpperCase() +
+    " gives " +
+    definitionSyn.toUpperCase()
+  );
 }
 module.exports = getAlternateSolutions;
