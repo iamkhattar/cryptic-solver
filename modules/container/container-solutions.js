@@ -38,21 +38,14 @@ function getContainerSolutions(
         if (directContainer.includes(currentDefinition)) {
           var currentSolution = new Array();
           currentSolution["solution"] = currentDefinition.toUpperCase();
-          currentSolution["reason"] =
-            "This clue is a Container Clue. The container indicator is " +
-            containerIndicator.toUpperCase() +
-            ". The definition is " +
-            currentCombination[0].toUpperCase() +
-            ". " +
-            currentDefinition.toUpperCase() +
-            " is a synonym of " +
-            currentCombination[0].toUpperCase() +
-            ". If we put " +
-            currentCombination[index - 1].toUpperCase() +
-            " in " +
-            currentCombination[index + 1].toUpperCase() +
-            " we get " +
-            currentDefinition.toUpperCase();
+          var reason = getDirectReason(
+            currentCombination[0],
+            currentDefinition,
+            currentCombination[index - 1],
+            currentCombination[index + 1],
+            containerIndicator
+          );
+          currentSolution["reason"] = reason;
           currentSolution["percentage"] = Math.floor(Math.random() * 100) + 1;
           solutionList.push(currentSolution);
         }
@@ -188,21 +181,14 @@ function getContainerSolutions(
         if (directContainer.includes(currentDefinition)) {
           var currentSolution = new Array();
           currentSolution["solution"] = currentDefinition.toUpperCase();
-          currentSolution["reason"] =
-            "This clue is a Container Clue. The container indicator is " +
-            containerIndicator.toUpperCase() +
-            ". The definition is " +
-            currentCombination[currentCombination.length - 1].toUpperCase() +
-            ". " +
-            currentDefinition.toUpperCase() +
-            " is a synonym of " +
-            currentCombination[currentCombination.length - 1].toUpperCase() +
-            ". If we put " +
-            currentCombination[index - 1].toUpperCase() +
-            " in " +
-            currentCombination[index + 1].toUpperCase() +
-            " we get " +
-            currentDefinition.toUpperCase();
+          var reason = getDirectReason(
+            currentCombination[currentCombination.length - 1],
+            currentDefinition,
+            currentCombination[index - 1],
+            currentCombination[index + 1],
+            containerIndicator
+          );
+          currentSolution["reason"] = reason;
           currentSolution["percentage"] = Math.floor(Math.random() * 100) + 1;
           solutionList.push(currentSolution);
         }
@@ -332,6 +318,39 @@ function getContainerSolutions(
     }
   }
   return solutionList;
+}
+
+/**
+ *
+ * @param definition : Definition in combination
+ * @param definitionSyn : Synonym of Definition
+ * @param firstWord : First Word
+ * @param secondWord : Second word
+ * @param indicator : Container Indicator
+ */
+function getDirectReason(
+  definition,
+  definitionSyn,
+  firstWord,
+  secondWord,
+  indicator
+) {
+  return (
+    "This clue is a Container Clue. The container indicator is " +
+    indicator.toUpperCase() +
+    ". The definition is " +
+    definition.toUpperCase() +
+    ". " +
+    definitionSyn.toUpperCase() +
+    " is a synonym of " +
+    definition.toUpperCase() +
+    ". If we put " +
+    firstWord.toUpperCase() +
+    " in " +
+    secondWord.toUpperCase() +
+    " we get " +
+    definitionSyn.toUpperCase()
+  );
 }
 
 module.exports = getContainerSolutions;
