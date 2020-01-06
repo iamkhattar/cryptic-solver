@@ -114,6 +114,15 @@ function getAnagramSolution(
   return solutionList;
 }
 
+/**
+ *
+ * @param definition : Definition in combination
+ * @param definitionSyn : Synonym of definition
+ * @param phrase : Anagrammed phrase
+ * @param indicator : Anagram indicator
+ *
+ * getDirectReason() generates reason string for direct anagram clues
+ */
 function getDirectReason(definition, definitionSyn, phrase, indicator) {
   return (
     "This clue is an Anagram Clue. The anagram indicator is " +
@@ -131,6 +140,16 @@ function getDirectReason(definition, definitionSyn, phrase, indicator) {
   );
 }
 
+/**
+ *
+ * @param definition : Definition in combination
+ * @param definitionSyn : Synonym of definition
+ * @param phrase : Phrase for which synonym is anagrammed
+ * @param phraseSyn : Anagrammed phrase
+ * @param indicator : Anagram indicator
+ *
+ * getIndirectReason() generates reason string for indirect anagram clues
+ */
 function getIndirectReason(
   definition,
   definitionSyn,
