@@ -24,19 +24,13 @@ function getFinalSolutions(
       if (currentDefinition == finalLetters) {
         var currentSolution = new Array();
         currentSolution["solution"] = currentDefinition.toUpperCase();
-        currentSolution["reason"] =
-          "This clue is an Final Letter Clue. The final letter indicator is " +
-          finalIndicator.toUpperCase() +
-          ". The definition is " +
-          currentCombination[0].toUpperCase() +
-          ". " +
-          currentDefinition.toUpperCase() +
-          " is a synonym of " +
-          currentCombination[0].toUpperCase() +
-          ". Final letters of " +
-          currentPhrase.toUpperCase() +
-          " gives " +
-          currentDefinition.toUpperCase();
+        var reason = getReason(
+          currentCombination[0],
+          currentDefinition,
+          currentPhrase,
+          finalIndicator
+        );
+        currentSolution["reason"] = reason;
         currentSolution["percentage"] = Math.floor(Math.random() * 100) + 1;
         solutionList.push(currentSolution);
       }
@@ -51,25 +45,45 @@ function getFinalSolutions(
       if (currentDefinition == finalLetters) {
         var currentSolution = new Array();
         currentSolution["solution"] = currentDefinition.toUpperCase();
-        currentSolution["reason"] =
-          "This clue is an Final Letter Clue. The Final Letter indicator is " +
-          finalIndicator.toUpperCase() +
-          ". The definition is " +
-          currentCombination[currentCombination.length - 1].toUpperCase() +
-          ". " +
-          currentDefinition.toUpperCase() +
-          " is a synonym of " +
-          currentCombination[currentCombination.length - 1].toUpperCase() +
-          ". Final letters of " +
-          currentPhrase.toUpperCase() +
-          " gives " +
-          currentDefinition.toUpperCase();
+        var reason = getReason(
+          currentCombination[currentCombination.length - 1],
+          currentDefinition,
+          currentPhrase,
+          finalIndicator
+        );
+        currentSolution["reason"] = reason;
         currentSolution["percentage"] = Math.floor(Math.random() * 100) + 1;
         solutionList.push(currentSolution);
       }
     });
   }
   return solutionList;
+}
+
+/**
+ *
+ * @param definition : Definition in combination
+ * @param definitionSyn : Synonym of definition
+ * @param phrase : Phrase for which last letters have to be taken
+ * @param indicator : Final letter indicator
+ *
+ * getReason() generates the reason string and returns it
+ */
+function getReason(definition, definitionSyn, phrase, indicator) {
+  return (
+    "This clue is an Final Letter Clue. The Final Letter indicator is " +
+    indicator.toUpperCase() +
+    ". The definition is " +
+    definition.toUpperCase() +
+    ". " +
+    definitionSyn.toUpperCase() +
+    " is a synonym of " +
+    definition.toUpperCase() +
+    ". Final letters of " +
+    phrase.toUpperCase() +
+    " gives " +
+    definitionSyn.toUpperCase()
+  );
 }
 
 module.exports = getFinalSolutions;
