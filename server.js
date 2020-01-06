@@ -10,4 +10,4 @@ async function driver(clue, length) {
   console.timeEnd("time");
 }
 
-driver("Ox devours North American", 4);
+driver("Tired agent outside shelter", 6);

@@ -34,6 +34,7 @@ const getAlternateSolutions = require("../alternate/alternate-solutions");
 
 //Container Clues Related imports
 const checkIfCombinationHasContainerIndicator = require("../container/check-container-indicator");
+const getContainerSolutions = require("../container/container-solutions");
 
 function generateCurrentSolution(
   currentCombination,
@@ -180,7 +181,18 @@ function generateCurrentSolution(
     currentCombination
   );
   if (containerIndicator != false) {
-    console.log(containerIndicator);
+    var containerSolutions = getContainerSolutions(
+      currentCombination,
+      synonymList,
+      firstDefinitions,
+      lastDefinitions,
+      containerIndicator
+    );
+    containerSolutions.forEach(currentContainerSolution => {
+      if (!doesSolutionExist(solutionList, currentContainerSolution)) {
+        solutionList.push(currentContainerSolution);
+      }
+    });
   }
 
   //Check for Double Definition Clues

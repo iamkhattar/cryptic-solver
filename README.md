@@ -42,6 +42,7 @@ Please visit [Cryptic Solver](https://devweb2019.cis.strath.ac.uk/vib16216-nodej
 6. Final Letter
 7. Deletion
 8. Alternate Letters
+9. Container
 
 ## Clues Solved Successfully
 

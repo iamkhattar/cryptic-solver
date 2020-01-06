@@ -1,14 +1,18 @@
 Changelog
 All notable changes to this project will be documented in this file.
 
+[1.9.0] - 06-10-2020
+- Container clues now work
+- Tests will be added in next version
+
 [1.8.1] - 06-10-2020
 - Tests added for Alternate letter Clues
 
-[1.8.0] - 06-10-2020
+[1.8.0] - 05-10-2020
 - Alternate Letter Clues now work
 - Tests will be added in next version
 
-[1.7.1] - 06-10-2020
+[1.7.1] - 05-10-2020
 - Tests added for Deletion Clues
 
 [1.7.0] - 05-10-2020
