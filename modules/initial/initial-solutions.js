@@ -25,19 +25,13 @@ function getInitialSolutions(
       if (currentDefinition == initialLetters) {
         var currentSolution = new Array();
         currentSolution["solution"] = currentDefinition.toUpperCase();
-        currentSolution["reason"] =
-          "This clue is an Initial Letter Clue. The initial indicator is " +
-          initialIndicator.toUpperCase() +
-          ". The definition is " +
-          currentCombination[0].toUpperCase() +
-          ". " +
-          currentDefinition.toUpperCase() +
-          " is a synonym of " +
-          currentCombination[0].toUpperCase() +
-          ". Initial letters of " +
-          currentPhrase.toUpperCase() +
-          " gives " +
-          currentDefinition.toUpperCase();
+        var reason = getReason(
+          currentCombination[0],
+          currentDefinition,
+          currentPhrase,
+          initialIndicator
+        );
+        currentSolution["reason"] = reason;
         currentSolution["percentage"] = Math.floor(Math.random() * 100) + 1;
         solutionList.push(currentSolution);
       }
@@ -52,19 +46,13 @@ function getInitialSolutions(
       if (currentDefinition == initialLetters) {
         var currentSolution = new Array();
         currentSolution["solution"] = currentDefinition.toUpperCase();
-        currentSolution["reason"] =
-          "This clue is an Initial Letter Clue. The initial indicator is " +
-          initialIndicator.toUpperCase() +
-          ". The definition is " +
-          currentCombination[currentCombination.length - 1].toUpperCase() +
-          ". " +
-          currentDefinition.toUpperCase() +
-          " is a synonym of " +
-          currentCombination[currentCombination.length - 1].toUpperCase() +
-          ". Initial letters of " +
-          currentPhrase.toUpperCase() +
-          " gives " +
-          currentDefinition.toUpperCase();
+        var reason = getReason(
+          currentCombination[currentCombination.length - 1],
+          currentDefinition,
+          currentPhrase,
+          initialIndicator
+        );
+        currentSolution["reason"] = reason;
         currentSolution["percentage"] = Math.floor(Math.random() * 100) + 1;
         solutionList.push(currentSolution);
       }
@@ -72,6 +60,30 @@ function getInitialSolutions(
   }
 
   return solutionList;
+}
+
+/**
+ *
+ * @param {*} definition : Definition in Combination
+ * @param {*} definitionSyn : Synonym of definiton
+ * @param {*} phrase : Phrase for which initial letters were taken
+ * @param {*} indicator : Initial Indicator
+ */
+function getReason(definition, definitionSyn, phrase, indicator) {
+  return (
+    "This clue is an Initial Letter Clue. The initial indicator is " +
+    indicator.toUpperCase() +
+    ". The definition is " +
+    definition.toUpperCase() +
+    ". " +
+    definitionSyn.toUpperCase() +
+    " is a synonym of " +
+    definition.toUpperCase() +
+    ". Initial letters of " +
+    phrase.toUpperCase() +
+    " gives " +
+    definitionSyn.toUpperCase()
+  );
 }
 
 module.exports = getInitialSolutions;
