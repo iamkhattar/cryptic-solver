@@ -10,4 +10,4 @@ async function driver(clue, length) {
   console.timeEnd("time");
 }
 
-driver("Lover to get shot of in Derby", 9);
+driver("A relative put us in the money ", 6);

@@ -24,6 +24,7 @@ at heart
 bag
 bandage
 bank
+banks
 bathe
 bear
 ​bearing
@@ -406,6 +407,10 @@ throw in
 torpedo
 tour
 transport
+to be included
+to be included in
+be included in 
+included in
 ​​trap
 tucked in
 visit
@@ -433,6 +438,7 @@ boxing
 bracketing
 bringing in
 brought round
+brought into
 capturing
 carrying
 catching

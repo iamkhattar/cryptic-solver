@@ -54,11 +54,13 @@ function getContainerSolutions(
           synonymList,
           currentCombination[index - 1]
         );
+        firstWordSynonyms.push(currentCombination[index - 1][0]);
         //Second Word Synonyms
         var secondWordSynonyms = getSynonyms(
           synonymList,
           currentCombination[index + 1]
         );
+        secondWordSynonyms.push(currentCombination[index + 1][0]);
 
         firstWordSynonyms.forEach(currentFirstWordSynonym => {
           var firstWordSynCont = getContainers(
@@ -82,31 +84,34 @@ function getContainerSolutions(
           }
 
           secondWordSynonyms.forEach(currentSecondWordSynonym => {
-            var firstLength = currentFirstWordSynonym.length;
-            var allowedLength = firstDefinitions[0].length - firstLength;
+            if (firstDefinitions[0] != undefined) {
+              var firstLength = currentFirstWordSynonym.length;
+              var temp = firstDefinitions[0];
+              var allowedLength = temp.length - firstLength;
 
-            if (currentSecondWordSynonym.length == allowedLength) {
-              var bothSynCont = getContainers(
-                currentFirstWordSynonym,
-                currentSecondWordSynonym
-              );
-
-              if (bothSynCont.includes(currentDefinition)) {
-                var currentSolution = new Array();
-                currentSolution["solution"] = currentDefinition.toUpperCase();
-                var reason = getBothSynReason(
-                  currentCombination[0],
-                  currentDefinition,
-                  currentCombination[index - 1],
+              if (currentSecondWordSynonym.length == allowedLength) {
+                var bothSynCont = getContainers(
                   currentFirstWordSynonym,
-                  currentCombination[index + 1],
-                  currentSecondWordSynonym,
-                  containerIndicator
+                  currentSecondWordSynonym
                 );
-                currentSolution["reason"] = reason;
-                currentSolution["percentage"] =
-                  Math.floor(Math.random() * 100) + 1;
-                solutionList.push(currentSolution);
+
+                if (bothSynCont.includes(currentDefinition)) {
+                  var currentSolution = new Array();
+                  currentSolution["solution"] = currentDefinition.toUpperCase();
+                  var reason = getBothSynReason(
+                    currentCombination[0],
+                    currentDefinition,
+                    currentCombination[index - 1],
+                    currentFirstWordSynonym,
+                    currentCombination[index + 1],
+                    currentSecondWordSynonym,
+                    containerIndicator
+                  );
+                  currentSolution["reason"] = reason;
+                  currentSolution["percentage"] =
+                    Math.floor(Math.random() * 100) + 1;
+                  solutionList.push(currentSolution);
+                }
               }
             }
           });
@@ -164,11 +169,13 @@ function getContainerSolutions(
           synonymList,
           currentCombination[index - 1]
         );
+        firstWordSynonyms.push(currentCombination[index - 1][0]);
         //Second Word Synonyms
         var secondWordSynonyms = getSynonyms(
           synonymList,
           currentCombination[index + 1]
         );
+        secondWordSynonyms.push(currentCombination[index + 1][0]);
 
         firstWordSynonyms.forEach(currentFirstWordSynonym => {
           var firstWordSynCont = getContainers(
@@ -192,31 +199,34 @@ function getContainerSolutions(
           }
 
           secondWordSynonyms.forEach(currentSecondWordSynonym => {
-            var firstLength = currentFirstWordSynonym.length;
-            var allowedLength = firstDefinitions[0].length - firstLength;
+            if (firstDefinitions[0] != undefined) {
+              var firstLength = currentFirstWordSynonym.length;
+              var temp = firstDefinitions[0];
+              var allowedLength = temp.length - firstLength;
 
-            if (currentSecondWordSynonym.length == allowedLength) {
-              var bothSynCont = getContainers(
-                currentFirstWordSynonym,
-                currentSecondWordSynonym
-              );
-
-              if (bothSynCont.includes(currentDefinition)) {
-                var currentSolution = new Array();
-                currentSolution["solution"] = currentDefinition.toUpperCase();
-                var reason = getBothSynReason(
-                  currentCombination[currentCombination.length - 1],
-                  currentDefinition,
-                  currentCombination[index - 1],
+              if (currentSecondWordSynonym.length == allowedLength) {
+                var bothSynCont = getContainers(
                   currentFirstWordSynonym,
-                  currentCombination[index + 1],
-                  currentSecondWordSynonym,
-                  containerIndicator
+                  currentSecondWordSynonym
                 );
-                currentSolution["reason"] = reason;
-                currentSolution["percentage"] =
-                  Math.floor(Math.random() * 100) + 1;
-                solutionList.push(currentSolution);
+
+                if (bothSynCont.includes(currentDefinition)) {
+                  var currentSolution = new Array();
+                  currentSolution["solution"] = currentDefinition.toUpperCase();
+                  var reason = getBothSynReason(
+                    currentCombination[currentCombination.length - 1],
+                    currentDefinition,
+                    currentCombination[index - 1],
+                    currentFirstWordSynonym,
+                    currentCombination[index + 1],
+                    currentSecondWordSynonym,
+                    containerIndicator
+                  );
+                  currentSolution["reason"] = reason;
+                  currentSolution["percentage"] =
+                    Math.floor(Math.random() * 100) + 1;
+                  solutionList.push(currentSolution);
+                }
               }
             }
           });
