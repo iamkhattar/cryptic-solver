@@ -1,6 +1,10 @@
 Changelog
 All notable changes to this project will be documented in this file.
 
+[1.9.1] - 09-10-2020
+- Tests added for Container Clues
+- Helper methods added for reasons
+
 [1.9.0] - 06-10-2020
 - Container clues now work
 - Tests will be added in next version
