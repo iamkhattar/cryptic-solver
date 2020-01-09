@@ -313,6 +313,7 @@ punctuate
 puncture
 purchase
 put in
+put into
 quaff
 quarantine
 raid

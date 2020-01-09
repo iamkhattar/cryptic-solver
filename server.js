@@ -10,4 +10,4 @@ async function driver(clue, length) {
   console.timeEnd("time");
 }
 
-driver("A relative put us in the money ", 6);
+driver("Stuck with tot holding present", 7);
