@@ -33,22 +33,15 @@ function getDeletionSolutions(
           possibleDeletions
         );
         var currentSolution = new Array();
+        var reason = getDirectReason(
+          currentCombination[0],
+          currentDefinition,
+          currentPhrase,
+          del,
+          deletionIndicator
+        );
         currentSolution["solution"] = currentDefinition.toUpperCase();
-        currentSolution["reason"] =
-          "This clue is a Deletion Clue. The deletion indicator is " +
-          deletionIndicator.toUpperCase() +
-          ". The definition is " +
-          currentCombination[0].toUpperCase() +
-          ". " +
-          currentDefinition.toUpperCase() +
-          " is a synonym of " +
-          currentCombination[0].toUpperCase() +
-          ". If we remove the  " +
-          del +
-          " of " +
-          currentPhrase.toUpperCase() +
-          " we get " +
-          currentDefinition.toUpperCase();
+        currentSolution["reason"] = reason;
         currentSolution["percentage"] = Math.floor(Math.random() * 100) + 1;
         solutionList.push(currentSolution);
       }
@@ -66,25 +59,15 @@ function getDeletionSolutions(
           );
           var currentSolution = new Array();
           currentSolution["solution"] = currentDefinition.toUpperCase();
-          currentSolution["reason"] =
-            "This clue is a Deletion Clue. The deletion indicator is " +
-            deletionIndicator.toUpperCase() +
-            ". The definition is " +
-            currentCombination[0].toUpperCase() +
-            ". " +
-            currentDefinition.toUpperCase() +
-            " is a synonym of " +
-            currentCombination[0].toUpperCase() +
-            ". " +
-            currentSynonym.toUpperCase() +
-            " is a synonym of " +
-            currentPhrase.toUpperCase() +
-            ". If we remove the " +
-            del +
-            " of " +
-            currentSynonym.toUpperCase() +
-            " we get " +
-            currentDefinition.toUpperCase();
+          var reason = getIndirectReason(
+            currentCombination[0],
+            currentDefinition,
+            currentPhrase,
+            currentSynonym,
+            del,
+            deletionIndicator
+          );
+          currentSolution["reason"] = reason;
           currentSolution["percentage"] = Math.floor(Math.random() * 100) + 1;
           solutionList.push(currentSolution);
         }
@@ -106,23 +89,16 @@ function getDeletionSolutions(
           currentDefinition,
           possibleDeletions
         );
+        var reason = getDirectReason(
+          currentCombination[currentCombination.length - 1],
+          currentDefinition,
+          currentPhrase,
+          del,
+          deletionIndicator
+        );
         var currentSolution = new Array();
         currentSolution["solution"] = currentDefinition.toUpperCase();
-        currentSolution["reason"] =
-          "This clue is a Deletion Clue. The deletion indicator is " +
-          deletionIndicator.toUpperCase() +
-          ". The definition is " +
-          currentCombination[currentCombination.length - 1].toUpperCase() +
-          ". " +
-          currentDefinition.toUpperCase() +
-          " is a synonym of " +
-          currentCombination[currentCombination.length - 1].toUpperCase() +
-          ". If we remove the  " +
-          del +
-          " of " +
-          currentPhrase.toUpperCase() +
-          " we get " +
-          currentDefinition.toUpperCase();
+        currentSolution["reason"] = reason;
         currentSolution["percentage"] = Math.floor(Math.random() * 100) + 1;
         solutionList.push(currentSolution);
       }
@@ -140,25 +116,15 @@ function getDeletionSolutions(
           );
           var currentSolution = new Array();
           currentSolution["solution"] = currentDefinition.toUpperCase();
-          currentSolution["reason"] =
-            "This clue is a Deletion Clue. The deletion indicator is " +
-            deletionIndicator.toUpperCase() +
-            ". The definition is " +
-            currentCombination[currentCombination.length - 1].toUpperCase() +
-            ". " +
-            currentDefinition.toUpperCase() +
-            " is a synonym of " +
-            currentCombination[currentCombination.length - 1].toUpperCase() +
-            ". " +
-            currentSynonym.toUpperCase() +
-            " is a synonym of " +
-            currentPhrase.toUpperCase() +
-            ". If we remove the " +
-            del +
-            " of " +
-            currentSynonym.toUpperCase() +
-            " we get " +
-            currentDefinition.toUpperCase();
+          var reason = getIndirectReason(
+            currentCombination[currentCombination.length - 1],
+            currentDefinition,
+            currentPhrase,
+            currentSynonym,
+            del,
+            deletionIndicator
+          );
+          currentSolution["reason"] = reason;
           currentSolution["percentage"] = Math.floor(Math.random() * 100) + 1;
           solutionList.push(currentSolution);
         }
@@ -167,6 +133,82 @@ function getDeletionSolutions(
   }
 
   return solutionList;
+}
+
+/**
+ *
+ * @param definition : Definition in Combination
+ * @param definitionSyn : Synonym of Definition
+ * @param phrase : Phrase for which deletion has taken place
+ * @param deletion : What sort of deletion has taken place
+ * @param indicator : The deletion indicator
+ *
+ * getDirectReason() generates the reason for a direct deletion and returns it
+ */
+function getDirectReason(
+  definition,
+  definitionSyn,
+  phrase,
+  deletion,
+  indicator
+) {
+  return (
+    "This clue is a Deletion Clue. The deletion indicator is " +
+    indicator.toUpperCase() +
+    ". The definition is " +
+    definition.toUpperCase() +
+    ". " +
+    definitionSyn.toUpperCase() +
+    " is a synonym of " +
+    definition.toUpperCase() +
+    ". If we remove the  " +
+    deletion +
+    " of " +
+    phrase.toUpperCase() +
+    " we get " +
+    definitionSyn.toUpperCase()
+  );
+}
+
+/**
+ *
+ * @param definition : Definition in Combination
+ * @param definitionSyn : Synonym of Definition
+ * @param phrase : Phrase for which deletion has taken place
+ * @param phraseSyn : Synonym of phrase for which deletion has taken place
+ * @param deletion : What sort of deletion has taken place
+ * @param indicator : The deletion indicator
+ *
+ * getIndirectReason() generates the reason for an indirect deletion and returns it
+ */
+function getIndirectReason(
+  definition,
+  definitionSyn,
+  phrase,
+  phraseSyn,
+  deletion,
+  indicator
+) {
+  return (
+    "This clue is a Deletion Clue. The deletion indicator is " +
+    indicator.toUpperCase() +
+    ". The definition is " +
+    definition.toUpperCase() +
+    ". " +
+    definitionSyn.toUpperCase() +
+    " is a synonym of " +
+    definition.toUpperCase() +
+    ". " +
+    phraseSyn.toUpperCase() +
+    " is a synonym of " +
+    phrase.toUpperCase() +
+    ". If we remove the " +
+    deletion +
+    " of " +
+    phraseSyn.toUpperCase() +
+    " we get " +
+    definitionSyn.toUpperCase()
+  );
 }
 
 /**
