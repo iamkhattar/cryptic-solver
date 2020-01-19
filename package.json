@@ -4,15 +4,23 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "jest --coverage --runInBand --detectOpenHandles"
+    "test": "jest --coverage --runInBand --detectOpenHandles",
+    "server": "nodemon server"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "config": "^3.2.5",
     "express": "^4.17.1",
-    "moby": "^1.1.2"
+    "express-validator": "^6.3.1",
+    "jsonwebtoken": "^8.5.1",
+    "moby": "^1.1.2",
+    "mongoose": "^5.8.9",
+    "request": "^2.88.0"
   },
   "devDependencies": {
-    "jest": "^24.9.0"
+    "jest": "^24.9.0",
+    "nodemon": "^2.0.2"
   }
 }
