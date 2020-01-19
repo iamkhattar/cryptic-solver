@@ -1,29 +1,27 @@
-const getSolution = require("./modules/solution/generate-solution");
+const express = require("express");
+const app = express();
+const PORT = process.env.PORT || 5000;
 
-async function driver(clue, length) {
-  console.time("time");
-  var solution = await getSolution(clue, length).catch(err => {
-    console.log("Server Error");
-    console.error(err);
-    process.exit();
-  });
-  console.log(solution);
-  //var json = getJSON(solution);
-  console.timeEnd("time");
-}
+//Init Middleware
+app.use(express.json({ extended: false }));
 
-function getJSON(solution) {
-  var arr = new Array();
-  solution.forEach(currentSolution => {
-    const currentObject = {
-      solution: currentSolution.solution,
-      reason: currentSolution.reason,
-      percentage: currentSolution.percentage
-    };
-    arr.push(currentObject);
-  });
-  var json = JSON.stringify(arr);
-  return json;
-}
+//Connect to MongoDB
+const connectDB = require("./config/db");
+connectDB();
 
-driver("Physician brings fish round", 3);
+//Default Route to check whether API is running
+app.get("/", (req, res) => res.send("API Running"));
+
+//Solve Clues Route
+app.use("/api/solve", require("./routes/api/solve"));
+
+//User Route
+app.use("/api/users", require("./routes/api/users"));
+
+//Auth Route
+app.use("/api/auth", require("./routes/api/auth"));
+
+//History Route
+app.use("/api/history", require("./routes/api/history"));
+
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
