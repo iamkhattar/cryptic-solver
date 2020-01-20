@@ -1,8 +1,13 @@
-import React from "react";
+import React, { Fragment } from "react";
 import logo from "../../navbar-logo.png";
 
 import { Link } from "react-router-dom";
-const Navbar = () => {
+
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { logout } from "../../redux/actions/auth";
+
+const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const navbarStyle = {
     paddingLeft: "0",
     paddingRight: "0"
@@ -10,6 +15,45 @@ const Navbar = () => {
   const logoStyle = { paddingTop: "11px" };
   const logoImgStyle = { marginTop: "2px" };
   const navItemStyle = { color: "white" };
+
+  const authLinks = (
+    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul className="nav justify-content-end w-100">
+        <li className="nav-item">
+          <Link className="nav-link" style={navItemStyle} to="/">
+            <i className="fa fa-fw fa-home"></i>Home
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" style={navItemStyle} to="/history">
+            <i className="fa fa-fw fa-history"></i>Past Searches
+          </Link>
+        </li>
+        <li className="nav-item">
+          <a className="nav-link" style={navItemStyle} onClick={logout} to="#!">
+            <i className="fa fa-fw fa-sign-out"></i>Logout
+          </a>
+        </li>
+      </ul>
+    </div>
+  );
+  const guestLinks = (
+    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul className="nav justify-content-end w-100">
+        <li className="nav-item">
+          <Link className="nav-link" style={navItemStyle} to="/">
+            <i className="fa fa-fw fa-home"></i>Home
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" style={navItemStyle} to="/login">
+            <i className="fa fa-fw fa-user"></i>Account
+          </Link>
+        </li>
+      </ul>
+    </div>
+  );
+
   return (
     <header>
       <div className="container">
@@ -38,35 +82,22 @@ const Navbar = () => {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="nav justify-content-end w-100">
-              <li className="nav-item">
-                <Link className="nav-link" style={navItemStyle} to="/">
-                  <i className="fa fa-fw fa-home"></i>Home
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" style={navItemStyle} to="/history">
-                  <i className="fa fa-fw fa-history"></i>Past Searches
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" style={navItemStyle} to="/login">
-                  <i className="fa fa-fw fa-user"></i>Account
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" style={navItemStyle} to="">
-                  <i className="fa fa-fw fa-sign-out"></i>Logout
-                </Link>
-              </li>
-            </ul>
-          </div>
+          {!loading && (
+            <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
+          )}
         </nav>
       </div>
     </header>
   );
 };
 
-export default Navbar;
+Navbar.propTypes = {
+  logout: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps, { logout })(Navbar);

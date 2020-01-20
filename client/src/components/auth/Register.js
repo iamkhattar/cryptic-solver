@@ -1,13 +1,15 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
+import uuid from "uuid";
 import Alert from "../alert/Alert";
 
 import { connect } from "react-redux";
 import { setAlert } from "../../redux/actions/alert";
+import { register } from "../../redux/actions/auth";
 import PropTypes from "prop-types";
 
-const Register = ({ setAlert }) => {
+const Register = ({ setAlert, register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -24,9 +26,14 @@ const Register = ({ setAlert }) => {
     if (password !== password2) {
       setAlert("Password do not match", "danger");
     } else {
-      console.log("passwords match");
+      register({ email, password });
     }
   };
+
+  if (isAuthenticated) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <div className="bdy">
       <div className="container h-100">
@@ -36,7 +43,7 @@ const Register = ({ setAlert }) => {
             <form className="row" onSubmit={e => onSubmit(e)}>
               <div className="col-12 p-2 text-center">
                 <h2 style={{ color: "white" }}>Sign up for an account</h2>
-                <Alert />
+                <Alert key={uuid.v4()} />
               </div>
               <div className="col-12 p-2 custom_height">
                 <input
@@ -47,6 +54,7 @@ const Register = ({ setAlert }) => {
                   value={email}
                   onChange={e => onChange(e)}
                   placeholder="Email"
+                  required
                 />
               </div>
               <div className="col-12 p-2 custom_height">
@@ -59,6 +67,7 @@ const Register = ({ setAlert }) => {
                   onChange={e => onChange(e)}
                   minLength="6"
                   placeholder="Password"
+                  required
                 />
               </div>
               <div className="col-12 p-2 custom_height">
@@ -71,6 +80,7 @@ const Register = ({ setAlert }) => {
                   onChange={e => onChange(e)}
                   minLength="6"
                   placeholder="Repeat Password"
+                  required
                 />
               </div>
 
@@ -96,7 +106,13 @@ const Register = ({ setAlert }) => {
 };
 
 Register.propTypes = {
-  setAlert: PropTypes.func.isRequired
+  setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool
 };
 
-export default connect(null, { setAlert })(Register);
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { setAlert, register })(Register);
