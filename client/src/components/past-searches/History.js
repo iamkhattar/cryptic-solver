@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { loadUser } from "../../redux/actions/auth";
+import PropTypes from "prop-types";
 
-const History = () => {
+const History = ({ history, loadUser }) => {
+  useEffect(() => {
+    loadUser();
+  }, []);
   return (
     <div className="bdy">
       <div className="container">
@@ -23,30 +29,16 @@ const History = () => {
             <table className="table table-dark">
               <thead></thead>
               <tbody>
-                <tr>
-                  <td>Unluckily discounting the odds in nail bars (4)</td>
-                  <td style={{ textAlign: "end" }}>
-                    <button className="btn history-button">Search</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Sadly lost knee bones (8)</td>
-                  <td style={{ textAlign: "end" }}>
-                    <button className="btn history-button">Search</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Upsurge battered a coastline (10)</td>
-                  <td style={{ textAlign: "end" }}>
-                    <button className="btn history-button">Search</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>State first if one wants advice (4)</td>
-                  <td style={{ textAlign: "end" }}>
-                    <button className="btn history-button">Search</button>
-                  </td>
-                </tr>
+                {history.map(cl => (
+                  <tr key={cl.clue}>
+                    <td>
+                      {cl.clue} ({cl.length})
+                    </td>
+                    <td style={{ textAlign: "end" }}>
+                      <button className="btn history-button">Search</button>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
@@ -56,4 +48,12 @@ const History = () => {
   );
 };
 
-export default History;
+History.propTypes = {
+  history: PropTypes.array.isRequired
+};
+
+const mapStateToProps = state => ({
+  history: state.auth.user.history
+});
+
+export default connect(mapStateToProps, { loadUser })(History);
