@@ -57,6 +57,7 @@ const Landing = ({
                   value={clue}
                   onChange={e => onChange(e)}
                   placeholder="Cryptic Clue"
+                  required
                 />
               </div>
               <div className="col-12 col-md-3 p-md-0 pt-md-0 pt-2 custom_height">
@@ -68,6 +69,7 @@ const Landing = ({
                   value={length}
                   onChange={e => onChange(e)}
                   placeholder="Length"
+                  required
                 />
               </div>
               <div className="col-12 col-md-2 pl-md-0 pt-md-0 pt-2 custom_height">
