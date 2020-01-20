@@ -1,0 +1,71 @@
+* {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  color: white;
+}
+html {
+  height: 100%;
+  background-color: #343a40;
+}
+.form-control:focus {
+  border-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+header {
+  /* Everything else is same as your code*/
+  height: 6vh;
+  width: 100%;
+}
+
+.bdy {
+  height: 94vh;
+}
+
+nav {
+  font-size: 20px;
+}
+
+body {
+  background-color: #343a40;
+}
+
+.main-input {
+  color: #a7b1ab;
+  -webkit-appearance: none;
+  text-align: left;
+  font-size: 20px;
+  font-weight: 500;
+  border-radius: 0;
+  height: 100%;
+  border-left: 1px #a7b1ab solid;
+}
+
+.custom_height {
+  height: 5rem;
+}
+
+.main-submit {
+  border: 0px;
+  background: #fa4251;
+  color: #fff;
+  font-size: 19px;
+  font-weight: 500;
+  text-align: center;
+  -webkit-appearance: none;
+  border: 0px;
+  border-radius: 0;
+  height: 100%;
+}
+
+.history-button {
+  border: 0px;
+  background: #fa4251;
+  color: #fff;
+  -webkit-appearance: none;
+}
+
+.history-button:hover {
+  color: #fff;
+  -webkit-appearance: none;
+}
