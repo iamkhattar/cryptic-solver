@@ -1,12 +1,8 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { loadUser } from "../../redux/actions/auth";
 import PropTypes from "prop-types";
 
-const History = ({ history, loadUser }) => {
-  useEffect(() => {
-    loadUser();
-  }, []);
+const History = ({ auth: { user, loading } }) => {
   return (
     <div className="bdy">
       <div className="container">
@@ -24,21 +20,23 @@ const History = ({ history, loadUser }) => {
             Past Searches
           </h2>
         </div>
+
         <div className="row align-items-center">
           <div className="col-md-12">
             <table className="table table-dark">
               <thead></thead>
               <tbody>
-                {history.map(cl => (
-                  <tr key={cl.clue}>
-                    <td>
-                      {cl.clue} ({cl.length})
-                    </td>
-                    <td style={{ textAlign: "end" }}>
-                      <button className="btn history-button">Search</button>
-                    </td>
-                  </tr>
-                ))}
+                {!loading &&
+                  user.history.map(cl => (
+                    <tr key={cl.clue}>
+                      <td>
+                        {cl.clue} ({cl.length})
+                      </td>
+                      <td style={{ textAlign: "end" }}>
+                        <button className="btn history-button">Search</button>
+                      </td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
           </div>
@@ -49,11 +47,11 @@ const History = ({ history, loadUser }) => {
 };
 
 History.propTypes = {
-  history: PropTypes.array.isRequired
+  auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  history: state.auth.user.history
+  auth: state.auth
 });
 
-export default connect(mapStateToProps, { loadUser })(History);
+export default connect(mapStateToProps)(History);
