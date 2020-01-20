@@ -1,5 +1,5 @@
 import axios from "axios";
-import { SEARCH_SUCCESS, SEARCH_FAIL } from "./types";
+import { SEARCH_SUCCESS, SEARCH_FAIL, CLEAR_SOLUTIONS } from "./types";
 import { setAlert } from "./alert";
 
 export const searchClue = (clue, length) => async dispatch => {
@@ -31,4 +31,10 @@ export const searchClue = (clue, length) => async dispatch => {
       type: SEARCH_FAIL
     });
   }
+};
+
+export const clearSolutions = () => dispatch => {
+  dispatch({
+    type: CLEAR_SOLUTIONS
+  });
 };

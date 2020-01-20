@@ -21,7 +21,13 @@ export default function(state = initialState, action) {
 
     case SEARCH_FAIL:
     case CLEAR_SOLUTIONS:
-      return { ...state, solutions: [], isDone: false };
+      return {
+        ...state,
+        solutions: [],
+        clue: "",
+        length: "",
+        isDone: false
+      };
 
     default:
       return state;

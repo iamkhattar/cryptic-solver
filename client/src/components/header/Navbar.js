@@ -6,8 +6,13 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../redux/actions/auth";
+import { clearSolutions } from "../../redux/actions/search";
 
-const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
+const Navbar = ({
+  auth: { isAuthenticated, loading },
+  logout,
+  clearSolutions
+}) => {
   const navbarStyle = {
     paddingLeft: "0",
     paddingRight: "0"
@@ -20,7 +25,12 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="nav justify-content-end w-100">
         <li className="nav-item">
-          <Link className="nav-link" style={navItemStyle} to="/">
+          <Link
+            onClick={clearSolutions}
+            className="nav-link"
+            style={navItemStyle}
+            to="/"
+          >
             <i className="fa fa-fw fa-home"></i>Home
           </Link>
         </li>
@@ -30,9 +40,14 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
           </Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link" style={navItemStyle} onClick={logout} to="#!">
+          <Link
+            className="nav-link"
+            style={navItemStyle}
+            onClick={logout}
+            to="#!"
+          >
             <i className="fa fa-fw fa-sign-out"></i>Logout
-          </a>
+          </Link>
         </li>
       </ul>
     </div>
@@ -41,7 +56,12 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="nav justify-content-end w-100">
         <li className="nav-item">
-          <Link className="nav-link" style={navItemStyle} to="/">
+          <Link
+            onClick={clearSolutions}
+            className="nav-link"
+            style={navItemStyle}
+            to="/"
+          >
             <i className="fa fa-fw fa-home"></i>Home
           </Link>
         </li>
@@ -61,7 +81,12 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
           className="navbar navbar-expand-lg navbar-dark bg-dark"
           style={navbarStyle}
         >
-          <Link className="navbar-brand" style={logoStyle} to="/">
+          <Link
+            onClick={clearSolutions}
+            className="navbar-brand"
+            style={logoStyle}
+            to="/"
+          >
             <img
               src={logo}
               width="210"
@@ -100,4 +125,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { logout })(Navbar);
+export default connect(mapStateToProps, { logout, clearSolutions })(Navbar);
