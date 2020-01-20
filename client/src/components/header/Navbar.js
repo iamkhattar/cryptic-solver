@@ -35,7 +35,12 @@ const Navbar = ({
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" style={navItemStyle} to="/history">
+          <Link
+            onClick={clearSolutions}
+            className="nav-link"
+            style={navItemStyle}
+            to="/history"
+          >
             <i className="fa fa-fw fa-history"></i>Past Searches
           </Link>
         </li>

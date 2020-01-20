@@ -1,8 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { searchClue } from "../../redux/actions/search";
 
-const History = ({ auth: { user, loading } }) => {
+import { Redirect } from "react-router-dom";
+
+const History = ({
+  searchClue,
+  search: { isDone },
+  auth: { user, loading }
+}) => {
+  if (isDone) {
+    return <Redirect to="/solution" />;
+  }
   return (
     <div className="bdy">
       <div className="container">
@@ -33,7 +43,14 @@ const History = ({ auth: { user, loading } }) => {
                         {cl.clue} ({cl.length})
                       </td>
                       <td style={{ textAlign: "end" }}>
-                        <button className="btn history-button">Search</button>
+                        <button
+                          onClick={() => {
+                            searchClue(cl.clue, cl.length);
+                          }}
+                          className="btn history-button"
+                        >
+                          Search
+                        </button>
                       </td>
                     </tr>
                   ))}
@@ -51,7 +68,8 @@ History.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  search: state.search
 });
 
-export default connect(mapStateToProps)(History);
+export default connect(mapStateToProps, { searchClue })(History);
