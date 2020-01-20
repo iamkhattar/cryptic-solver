@@ -6,7 +6,9 @@ import {
   AUTH_ERROR,
   LOGIN_FAIL,
   LOGIN_SUCCESS,
-  LOGOUT
+  LOGOUT,
+  SAVE_FAILED,
+  SAVE_SUCCESS
 } from "./types";
 import { setAlert } from "./alert";
 import setAuthToken from "../utils/setAuthToken";
@@ -100,4 +102,28 @@ export const logout = () => dispatch => {
   dispatch({
     type: LOGOUT
   });
+};
+
+//Save Search Action
+export const saveSearch = (clue, length) => async dispatch => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
+
+  const body = JSON.stringify({ clue, length });
+
+  try {
+    const res = await axios.post("/api/history", body, config);
+    dispatch({
+      type: SAVE_SUCCESS,
+      payload: res.data
+    });
+    dispatch(loadUser());
+  } catch (err) {
+    dispatch({
+      type: SAVE_FAILED
+    });
+  }
 };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -20,7 +20,7 @@ const Solution = ({ search: { solutions, clue, length } }) => {
         </div>
         {solutions.map(solu => (
           <div
-            key={solu.word}
+            key={solu.solution}
             className="list-group-item list-group-item-action flex-column align-items-start "
           >
             <div className="d-flex w-100 justify-content-between">

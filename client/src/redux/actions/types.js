@@ -10,3 +10,5 @@ export const LOGOUT = "LOGOUT";
 export const SEARCH_SUCCESS = "SEARCH_SUCCESS";
 export const SEARCH_FAIL = "SEARCH_FAIL";
 export const CLEAR_SOLUTIONS = "CLEAR_SOLUTIONS";
+export const SAVE_SUCCESS = "SAVE_SUCCESS";
+export const SAVE_FAILED = "SAVE_FAILED";

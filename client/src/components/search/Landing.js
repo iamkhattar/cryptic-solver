@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { setAlert } from "../../redux/actions/alert";
 import { searchClue } from "../../redux/actions/search";
+import { saveSearch } from "../../redux/actions/auth";
 
 import PropTypes from "prop-types";
 
@@ -10,7 +11,13 @@ import { Redirect } from "react-router-dom";
 
 import Alert from "../alert/Alert";
 
-const Landing = ({ setAlert, search: { isDone }, searchClue }) => {
+const Landing = ({
+  setAlert,
+  search: { isDone },
+  searchClue,
+  isAuthenticated,
+  saveSearch
+}) => {
   const [formData, setFormData] = useState({
     clue: "",
     length: ""
@@ -27,6 +34,9 @@ const Landing = ({ setAlert, search: { isDone }, searchClue }) => {
       setAlert("Length must be a number", "danger");
     }
     searchClue(clue, length);
+    if (isAuthenticated) {
+      saveSearch(clue, length);
+    }
   };
 
   if (isDone) {
@@ -87,6 +97,9 @@ Landing.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  search: state.search
+  search: state.search,
+  isAuthenticated: state.auth.isAuthenticated
 });
-export default connect(mapStateToProps, { setAlert, searchClue })(Landing);
+export default connect(mapStateToProps, { setAlert, searchClue, saveSearch })(
+  Landing
+);
