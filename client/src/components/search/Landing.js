@@ -2,18 +2,21 @@ import React, { useState } from "react";
 
 import { connect } from "react-redux";
 import { setAlert } from "../../redux/actions/alert";
+import { searchClue } from "../../redux/actions/search";
 
 import PropTypes from "prop-types";
 
+import { Redirect } from "react-router-dom";
+
 import Alert from "../alert/Alert";
 
-const Landing = ({ setAlert }) => {
+const Landing = ({ setAlert, search: { isDone }, searchClue }) => {
   const [formData, setFormData] = useState({
-    search: "",
+    clue: "",
     length: ""
   });
 
-  const { search, length } = formData;
+  const { clue, length } = formData;
 
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -23,7 +26,12 @@ const Landing = ({ setAlert }) => {
     if (isNaN(length)) {
       setAlert("Length must be a number", "danger");
     }
+    searchClue(clue, length);
   };
+
+  if (isDone) {
+    return <Redirect to="/solution" />;
+  }
   return (
     <div className="bdy">
       <div className="container h-100">
@@ -34,9 +42,9 @@ const Landing = ({ setAlert }) => {
                 <input
                   type="text"
                   className="main-input form-control form-control-lg "
-                  name="search"
-                  id="search"
-                  value={search}
+                  name="clue"
+                  id="clue"
+                  value={clue}
                   onChange={e => onChange(e)}
                   placeholder="Cryptic Clue"
                 />
@@ -77,4 +85,8 @@ const Landing = ({ setAlert }) => {
 Landing.propTypes = {
   setAlert: PropTypes.func.isRequired
 };
-export default connect(null, { setAlert })(Landing);
+
+const mapStateToProps = state => ({
+  search: state.search
+});
+export default connect(mapStateToProps, { setAlert, searchClue })(Landing);

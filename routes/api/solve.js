@@ -5,11 +5,11 @@ const { check, validationResult } = require("express-validator");
 const getSolution = require("../../modules/solution/generate-solution");
 
 /**
- * @route   GET /api/solve
+ * @route   POST /api/solve
  * @desc    Get solution for a cryptic clue
  * @access  Public
  */
-router.get(
+router.post(
   "/",
   [
     check("clue", "Please include a clue")
@@ -18,11 +18,10 @@ router.get(
     check("length", "Length must be a number").isNumeric()
   ],
   async (req, res) => {
-    const errors = validationResult(req);
+    const errors = validationResult(req.body);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-
     const { clue, length } = req.body;
     try {
       var solution = await getSolution(clue, length);
