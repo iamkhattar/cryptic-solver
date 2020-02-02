@@ -6,20 +6,14 @@ Cryptic Solver is a web application developed to solve cryptic crossword clues u
 
 ```bash
   npm install
+  cd client
+  npm install
 ```
 
-## Run Application through IDE
+## Run Application
 
-```javascript
-const getSolution = require("./modules/solution/generate-solution");
-async function driver(clue, length) {
-  var solution = await getSolution(clue, length).catch(err => {
-    console.log("Server Error");
-    process.exit();
-  });
-  console.log(solution);
-}
-driver(clue, length);
+```bash
+  npm run dev
 ```
 
 ## Test Application
@@ -31,6 +25,16 @@ driver(clue, length);
 ## Usage
 
 Please visit [Cryptic Solver](https://devweb2019.cis.strath.ac.uk/vib16216-nodejs/ "Cryptic Solver") to use the web application.
+
+## API Endpoints
+
+| Endpoint     | Request Type | Access  | Description                         |
+| ------------ | ------------ | ------- | ----------------------------------- |
+| /api/users   | POST         | Public  | Register a User                     |
+| /api/auth    | GET          | Private | Get a User's Details                |
+| /api/auth    | POST         | Public  | Login a User                        |
+| /api/history | POST         | Private | Add search to Users History         |
+| /api/solve   | POST         | Public  | Get the solution for a cryptic clue |
 
 ## Types of clues that can be solved
 

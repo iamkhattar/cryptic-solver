@@ -1,8 +1,8 @@
 const moby = require("moby");
-//const datamuse = require("datamuse");
 const datamuse = require("../datamuse/datamuse-request");
-
+const saveCache = require("../cache/save-cache");
 const checkLists = require("../lists/check-lists");
+const knownDefinitions = require("../cryptic-definitions/known-definitions");
 
 /**
  *
@@ -18,15 +18,16 @@ async function getWordplays(uniquePhrases) {
 
   var p = await Promise.all(promiseArray);
 
+  var cache = new Array();
+
   var solution = new Array();
   for (var i = 0; i < p.length; i++) {
-    var currentSolution = new Array();
+    var currentSolution = {};
     var synonyms = new Array();
     var currentWord = uniquePhrases[i];
 
     var search = moby.search(currentWord);
     var rev = moby.reverseSearch(currentWord);
-    //var currentData = p[i];
     var currentData = JSON.parse(p[i].body);
 
     if (search != undefined) {
@@ -52,10 +53,27 @@ async function getWordplays(uniquePhrases) {
       });
     }
 
+    var known = knownDefinitions(currentWord);
+    if (known != false) {
+      known.forEach(currentKnown => {
+        if (!synonyms.includes(currentKnown)) synonyms.push(currentKnown);
+      });
+    }
+
     currentSolution["word"] = currentWord;
     currentSolution["synonyms"] = synonyms;
     solution.push(currentSolution);
+
+    var currentCacheObj = {
+      word: currentWord,
+      synonyms: JSON.parse(p[i].body)
+    };
+
+    cache.push(currentCacheObj);
   }
+
+  //Save Cache
+  saveCache(cache);
 
   return solution;
 }

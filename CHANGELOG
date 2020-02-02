@@ -1,6 +1,15 @@
 Changelog
 All notable changes to this project will be documented in this file.
 
+[6.0.0] - 30-01-2020
+- Minor Bug fixes
+
+[5.0.0] - 27-01-2020
+- Ranking System implemented
+
+[4.0.0] - 24-01-2020
+- Known Definitions added
+
 [3.0.0] - 20-01-2020
 - Front End Completed using React/Redux
 

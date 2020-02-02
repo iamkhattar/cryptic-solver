@@ -2,8 +2,12 @@ import React from "react";
 
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { Redirect } from "react-router-dom";
 
 const Solution = ({ search: { solutions, clue, length } }) => {
+  if (clue === "") {
+    return <Redirect to="/" />;
+  }
   return (
     <div className="bdy">
       <div className="container">

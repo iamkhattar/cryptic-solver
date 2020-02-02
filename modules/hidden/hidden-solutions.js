@@ -30,7 +30,9 @@ function getHiddenSolutions(
           hiddenIndicator
         );
         currentSolution["reason"] = reason;
-        currentSolution["percentage"] = Math.floor(Math.random() * 100) + 1;
+        currentSolution["def"] = currentCombination[0];
+        currentSolution["int"] = "hidden-clue";
+        currentSolution["percentage"] = 0;
         solutionList.push(currentSolution);
       }
     });
@@ -49,7 +51,10 @@ function getHiddenSolutions(
           hiddenIndicator
         );
         currentSolution["reason"] = reason;
-        currentSolution["percentage"] = Math.floor(Math.random() * 100) + 1;
+        currentSolution["def"] =
+          currentCombination[currentCombination.length - 1];
+        currentSolution["int"] = "hidden-clue";
+        currentSolution["percentage"] = 0;
         solutionList.push(currentSolution);
       }
     });

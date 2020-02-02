@@ -4,7 +4,7 @@ const possibleCombinations = require("../format/possible-combinations");
 const uniquePhrases = require("../thesaurus/unique-phrases");
 const generateSynonyms = require("../thesaurus/generate-synonyms");
 const generateCurrentSolution = require("../solution/generate-current-solution");
-
+const rankSolutions = require("../ranking/rank-solutions");
 const doesSolutionExist = require("./does-solution-exist");
 
 //List of Synonyms
@@ -35,6 +35,10 @@ async function generateSolution(clue, solutionLength) {
       }
     });
   }
+
+  //Change Percentage
+  solutionList = rankSolutions(solutionList);
+
   return solutionList;
 }
 

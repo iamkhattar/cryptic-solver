@@ -44,7 +44,8 @@ function getJSON(solution) {
     };
     arr.push(currentObject);
   });
-  return arr;
+
+  return arr.sort((a, b) => parseInt(b.percentage) - parseInt(a.percentage));
 }
 
 module.exports = router;

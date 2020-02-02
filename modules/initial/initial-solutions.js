@@ -32,7 +32,9 @@ function getInitialSolutions(
           initialIndicator
         );
         currentSolution["reason"] = reason;
-        currentSolution["percentage"] = Math.floor(Math.random() * 100) + 1;
+        currentSolution["def"] = currentCombination[0];
+        currentSolution["int"] = "initial-clue";
+        currentSolution["percentage"] = 0;
         solutionList.push(currentSolution);
       }
     });
@@ -53,7 +55,10 @@ function getInitialSolutions(
           initialIndicator
         );
         currentSolution["reason"] = reason;
-        currentSolution["percentage"] = Math.floor(Math.random() * 100) + 1;
+        currentSolution["def"] =
+          currentCombination[currentCombination.length - 1];
+        currentSolution["int"] = "initial-clue";
+        currentSolution["percentage"] = 0;
         solutionList.push(currentSolution);
       }
     });

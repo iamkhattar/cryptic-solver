@@ -1,0 +1,10 @@
+[
+  { "word": "mountain", "synonyms": ["ben"] },
+  { "word": "ben", "synonyms": ["mountain"] },
+  { "word": "bookmakers", "synonyms": ["writers"] },
+  { "word": "bookmaker", "synonyms": ["writer"] },
+  { "word": "writer", "synonyms": ["bookmaker"] },
+  { "word": "writers", "synonyms": ["bookmakers"] },
+  { "word": "smart", "synonyms": ["brainbox"] },
+  { "word": "brainbox", "synonyms": ["smart"] }
+]

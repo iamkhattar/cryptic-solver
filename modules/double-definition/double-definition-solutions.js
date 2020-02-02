@@ -12,7 +12,7 @@ function getDoubleDefinitionSolution(firstDefinitions, lastDefinitions) {
       var currentSolution = new Array();
       currentSolution["solution"] = currentDefinition.toUpperCase();
       currentSolution["reason"] = "Double Definition";
-      currentSolution["percentage"] = Math.floor(Math.random() * 100) + 1;
+      currentSolution["percentage"] = 0;
       solutionList.push(currentSolution);
     }
   });

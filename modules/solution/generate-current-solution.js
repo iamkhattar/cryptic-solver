@@ -212,6 +212,8 @@ function generateCurrentSolution(
           "'. " +
           currentDoubleDefinitionSolution["solution"] +
           " is a synonym to both definitions";
+        currentDoubleDefinitionSolution["def"] = currentCombination[0];
+        currentDoubleDefinitionSolution["int"] = "double-definition-clue";
         solutionList.push(currentDoubleDefinitionSolution);
       }
     });

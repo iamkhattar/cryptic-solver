@@ -46,7 +46,9 @@ function getContainerSolutions(
             containerIndicator
           );
           currentSolution["reason"] = reason;
-          currentSolution["percentage"] = Math.floor(Math.random() * 100) + 1;
+          currentSolution["def"] = currentCombination[0];
+          currentSolution["int"] = "container-clue";
+          currentSolution["percentage"] = 0;
           solutionList.push(currentSolution);
         }
         //First Word Synonyms
@@ -79,7 +81,9 @@ function getContainerSolutions(
               containerIndicator
             );
             currentSolution["reason"] = reason;
-            currentSolution["percentage"] = Math.floor(Math.random() * 100) + 1;
+            currentSolution["def"] = currentCombination[0];
+            currentSolution["int"] = "container-clue";
+            currentSolution["percentage"] = 0;
             solutionList.push(currentSolution);
           }
 
@@ -108,8 +112,9 @@ function getContainerSolutions(
                     containerIndicator
                   );
                   currentSolution["reason"] = reason;
-                  currentSolution["percentage"] =
-                    Math.floor(Math.random() * 100) + 1;
+                  currentSolution["def"] = currentCombination[0];
+                  currentSolution["int"] = "container-clue";
+                  currentSolution["percentage"] = 0;
                   solutionList.push(currentSolution);
                 }
               }
@@ -135,7 +140,9 @@ function getContainerSolutions(
               containerIndicator
             );
             currentSolution["reason"] = reason;
-            currentSolution["percentage"] = Math.floor(Math.random() * 100) + 1;
+            currentSolution["def"] = currentCombination[0];
+            currentSolution["int"] = "container-clue";
+            currentSolution["percentage"] = 0;
             solutionList.push(currentSolution);
           }
         });
@@ -161,7 +168,10 @@ function getContainerSolutions(
             containerIndicator
           );
           currentSolution["reason"] = reason;
-          currentSolution["percentage"] = Math.floor(Math.random() * 100) + 1;
+          currentSolution["def"] =
+            currentCombination[currentCombination.length - 1];
+          currentSolution["int"] = "container-clue";
+          currentSolution["percentage"] = 0;
           solutionList.push(currentSolution);
         }
         //First Word Synonyms
@@ -194,7 +204,10 @@ function getContainerSolutions(
               containerIndicator
             );
             currentSolution["reason"] = reason;
-            currentSolution["percentage"] = Math.floor(Math.random() * 100) + 1;
+            currentSolution["def"] =
+              currentCombination[currentCombination.length - 1];
+            currentSolution["int"] = "container-clue";
+            currentSolution["percentage"] = 0;
             solutionList.push(currentSolution);
           }
 
@@ -223,8 +236,10 @@ function getContainerSolutions(
                     containerIndicator
                   );
                   currentSolution["reason"] = reason;
-                  currentSolution["percentage"] =
-                    Math.floor(Math.random() * 100) + 1;
+                  currentSolution["def"] =
+                    currentCombination[currentCombination.length - 1];
+                  currentSolution["int"] = "container-clue";
+                  currentSolution["percentage"] = 0;
                   solutionList.push(currentSolution);
                 }
               }
@@ -250,7 +265,10 @@ function getContainerSolutions(
               containerIndicator
             );
             currentSolution["reason"] = reason;
-            currentSolution["percentage"] = Math.floor(Math.random() * 100) + 1;
+            currentSolution["def"] =
+              currentCombination[currentCombination.length - 1];
+            currentSolution["int"] = "container-clue";
+            currentSolution["percentage"] = 0;
             solutionList.push(currentSolution);
           }
         });

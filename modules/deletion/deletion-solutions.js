@@ -42,7 +42,9 @@ function getDeletionSolutions(
         );
         currentSolution["solution"] = currentDefinition.toUpperCase();
         currentSolution["reason"] = reason;
-        currentSolution["percentage"] = Math.floor(Math.random() * 100) + 1;
+        currentSolution["def"] = currentCombination[0];
+        currentSolution["int"] = "deletion-clue";
+        currentSolution["percentage"] = 0;
         solutionList.push(currentSolution);
       }
       //Indirect Deletion
@@ -68,7 +70,9 @@ function getDeletionSolutions(
             deletionIndicator
           );
           currentSolution["reason"] = reason;
-          currentSolution["percentage"] = Math.floor(Math.random() * 100) + 1;
+          currentSolution["def"] = currentCombination[0];
+          currentSolution["int"] = "deletion-clue";
+          currentSolution["percentage"] = 0;
           solutionList.push(currentSolution);
         }
       });
@@ -99,6 +103,9 @@ function getDeletionSolutions(
         var currentSolution = new Array();
         currentSolution["solution"] = currentDefinition.toUpperCase();
         currentSolution["reason"] = reason;
+        currentSolution["def"] =
+          currentCombination[currentCombination.length - 1];
+        currentSolution["int"] = "deletion-clue";
         currentSolution["percentage"] = Math.floor(Math.random() * 100) + 1;
         solutionList.push(currentSolution);
       }
@@ -125,6 +132,9 @@ function getDeletionSolutions(
             deletionIndicator
           );
           currentSolution["reason"] = reason;
+          currentSolution["def"] =
+            currentCombination[currentCombination.length - 1];
+          currentSolution["int"] = "deletion-clue";
           currentSolution["percentage"] = Math.floor(Math.random() * 100) + 1;
           solutionList.push(currentSolution);
         }
