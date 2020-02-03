@@ -23,6 +23,8 @@ const Landing = ({
     length: ""
   });
 
+  const [loading, setLoading] = useState(false);
+
   const { clue, length } = formData;
 
   const onChange = e =>
@@ -33,6 +35,7 @@ const Landing = ({
     if (isNaN(length)) {
       setAlert("Length must be a number", "danger");
     }
+    setLoading(true);
     searchClue(clue, length);
     if (isAuthenticated) {
       saveSearch(clue, length);
@@ -73,12 +76,16 @@ const Landing = ({
                 />
               </div>
               <div className="col-12 col-md-2 pl-md-0 pt-md-0 pt-2 custom_height">
-                <input
+                <button
                   type="submit"
                   name="commit"
                   value="SEARCH"
                   className="main-submit btn btn-block"
-                />
+                  style={{ color: "white" }}
+                  disabled={loading}
+                >
+                  {loading && <i className="fa fa-refresh fa-spin"></i>} SEARCH
+                </button>
               </div>
             </form>
 

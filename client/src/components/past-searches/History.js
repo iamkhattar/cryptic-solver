@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { searchClue } from "../../redux/actions/search";
@@ -10,6 +10,8 @@ const History = ({
   search: { isDone },
   auth: { user, loading }
 }) => {
+  const [buttonLoading, setButtonLoading] = useState(false);
+
   if (isDone) {
     return <Redirect to="/solution" />;
   }
@@ -42,13 +44,19 @@ const History = ({
                       <td>
                         {cl.clue} ({cl.length})
                       </td>
-                      <td style={{ textAlign: "end" }}>
+                      <td key={cl.clue} style={{ textAlign: "end" }}>
                         <button
+                          key={cl.clue}
                           onClick={() => {
+                            setButtonLoading(true);
                             searchClue(cl.clue, cl.length);
                           }}
                           className="btn history-button"
+                          disabled={buttonLoading}
                         >
+                          {buttonLoading && (
+                            <i className="fa fa-refresh fa-spin"></i>
+                          )}{" "}
                           Search
                         </button>
                       </td>

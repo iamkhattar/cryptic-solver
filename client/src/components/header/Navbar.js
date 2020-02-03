@@ -49,7 +49,7 @@ const Navbar = ({
             className="nav-link"
             style={navItemStyle}
             onClick={logout}
-            to="#!"
+            to="/"
           >
             <i className="fa fa-fw fa-sign-out"></i>Logout
           </Link>
