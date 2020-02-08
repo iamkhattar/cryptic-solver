@@ -12,30 +12,6 @@ Cryptic Solver is a full stack web application developed using the MERN Stack (M
 
 The Cryptic Solver API is based on conventional HTTP response codes to indicate the success or failure of an API request. In general: Codes in the 2xx range indicate success. Codes in the 4xx range indicate an error that failed given the information provided (e.g a required parameter was ommited). Codes in the 5xx range indicate an error with the Cryptic Solver API servers.
 
-## Installation
-
-```bash
-  npm install
-  cd client
-  npm install
-```
-
-## Run Application
-
-```bash
-  npm run dev
-```
-
-## Test Application
-
-```bash
-  npm test
-```
-
-## Usage
-
-Please visit [Cryptic Solver](https://devweb2019.cis.strath.ac.uk/vib16216-nodejs/ "Cryptic Solver") to use the web application.
-
 ## API Endpoints
 
 | Endpoint     | Request Type | Access  | Description                         |
@@ -46,17 +22,109 @@ Please visit [Cryptic Solver](https://devweb2019.cis.strath.ac.uk/vib16216-nodej
 | /api/solve   | POST         | Public  | Get the solution for a cryptic clue |
 | /api/users   | POST         | Public  | Register a User                     |
 
-## Types of clues that can be solved
+## Documentation
 
-1. Double Definition
-2. Anagram
-3. Initial Letter
-4. Reversal
-5. Hidden
-6. Final Letter
-7. Deletion
-8. Alternate Letters
-9. Container
+Documentation for Cryptic Solver can be viewed [here](https://devweb2019.cis.strath.ac.uk/~vib16216/documentation/). The webpage offers documentation for first time users, developers and users who would like to use the Cryptic Solver API.
+
+## Prerequisites
+
+Before you install "Cryptic Solver", please make sure the following software if installed on your system.
+
+1. Git
+2. Node v12.13+
+3. Npm v6.12+
+4. MongoDB v4.2.2+ or MongoDB Atlas Account
+5. Heroku v7.0.0+ (Optional)
+
+Additional Dependencies will install once steps for installation are followed.
+
+## Downloading the Repository
+
+The Cryptic Solver Repository is available on Gitlab. To clone the repository, navigate to the folder where the repository is to be installed and use the following command:
+
+```bash
+  git clone https://gitlab.cis.strath.ac.uk/vib16216/cs408-crypticcrosswordsolver.git
+```
+
+## Database Initialisation
+
+The "mongoURI" in /config/default.json has to be changed to your MongoURI. Additionally, the "dbName" has to be changed in /config/db.js. This needs to be done so that the users database is saved on your MongoDB Collection.
+
+## Installing Missing Server Dependencies
+
+The dependencies required for the successfull running of the server needs to be installed. To install the dependencies, use the following command:
+
+```bash
+  npm install
+```
+
+## Installing Missing Client Dependencies
+
+The dependencies required for the successfull running of the client needs to be installed. To install the dependencies, use the following command:
+
+```bash
+  cd client
+  npm install
+```
+
+## Running the Application in Developer Mode
+
+To run the application in developer mode, please use the following command:
+
+```bash
+  npm run dev
+```
+
+## Deploying the app to Heroko
+
+Please follow the following steps to deploy to Heroku. Additionally, ensure that Heroku CLI is installed on your system before following these steps.
+
+1. Before deploying to Heroku CLI, a static React Build must be created and served using the API routes. To do this please add the following route at the end of all your routes in the server.js file:
+
+```javascript
+const path = require("path");
+if (process.env.NODE_ENV === "production") {
+  //Set static folder
+  app.use(express.static("client/build"));
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
+  );
+}
+```
+
+2. Run the following command to login into Heroku using the terminal.
+
+```bash
+  heroku login
+```
+
+3. Then, run the following command to create a Heroku Repository.
+
+```bash
+  heroku create
+```
+
+4. A post build heroku script has already been created and will run automatically after pushing to Heroku. Please use the following commands to deploy to Heroku
+
+```bash
+  git init
+  git add .
+  git commit -am 'Version 1.0.0'
+  heroku <SECURE_COVE>
+  git push heroku master
+```
+
+## Testing Application
+
+Multiple test suites have been written to test the application. To run these test suites use the following command:
+
+```bash
+  npm test
+```
+
+## Current Deployment
+
+The Cryptic Solver Full Stack Web Application is currently deployed on Strathclyde Devweb. To use the web application please visit [Cryptic Solver](https://devweb2019.cis.strath.ac.uk/vib16216-nodejs/ "Cryptic Solver").
 
 ## Clues Solved Successfully
 

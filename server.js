@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 //Init Middleware
 app.use(express.json({ extended: false }));
@@ -8,9 +8,6 @@ app.use(express.json({ extended: false }));
 //Connect to MongoDB
 const connectDB = require("./config/db");
 connectDB();
-
-//Default Route to check whether API is running
-app.get("/", (req, res) => res.send("API Running"));
 
 //Solve Clues Route
 app.use("/api/solve", require("./routes/api/solve"));
