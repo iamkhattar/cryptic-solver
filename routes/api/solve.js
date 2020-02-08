@@ -18,7 +18,7 @@ router.post(
     check("length", "Length must be a number").isNumeric()
   ],
   async (req, res) => {
-    const errors = validationResult(req.body);
+    const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }

@@ -54,6 +54,17 @@ const Navbar = ({
             <i className="fa fa-fw fa-sign-out"></i>Logout
           </Link>
         </li>
+        <li className="nav-item">
+          <a
+            className="nav-link"
+            style={navItemStyle}
+            href="https://devweb2019.cis.strath.ac.uk/~vib16216/documentation/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i className="fa fa-fw fa-book"></i>Documentation
+          </a>
+        </li>
       </ul>
     </div>
   );
@@ -74,6 +85,17 @@ const Navbar = ({
           <Link className="nav-link" style={navItemStyle} to="/login">
             <i className="fa fa-fw fa-user"></i>Account
           </Link>
+        </li>
+        <li className="nav-item">
+          <a
+            className="nav-link"
+            style={navItemStyle}
+            href="https://devweb2019.cis.strath.ac.uk/~vib16216/documentation/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i className="fa fa-fw fa-book"></i>Documentation
+          </a>
         </li>
       </ul>
     </div>
