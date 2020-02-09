@@ -57,30 +57,38 @@ The following changes need to be made to use your instance of MongoDB
 1. The **mongoURI** value in _/config/default.json_ needs to be changed to your MongoURI string
 2. The **dbName** value in _/config/db.js_ needs to be changed to your Database name
 
-## Installing Missing Server Dependencies
+## Server Dependencies
 
-The dependencies required for the successfull running of the server needs to be installed. To install the dependencies, use the following command:
+There are additional dependencies required for the server to run. To install these dependencies, use the following command in the root directory
 
 ```bash
   npm install
 ```
 
-## Installing Missing Client Dependencies
+## Client Dependencies
 
-The dependencies required for the successfull running of the client needs to be installed. To install the dependencies, use the following command:
+There are additional dependencies required for the server to run. To install these dependencies, use the following command in the root directory
+To navigate to the client directory use the following command:
 
 ```bash
   cd client
+```
+
+Once in the client directory, use the following command to install the required dependencies:
+
+```bash
   npm install
 ```
 
 ## Running the Application in Developer Mode
 
-To run the application in developer mode, please use the following command:
+To run the application in developer mode, use the following command:
 
 ```bash
   npm run dev
 ```
+
+The application will refresh automatically if any changes are made to the code in Devloper Mode
 
 ## Deploying the app to Heroko
 
