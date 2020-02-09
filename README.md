@@ -90,36 +90,25 @@ To run the application in developer mode, use the following command:
 
 The application will refresh automatically if any changes are made to the code in Devloper Mode
 
+# Deployment Instructions
+
 ## Deploying the app to Heroko
 
-Please follow the following steps to deploy to Heroku. Additionally, ensure that Heroku CLI is installed on your system before following these steps.
+Please ensure Heroku CLI is installed on the system before following the Instructions:
 
-1. Before deploying to Heroku CLI, a static React Build must be created and served using the API routes. To do this please add the following route at the end of all your routes in the server.js file:
-
-```javascript
-const path = require("path");
-if (process.env.NODE_ENV === "production") {
-  //Set static folder
-  app.use(express.static("client/build"));
-  app.get("*", (req, res) =>
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
-  );
-}
-```
-
-2. Run the following command to login into Heroku using the terminal.
+1. The following command must be run to login into Heroku CLI using the terminal
 
 ```bash
   heroku login
 ```
 
-3. Then, run the following command to create a Heroku Repository.
+2. Next, a new Heroku repository must be created. The following command creates a new heroku repository
 
 ```bash
   heroku create
 ```
 
-4. A post build heroku script has already been created and will run automatically after pushing to Heroku. Please use the following commands to deploy to Heroku
+3. Finally, the project needs to be pushed to Heroku. Once the project is pushed, Heroku will run the post build script that is provided with Cryptic Solver. The following commands must be run to deploy the project on Heroku.
 
 ```bash
   git init
@@ -129,22 +118,28 @@ if (process.env.NODE_ENV === "production") {
   git push heroku master
 ```
 
-## Testing Application
+## Current Deployment
 
-Multiple test suites have been written to test the application. To run these test suites use the following command:
+The Cryptic Solver Full Stack Web Application is currently deployed on Strathclyde DEVWEB. To use the application please visit [**Cryptic Solver**](https://devweb2019.cis.strath.ac.uk/vib16216-nodejs/).
+
+# Testing Instructions
+
+## Test Suites
+
+Multiple test suites have been written to test the application regularly. To run these test suites, use the following command in the root directory
 
 ```bash
   npm test
 ```
 
-## Current Deployment
+## Coverage Report
 
-The Cryptic Solver Full Stack Web Application is currently deployed on Strathclyde Devweb. To use the web application please visit [Cryptic Solver](https://devweb2019.cis.strath.ac.uk/vib16216-nodejs/ "Cryptic Solver").
+A Coverage Report is generated upon running the test suites. The Coverage Report can be accessed [**here**](https://devweb2019.cis.strath.ac.uk/~vib16216/coverage/report/).
 
 ## Clues Solved Successfully
 
 Please visit [Clues Solved Successfully](https://devweb2019.cis.strath.ac.uk/~vib16216/clues/) to view clues that have been tested.
 
-## License
+# License
 
 [MIT](https://choosealicense.com/licenses/mit/)
