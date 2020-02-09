@@ -12,7 +12,7 @@ Cryptic Solver is a full stack web application developed using the MERN Stack (M
 
 ## Documentation
 
-Documentation for Cryptic Solver can be viewed [here](https://devweb2019.cis.strath.ac.uk/~vib16216/documentation/). The webpage offers documentation for users, developers and contributers.
+Documentation for Cryptic Solver can be viewed [**here**](https://devweb2019.cis.strath.ac.uk/~vib16216/documentation/). The webpage offers documentation for users, developers and contributers.
 
 # Cryptic Solver API Overview
 
@@ -54,8 +54,8 @@ The Cryptic Solver Repository is available on Gitlab. To clone the repository, n
 
 The following changes need to be made to use your instance of MongoDB
 
-1. The mongoURI value in /config/default.json needs to be changed to your MongoURI string
-2. The dbName value in /config/db.js needs to be changed to your Database name
+1. The **mongoURI** value in _/config/default.json_ needs to be changed to your MongoURI string
+2. The **dbName** value in _/config/db.js_ needs to be changed to your Database name
 
 ## Installing Missing Server Dependencies
 
