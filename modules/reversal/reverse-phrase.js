@@ -1,8 +1,6 @@
 /**
- * @param phrase : phrase to be reversed
- * @return : reversed phrase ignoring spaces
- *
  * reversePhrase() reverses a phrase ignoring its spaces and returns it
+ * @param {String} phrase : Phrase to be reversed
  */
 function reversePhrase(phrase) {
   phrase = phrase.toLowerCase();
@@ -14,4 +12,5 @@ function reversePhrase(phrase) {
   }
   return reversedPhrase;
 }
+
 module.exports = reversePhrase;

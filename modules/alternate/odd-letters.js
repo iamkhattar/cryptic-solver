@@ -1,8 +1,6 @@
 /**
- *
- * @param phrase : phrase for which odd letters have to be generated
- *
  * getOddLetters() combines all odd letters in the phrase and returns it
+ * @param {String} phrase : phrase for which odd letters have to be generated
  */
 function getOddLetters(phrase) {
   phrase = phrase.replace(/\s+/g, "");

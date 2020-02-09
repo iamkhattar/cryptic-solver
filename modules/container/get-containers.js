@@ -1,9 +1,7 @@
 /**
- *
+ * getContainers() generates all possible containers for two given words and returns it
  * @param word1 : First Word
  * @param word2 : Second Word
- *
- * getContainers() generates all possible containers for two given words and returns it
  */
 function getContainers(word1, word2) {
   word1 = word1.toLowerCase();

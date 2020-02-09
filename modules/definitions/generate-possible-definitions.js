@@ -1,26 +1,26 @@
 /**
- * @param word : Word for which possible definitions have to be generated
- * @param definitionLength : Length of definitions
- * @param synonymList : List of Synonyms
- *
  * generatePossibleDefinitions() genereates all possible definitions of a given word considering its length constraint
+ * @param {Query} query : Query Class
+ * @param {String} word : Word for which definitions have to be generated
+ * @return {Array} : Array of possible definitions
  */
-
-function generatePossibleDefinitions(word, definitionLength, synonymList) {
+function generatePossibleDefinitions(query, word) {
   var definitions = new Array();
-  if (word.length == definitionLength) {
+
+  //If the length of the word itself is the length of the solution then it is one of the possible definitions
+  if (word.length == query.length) {
     definitions.push(word);
   }
-  for (const currentSynonym of synonymList) {
-    if (currentSynonym["word"] == word) {
-      var possibleSynonyms = currentSynonym["synonyms"];
-      possibleSynonyms.forEach(currentSynonym => {
-        if (currentSynonym.length == definitionLength) {
-          definitions.push(currentSynonym);
-        }
-      });
-    }
-  }
+
+  //Get All Possible Synonyms for the given word
+  var currentSynonyms = query.synonymList.filter(
+    element => element.word == word
+  )[0];
+
+  //Remove Synonyms greater than the solution length
+  definitions = currentSynonyms.synonyms.filter(
+    element => element.length == query.length
+  );
 
   return definitions;
 }

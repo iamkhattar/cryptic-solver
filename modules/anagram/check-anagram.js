@@ -1,9 +1,8 @@
 /**
- * @param word1 : First Word to be checked
- * @param word2 : Second Word to be checked
- * @return : true if they are anagrams, false if they are not
- *
  * checkAnagram() checks wheteher two phrases are anagrams ignoring spaces
+ * @param {String} word1 : First Word to be checked
+ * @param {String} word2 : Second Word to be checked
+ * @return : true if they are anagrams, false if they are not
  */
 function checkAnagram(word1, word2) {
   word1 = word1.replace(/\s+/g, "");

@@ -1,11 +1,9 @@
 var fs = require("fs");
 
 /**
- *
- * @param currentCombination : Combination to be checked
- * @return flag : if there is an reversal indicator flag is the idicator else flag is false
- *
  * checkIfCombinationHasReversalIndicator() checks if the combination has an reversal indicator and returns it else returns false
+ * @param {Array} currentCombination : Combination to be checked
+ * @return flag : if there is an reversal indicator flag is the idicator else flag is false
  */
 function checkIfCombinationHasReversalIndicator(currentCombination) {
   var flag = false;
@@ -18,11 +16,9 @@ function checkIfCombinationHasReversalIndicator(currentCombination) {
 }
 
 /**
- *
- * @param phrase : current phrase to be checked
- * @return : true if phrase is indicator, false if not
- *
  * isPhraseIndicator() is a helper function to check whether a given phrase is an reversal indicator or not
+ * @param {String} phrase : current phrase to be checked
+ * @return : true if phrase is indicator, false if not
  */
 function isPhraseIndicator(phrase) {
   var array = fs

@@ -1,8 +1,6 @@
 /**
- *
- * @param word : Word for which last letter has to be removed
- *
  * deleteLastLetter() removes the last letter and returns the word
+ * @param word : Word for which last letter has to be removed
  */
 function deleteLastLetter(word) {
   word = word.toLowerCase();

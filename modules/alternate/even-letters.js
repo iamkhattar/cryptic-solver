@@ -1,8 +1,6 @@
 /**
- *
- * @param phrase : phrase for which even letters have to be generated
- *
  * getEvenLetters() combines all even letters in the phrase and returns it
+ * @param phrase : phrase for which even letters have to be generated
  */
 function getEvenLetters(phrase) {
   phrase = phrase.replace(/\s+/g, "");

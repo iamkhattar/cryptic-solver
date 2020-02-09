@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { check, validationResult } = require("express-validator");
 
-const getSolution = require("../../modules/solution/generate-solution");
+const Query = require("../../modules/solution/Query");
 
 /**
  * @route   POST /api/solve
@@ -24,9 +24,9 @@ router.post(
     }
     const { clue, length } = req.body;
     try {
-      var solution = await getSolution(clue, length);
-      var js = getJSON(solution);
-      return res.json(js);
+      var query = new Query(clue, length);
+      var solution = await query.solveClue();
+      return res.json(solution);
     } catch (err) {
       console.error(err.message);
       return res.status(500).send("Server Error");

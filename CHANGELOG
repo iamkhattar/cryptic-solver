@@ -1,6 +1,9 @@
 Changelog
 All notable changes to this project will be documented in this file.
 
+[8.0.1] - 09-02-2020
+- Code Refactored and design patterns added
+
 [7.9.0] - 04-02-2020
 - Bug Fixes
 - Documentation added

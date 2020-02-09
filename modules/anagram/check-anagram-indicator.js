@@ -1,11 +1,9 @@
 var fs = require("fs");
 
 /**
- *
- * @param currentCombination : Combination to be checked
- * @return flag : if there is an anagram indicator flag is the idicator else flag is false
- *
  * checkIfCombinationHasAnagramIndicator() checks if the combination has an anagram indicator and returns it else returns false
+ * @param {Array} currentCombination : Combination to be checked
+ * @return flag : if there is an anagram indicator flag is the idicator else flag is false
  */
 function checkIfCombinationHasAnagramIndicator(currentCombination) {
   var flag = false;
@@ -18,11 +16,9 @@ function checkIfCombinationHasAnagramIndicator(currentCombination) {
 }
 
 /**
- *
- * @param phrase : current phrase to be checked
- * @return : true if phrase is indicator, false if not
- *
  * isPhraseIndicator() is a helper function to check whether a given phrase is an anagram indicator or not
+ * @param {String} phrase : current phrase to be checked
+ * @return : true if phrase is indicator, false if not
  */
 function isPhraseIndicator(phrase) {
   var array = fs

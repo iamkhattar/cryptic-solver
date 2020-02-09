@@ -1,10 +1,8 @@
 /**
- *
- * @param words : Clue Split up using " "
- * @param clue : Clue itself
- * @return : all possible combinations of the given clue
- *
  * getPossibleCombinations() generates all possible combinations of a given clue and returns it
+ * @param {Array} words : Clue Split up using " "
+ * @param {String} clue : Clue itself
+ * @return : all possible combinations of the given clue
  */
 function getPossibleCombinations(words, clue) {
   var solutionArr = new Array();
@@ -17,12 +15,10 @@ function getPossibleCombinations(words, clue) {
 }
 
 /**
- *
- * @param array : words array
- * @param result : result array
- * @param start : recursion start
- *
  * combinationRecursionHelper() is a helper function for getPossibleCombinations()
+ * @param {Array} array : words array
+ * @param {Array} result : result array
+ * @param {Array} start : recursion start
  */
 function combinationRecursionHelper(array, result, start = []) {
   for (let i = 1; i < array.length; i++) {

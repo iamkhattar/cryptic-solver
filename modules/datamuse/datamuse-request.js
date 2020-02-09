@@ -1,5 +1,3 @@
-"use strict";
-
 const https = require("https");
 const url = "https://api.datamuse.com/words?ml=";
 /**
