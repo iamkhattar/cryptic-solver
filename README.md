@@ -138,7 +138,7 @@ A Coverage Report is generated upon running the test suites. The Coverage Report
 
 ## Clues Solved Successfully
 
-Please visit [Clues Solved Successfully](https://devweb2019.cis.strath.ac.uk/~vib16216/clues/) to view clues that have been tested.
+Please visit [**Clues Solved Successfully**](https://devweb2019.cis.strath.ac.uk/~vib16216/clues/) to view clues that have been tested.
 
 # License
 
