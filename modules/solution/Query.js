@@ -5,6 +5,7 @@ const getUniquePhrases = require("../thesaurus/unique-phrases");
 const generateSynonyms = require("../thesaurus/generate-synonyms");
 const CurrentSolution = require("./CurrentSolution");
 const Ranking = require("../ranking/Ranking");
+const GeneralSolutions = require("./GeneralSolution");
 
 /**
  * The Solution class generates the Solution for any given clue and length
@@ -54,6 +55,15 @@ class Query {
         }
       });
     }
+
+    //Generate General Solution
+    var general = new GeneralSolutions(this);
+    var generalSolution = general.generateSolutions();
+    generalSolution.forEach(currentGeneralSolution => {
+      if (!this.doesListContainSolution(solutionList, currentGeneralSolution)) {
+        solutionList.push(currentGeneralSolution);
+      }
+    });
 
     //Rank Solutions
     var ranking = new Ranking(solutionList);

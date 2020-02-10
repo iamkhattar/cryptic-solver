@@ -1,6 +1,9 @@
 Changelog
 All notable changes to this project will be documented in this file.
 
+[9.0.0] - 10-02-2020
+- General Solutions are now solvable
+
 [8.0.1] - 09-02-2020
 - Code Refactored and design patterns added
 
