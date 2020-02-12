@@ -1,10 +1,46 @@
 [
   { "word": "mountain", "synonyms": ["ben"] },
+  { "word": "current", "synonyms": ["i"] },
+  { "word": "workers", "synonyms": ["ants"] },
   { "word": "ben", "synonyms": ["mountain"] },
   { "word": "bookmakers", "synonyms": ["writers"] },
   { "word": "bookmaker", "synonyms": ["writer"] },
   { "word": "writer", "synonyms": ["bookmaker"] },
   { "word": "writers", "synonyms": ["bookmakers"] },
   { "word": "smart", "synonyms": ["brainbox"] },
-  { "word": "brainbox", "synonyms": ["smart"] }
+  { "word": "brainbox", "synonyms": ["smart"] },
+  { "word": "old", "synonyms": ["ex"] },
+  { "word": "ex", "synonyms": ["old"] },
+  { "word": "shelter", "synonyms": ["tent"] },
+  { "word": "tent", "synonyms": ["shelter"] },
+  { "word": "girlfriend", "synonyms": ["tended"] },
+  { "word": "tended", "synonyms": ["girlfriend"] },
+  { "word": "swans", "synonyms": ["cygnet"] },
+  { "word": "stock", "synonyms": ["pool"] },
+  { "word": "coin", "synonyms": ["stater"] },
+  { "word": "degree", "synonyms": ["ma"] },
+  { "word": "check", "synonyms": ["constraint"] },
+  { "word": "supplied", "synonyms": ["lent"] },
+  { "word": "lent", "synonyms": ["supplied"] },
+  { "word": "can", "synonyms": ["container"] },
+  { "word": "container", "synonyms": ["can"] },
+  { "word": "animal sound", "synonyms": ["oink", "woof", "meow"] },
+  {
+    "word": "figure",
+    "synonyms": [
+      "one",
+      "two",
+      "three",
+      "four",
+      "five",
+      "six",
+      "seven",
+      "eight",
+      "nine",
+      "zero"
+    ]
+  },
+  { "word": "coffee", "synonyms": ["americano", "expresso", "latte", "mocha"] },
+  { "word": "conjurors", "synonyms": ["illusionists"] },
+  { "word": "sailor in trouble", "synonyms": ["crusoe"] }
 ]

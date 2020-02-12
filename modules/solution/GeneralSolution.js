@@ -35,9 +35,9 @@ class GeneralSolution {
   /**
    * getFirstSolutions() generates all general solutions when the first word is definiton
    * @param {Array} combination : Combination for which solution was achieved
-   * @param {Array} firstDefinions : Array of definitions for first phrase
+   * @param {Array} firstDefinitions : Array of definitions for first phrase
    */
-  getFirstSolutions(combination, firstDefinions) {
+  getFirstSolutions(combination, firstDefinitions) {
     var solutionList = [];
     //Run loop from second term to last term
     for (var i = 1; i < combination.length; i++) {
@@ -58,7 +58,7 @@ class GeneralSolution {
           mid.forEach(currentMid => {
             var word = currentStart.word + currentMid.word;
             //If combination exists within the possible solution, then it is one of the solutions
-            if (firstDefinions.includes(word)) {
+            if (firstDefinitions.includes(word)) {
               var def = this.combination[0];
               var currentSolution = {
                 solution: word.toUpperCase(),
@@ -92,7 +92,7 @@ class GeneralSolution {
               end.forEach(currentEnd => {
                 var threeWord =
                   currentStart.word + currentMid.word + currentEnd.word;
-                if (firstDefinions.includes(threeWord)) {
+                if (firstDefinitions.includes(threeWord)) {
                   var def = this.combination[0];
                   var currentSolution = {
                     solution: threeWord.toUpperCase(),

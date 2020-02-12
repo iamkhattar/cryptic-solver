@@ -18,6 +18,8 @@ adversely
 minced
 affected
 afflicted
+rolling
+roll
 afresh
 after a fashion
 agile
@@ -28,6 +30,8 @@ all over the place
 all wrong
 altered
 alternative
+redrawn
+redraw
 alternatively
 amalgamate
 amazing
@@ -120,6 +124,7 @@ building
 built
 bungled
 burst
+wafting
 bust
 busted
 bustling
@@ -141,6 +146,7 @@ causes
 cavort
 cavorting
 change
+changing
 changeable
 changed
 chaotic
@@ -840,6 +846,8 @@ redeveloped
 redistributed
 redrafted
 refashioned
+disturbing
+to destroy
 refine
 refined
 refit
