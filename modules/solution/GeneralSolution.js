@@ -10,11 +10,17 @@ class GeneralSolution {
   //Generates all general solutions and returns it
   generateSolutions() {
     var solutionList = [];
+
+    //Generates All Possible wordplays for any given word in the combination
     this.generatePossibleWordplays();
+
+    //Get all possible definitions when the first phrase is the definition
     var firstDefinitions = generatePossibleDefinitions(
       this.query,
       this.combination[0]
     );
+
+    //Get all possible definitions when the last phrase is the definition
     var lastDefinitions = generatePossibleDefinitions(
       this.query,
       this.combination[this.combination.length - 1]
@@ -22,94 +28,285 @@ class GeneralSolution {
 
     const combination = this.searchArr;
 
-    var firstSolutions = this.getFirstSolutions(combination, firstDefinitions);
+    //Generate Solutions
+    var firstHelperSolutions = this.generateSolutionHelper(firstDefinitions, 0);
+    var lastHelperSolutions = this.generateSolutionHelper(
+      lastDefinitions,
+      combination.length - 1
+    );
 
-    var lastSolutions = this.getLastSolutions(combination, lastDefinitions);
-
-    solutionList = solutionList.concat(firstSolutions);
-    solutionList = solutionList.concat(lastSolutions);
+    solutionList = solutionList.concat(firstHelperSolutions);
+    solutionList = solutionList.concat(lastHelperSolutions);
 
     return solutionList;
   }
 
   /**
-   * getFirstSolutions() generates all general solutions when the first word is definiton
-   * @param {Array} combination : Combination for which solution was achieved
-   * @param {Array} firstDefinitions : Array of definitions for first phrase
+   * Generates the reason string for the word transformation
+   * @param {String} word : Intial Word
+   * @param {String} currentWord : Changed Word
    */
-  getFirstSolutions(combination, firstDefinitions) {
-    var solutionList = [];
-    //Run loop from second term to last term
-    for (var i = 1; i < combination.length; i++) {
-      //Set start to be first word
-      var start = combination[i];
+  getChangeReason(word, currentWord) {
+    if (currentWord.reason == "initial letter of") {
+      return (
+        currentWord.word.toUpperCase() +
+        " is the " +
+        currentWord.reason +
+        " of " +
+        word.toUpperCase() +
+        ". "
+      );
+    }
 
-      //Generate combinations for each wordplay
-      start.forEach(currentStart => {
-        //Check if index in bound
-        if (i + 1 < combination.length) {
-          var mid = combination[i + 1];
-          //Throw away combinations that can be discarded
-          mid = mid.filter(
-            en => this.query.length - currentStart.word.length >= en.word.length
+    if (currentWord.reason == "synonym of") {
+      return (
+        currentWord.word.toUpperCase() +
+        " is the " +
+        currentWord.reason +
+        " of " +
+        word.toUpperCase() +
+        ". "
+      );
+    }
+
+    if (currentWord.reason == "same as") {
+      return (
+        currentWord.word.toUpperCase() +
+        " remains " +
+        currentWord.word.toUpperCase() +
+        ". "
+      );
+    }
+
+    if (currentWord.reason == "final letter of") {
+      return (
+        currentWord.word.toUpperCase() +
+        " is the " +
+        currentWord.reason +
+        " of " +
+        word.toUpperCase() +
+        ". "
+      );
+    }
+  }
+
+  generateSolutionHelper(definitions, definitionIndex) {
+    var solutionList = [];
+    const combination = this.searchArr;
+    var start, end;
+    if (definitionIndex == 0) {
+      start = 1;
+      end = combination.length;
+    } else {
+      start = 0;
+      end = definitionIndex;
+    }
+
+    var definitionWord = this.combination[definitionIndex].toUpperCase();
+    for (var i = start; i < end; i++) {
+      //Get Starting Word
+      var startingWord = combination[i];
+      //Generate Combinations for each wordplay
+      startingWord.forEach(currentStartingWord => {
+        //Check if index of next word is inbound
+        if (i + 1 < end) {
+          var secondWord = combination[i + 1];
+
+          //Discard Words that arent possible
+          secondWord = secondWord.filter(
+            en =>
+              this.query.length - currentStartingWord.word.length >=
+              en.word.length
           );
 
-          //Check each combination
-          mid.forEach(currentMid => {
-            var word = currentStart.word + currentMid.word;
-            //If combination exists within the possible solution, then it is one of the solutions
-            if (firstDefinitions.includes(word)) {
-              var def = this.combination[0];
+          //Check Each Combination
+          secondWord.forEach(currentSecondWord => {
+            var possibleSolution =
+              currentStartingWord.word + currentSecondWord.word;
+
+            //If the solution includes in the possible definitions it is one of the answers
+            if (definitions.includes(possibleSolution)) {
+              var reasonString =
+                "This is a General Clue. The definition is " +
+                definitionWord +
+                ". " +
+                possibleSolution.toUpperCase() +
+                " is a synonym of " +
+                definitionWord +
+                ". ";
+
+              var firstChangeReason = this.getChangeReason(
+                this.combination[i],
+                currentStartingWord
+              );
+
+              var secondChangeReason = this.getChangeReason(
+                this.combination[i + 1],
+                currentSecondWord
+              );
+
+              reasonString += firstChangeReason;
+              reasonString += secondChangeReason;
+
+              reasonString +=
+                currentStartingWord.word.toUpperCase() +
+                "+" +
+                currentSecondWord.word.toUpperCase() +
+                " gives us " +
+                possibleSolution.toUpperCase();
+
               var currentSolution = {
-                solution: word.toUpperCase(),
-                def: def,
-                reason: this.generateTwoReasonString(
-                  def,
-                  currentStart,
-                  currentMid,
-                  combination,
-                  i,
-                  word
-                ),
+                solution: possibleSolution.toUpperCase(),
+                def: definitionWord.toLowerCase(),
+                reason: reasonString,
                 int: "general-clue",
                 percentage: 0
               };
               solutionList.push(currentSolution);
             }
 
-            //Check if combination with two terms can be added
-            if (i + 2 < combination.length) {
-              var end = combination[i + 2];
-              //Discard words that dont fit length criteria
-              end = end.filter(
+            //Check if next index in bound
+            if (i + 2 < end) {
+              var thirdWord = combination[i + 2];
+              //Discard Words that arent possible
+              thirdWord = thirdWord.filter(
                 en =>
                   this.query.length -
-                    currentStart.word.length -
-                    currentMid.word.length ==
+                    currentStartingWord.word.length -
+                    currentSecondWord.word.length >=
                   en.word.length
               );
-              //Check if any combination is in the last definitions, if it is then a solution is found
-              end.forEach(currentEnd => {
-                var threeWord =
-                  currentStart.word + currentMid.word + currentEnd.word;
-                if (firstDefinitions.includes(threeWord)) {
-                  var def = this.combination[0];
+
+              //Check if any solution is possible with each of the possible combinations
+              thirdWord.forEach(currentThirdWord => {
+                var possibleSolution =
+                  currentStartingWord.word +
+                  currentSecondWord.word +
+                  currentThirdWord.word;
+
+                //If the solution includes in the possible definitions it is one of the answers
+                if (definitions.includes(possibleSolution)) {
+                  var reasonString =
+                    "This is a General Clue. The definition is " +
+                    definitionWord +
+                    ". " +
+                    possibleSolution.toUpperCase() +
+                    " is a synonym of " +
+                    definitionWord;
+                  var firstChangeReason = this.getChangeReason(
+                    this.combination[i],
+                    currentStartingWord
+                  );
+
+                  var secondChangeReason = this.getChangeReason(
+                    this.combination[i + 1],
+                    currentSecondWord
+                  );
+
+                  var thirdReasonChange = this.getChangeReason(
+                    this.combination[i + 2],
+                    currentThirdWord
+                  );
+
+                  reasonString += firstChangeReason;
+                  reasonString += secondChangeReason;
+                  reasonString += thirdReasonChange;
+
+                  reasonString +=
+                    currentStartingWord.word.toUpperCase() +
+                    "+" +
+                    currentSecondWord.word.toUpperCase() +
+                    "+" +
+                    currentThirdWord.word.toUpperCase() +
+                    " gives us " +
+                    possibleSolution.toUpperCase();
+
                   var currentSolution = {
-                    solution: threeWord.toUpperCase(),
-                    def: def,
-                    reason: this.generateThreeReasonString(
-                      def,
-                      currentStart,
-                      currentMid,
-                      currentEnd,
-                      combination,
-                      i,
-                      threeWord
-                    ),
+                    solution: possibleSolution.toUpperCase(),
+                    def: definitionWord.toLowerCase(),
+                    reason: reasonString,
                     int: "general-clue",
                     percentage: 0
                   };
                   solutionList.push(currentSolution);
+                }
+
+                //Check if next index in bound
+                if (i + 3 < end) {
+                  var finalWord = combination[i + 3];
+                  //Discard Words that arent possible
+                  finalWord = finalWord.filter(
+                    en =>
+                      this.query.length -
+                        currentStartingWord.word.length -
+                        currentSecondWord.word.length -
+                        currentThirdWord.word.length ==
+                      en.word.length
+                  );
+
+                  //Check if any solution is possible with each of the possible combinations
+                  finalWord.forEach(currentFinalWord => {
+                    var possibleSolution =
+                      currentStartingWord.word +
+                      currentSecondWord.word +
+                      currentThirdWord.word +
+                      currentFinalWord.word;
+
+                    //If the solution includes in the possible definitions it is one of the answers
+                    if (definitions.includes(possibleSolution)) {
+                      var reasonString =
+                        "This is a General Clue. The definition is " +
+                        definitionWord +
+                        ". " +
+                        possibleSolution.toUpperCase() +
+                        " is a synonym of " +
+                        definitionWord;
+                      var firstChangeReason = this.getChangeReason(
+                        this.combination[i],
+                        currentStartingWord
+                      );
+
+                      var secondChangeReason = this.getChangeReason(
+                        this.combination[i + 1],
+                        currentSecondWord
+                      );
+
+                      var thirdReasonChange = this.getChangeReason(
+                        this.combination[i + 2],
+                        currentThirdWord
+                      );
+
+                      var finalReasonChange = this.getChangeReason(
+                        this.combination[i + 3],
+                        currentThirdWord
+                      );
+
+                      reasonString += firstChangeReason;
+                      reasonString += secondChangeReason;
+                      reasonString += thirdReasonChange;
+                      reasonString += finalReasonChange;
+
+                      reasonString +=
+                        currentStartingWord.word.toUpperCase() +
+                        "+" +
+                        currentSecondWord.word.toUpperCase() +
+                        "+" +
+                        currentThirdWord.word.toUpperCase() +
+                        "+" +
+                        currentFinalWord.word.toUpperCase() +
+                        " gives us " +
+                        possibleSolution.toUpperCase();
+
+                      var currentSolution = {
+                        solution: possibleSolution.toUpperCase(),
+                        def: definitionWord.toLowerCase(),
+                        reason: reasonString,
+                        int: "general-clue",
+                        percentage: 0
+                      };
+                      solutionList.push(currentSolution);
+                    }
+                  });
                 }
               });
             }
@@ -118,194 +315,6 @@ class GeneralSolution {
       });
     }
     return solutionList;
-  }
-
-  /**
-   * Generates all General Solutions when the last phrase is the definition
-   * @param {Array} combination : Combination for which solution has to be generated
-   * @param {Array} lastDefinitions : Array of definitions for last phrase
-   */
-  getLastSolutions(combination, lastDefinitions) {
-    var solutionList = [];
-    //Run loop from first term to second last term
-    for (var i = 0; i < combination.length - 1; i++) {
-      //Set start to be first word
-      var start = combination[i];
-
-      //Generate combinations for each wordplay
-      start.forEach(currentStart => {
-        //Check if index in bound
-        if (i + 1 < combination.length - 1) {
-          var mid = combination[i + 1];
-          //Throw away combinations that can be discarded
-          mid = mid.filter(
-            en => this.query.length - currentStart.word.length >= en.word.length
-          );
-
-          //Check each combination
-          mid.forEach(currentMid => {
-            var word = currentStart.word + currentMid.word;
-            //If combination exists within the possible solution, then it is one of the solutions
-            if (lastDefinitions.includes(word)) {
-              var def = this.combination[this.combination.length - 1];
-              var currentSolution = {
-                solution: word.toUpperCase(),
-                def: def,
-                reason: this.generateTwoReasonString(
-                  def,
-                  currentStart,
-                  currentMid,
-                  combination,
-                  i,
-                  word
-                ),
-                int: "general-clue",
-                percentage: 0
-              };
-              solutionList.push(currentSolution);
-            }
-
-            //Check if combination with two terms can be added
-            if (i + 2 < combination.length - 1) {
-              var end = combination[i + 2];
-              //Discard words that dont fit length criteria
-              end = end.filter(
-                en =>
-                  this.query.length -
-                    currentStart.word.length -
-                    currentMid.word.length ==
-                  en.word.length
-              );
-              //Check if any combination is in the last definitions, if it is then a solution is found
-              end.forEach(currentEnd => {
-                var threeWord =
-                  currentStart.word + currentMid.word + currentEnd.word;
-                if (lastDefinitions.includes(threeWord)) {
-                  var def = this.combination[this.combination.length - 1];
-                  var currentSolution = {
-                    solution: threeWord.toUpperCase(),
-                    def: def,
-                    reason: this.generateThreeReasonString(
-                      def,
-                      currentStart,
-                      currentMid,
-                      currentEnd,
-                      combination,
-                      i,
-                      threeWord
-                    ),
-                    int: "general-clue",
-                    percentage: 0
-                  };
-                  solutionList.push(currentSolution);
-                }
-              });
-            }
-          });
-        }
-      });
-    }
-    return solutionList;
-  }
-
-  /**
-   * Generate Three Reason String generates the reason string when there is an addition of three words
-   * @param {String} definition : Definion in combination
-   * @param {Object} start : First Adddition
-   * @param {Object} mid : Second Addition
-   * @param {Object} end : Third Addition
-   * @param {Array} combination : Combination for which this solution was achieved
-   * @param {Integer} index : Index of first adddition
-   * @param {String} solution : Solution calculated
-   */
-  generateThreeReasonString(
-    definition,
-    start,
-    mid,
-    end,
-    combination,
-    index,
-    solution
-  ) {
-    return (
-      "This is a General Clue. The definition is " +
-      definition.toUpperCase() +
-      ". " +
-      solution.toUpperCase() +
-      " is a synonym of " +
-      definition.toUpperCase() +
-      ". " +
-      start.word.toUpperCase() +
-      " is the " +
-      start.reason +
-      " " +
-      combination[index][0].word.toUpperCase() +
-      ". " +
-      mid.word.toUpperCase() +
-      " is the " +
-      mid.reason +
-      " " +
-      combination[index + 1][0].word.toUpperCase() +
-      ". " +
-      end.word.toUpperCase() +
-      " is the " +
-      end.reason +
-      " " +
-      combination[index + 2][0].word.toUpperCase() +
-      ". " +
-      start.word.toUpperCase() +
-      "+" +
-      mid.word.toUpperCase() +
-      "+" +
-      end.word.toUpperCase() +
-      " gives us " +
-      solution.toUpperCase()
-    );
-  }
-
-  /**
-   * generateTwoString() generates the reason string when a single addition has taken place
-   * @param {String} definition : Definition in combination
-   * @param {Object} start : First word that was added
-   * @param {Object} end : Second word that was added
-   * @param {Array} combination : Combination for which the solution was calculated
-   * @param {Integer} index : Index of first addition
-   * @param {String} solution : Solution that was caculated
-   */
-  generateTwoReasonString(
-    definition,
-    start,
-    end,
-    combination,
-    index,
-    solution
-  ) {
-    return (
-      "This is a General Clue. The definition is " +
-      definition.toUpperCase() +
-      ". " +
-      solution.toUpperCase() +
-      " is a synonym of " +
-      definition.toUpperCase() +
-      ". " +
-      start.word.toUpperCase() +
-      " is the " +
-      start.reason +
-      " " +
-      combination[index][0].word.toUpperCase() +
-      ". " +
-      end.word.toUpperCase() +
-      " is the " +
-      end.reason +
-      " of " +
-      combination[index + 1][0].word.toUpperCase() +
-      ". " +
-      start.word.toUpperCase() +
-      "+" +
-      end.word.toUpperCase() +
-      " gives us " +
-      solution.toUpperCase()
-    );
   }
 
   /**
@@ -332,7 +341,6 @@ class GeneralSolution {
       });
       searchArr.push(currentArr);
     });
-
     this.searchArr = searchArr;
   }
 }
