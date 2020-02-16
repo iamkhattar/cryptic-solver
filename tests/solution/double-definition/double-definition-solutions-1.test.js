@@ -1,4 +1,4 @@
-const generateSolution = require("../../../modules/solution/generate-solution");
+const Query = require("../../../modules/solution/Query");
 const checkIfSolutionListContains = require("../solution-contains");
 
 /**
@@ -11,7 +11,8 @@ test("Flee the race (3) : RUN", async () => {
 
   var expectedSolution = "RUN";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -28,7 +29,8 @@ test("Fruit goes out of fashion (4) : DATE", async () => {
 
   var expectedSolution = "DATE";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -45,7 +47,8 @@ test("Immature litter (5) : YOUNG", async () => {
 
   var expectedSolution = "YOUNG";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -62,7 +65,8 @@ test("Kind disposition (6) : NATURE", async () => {
 
   var expectedSolution = "NATURE";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -79,7 +83,8 @@ test("Metal guide (4) : LEAD", async () => {
 
   var expectedSolution = "LEAD";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -96,7 +101,8 @@ test("Report Account (4) : NEWS", async () => {
 
   var expectedSolution = "NEWS";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -113,7 +119,8 @@ test("Restart Summary (6) : RESUME", async () => {
 
   var expectedSolution = "RESUME";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -130,7 +137,8 @@ test("Run away from wasteland (6) : DESERT", async () => {
 
   var expectedSolution = "DESERT";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -147,7 +155,8 @@ test("Spoil a short month (3) : MAR", async () => {
 
   var expectedSolution = "MAR";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -164,7 +173,8 @@ test("Spy found (5) : PLANT", async () => {
 
   var expectedSolution = "PLANT";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -181,7 +191,8 @@ test("Succession of command (5) : ORDER", async () => {
 
   var expectedSolution = "ORDER";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -198,7 +209,8 @@ test("Twist the breeze (4) : WIND", async () => {
 
   var expectedSolution = "WIND";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -215,7 +227,8 @@ test("Abandon the wasteland (6) : DESERT", async () => {
 
   var expectedSolution = "DESERT";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)

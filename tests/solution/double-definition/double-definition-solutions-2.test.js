@@ -1,4 +1,4 @@
-const generateSolution = require("../../../modules/solution/generate-solution");
+const Query = require("../../../modules/solution/Query");
 const checkIfSolutionListContains = require("../solution-contains");
 
 /**
@@ -11,7 +11,8 @@ test("Hawthorn blossom's month (3) : MAY", async () => {
 
   var expectedSolution = "MAY";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -28,7 +29,8 @@ test("Loud noise from a tennis bat (6) : RACKET", async () => {
 
   var expectedSolution = "RACKET";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -45,7 +47,8 @@ test("Glide over ice, Ray (5) : SKATE", async () => {
 
   var expectedSolution = "SKATE";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -62,7 +65,8 @@ test("Genuine old Spanish coin (4) : REAL", async () => {
 
   var expectedSolution = "REAL";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -79,7 +83,8 @@ test("Crazy flying mammals (4) : BATS", async () => {
 
   var expectedSolution = "BATS";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -96,7 +101,8 @@ test("Put up with an animal (4) : BEAR", async () => {
 
   var expectedSolution = "BEAR";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -113,7 +119,8 @@ test("Expensive honey (4) : DEAR", async () => {
 
   var expectedSolution = "DEAR";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -130,7 +137,8 @@ test("Armour in the post (4) : MAIL", async () => {
 
   var expectedSolution = "MAIL";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -147,7 +155,8 @@ test("Instant credit (4) : TICK", async () => {
 
   var expectedSolution = "TICK";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -164,7 +173,8 @@ test("Sound warning for a temptress (5) : SIREN", async () => {
 
   var expectedSolution = "SIREN";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -181,7 +191,8 @@ test("A fast train, say (7) : EXPRESS", async () => {
 
   var expectedSolution = "EXPRESS";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -198,7 +209,8 @@ test("Stone jar (4) : ROCK", async () => {
 
   var expectedSolution = "ROCK";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -214,7 +226,8 @@ test("Clear as a document (8): MANIFEST", async () => {
 
   var expectedSolution = "MANIFEST";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -231,7 +244,8 @@ test("Baby cow's leg part (4): CALF", async () => {
 
   var expectedSolution = "CALF";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -248,7 +262,8 @@ test("Business worry (7): CONCERN", async () => {
 
   var expectedSolution = "CONCERN";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)

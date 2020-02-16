@@ -1,4 +1,4 @@
-const generateSolution = require("../../../modules/solution/generate-solution");
+const Query = require("../../../modules/solution/Query");
 const checkIfSolutionListContains = require("../solution-contains");
 
 /**
@@ -11,7 +11,8 @@ test("Head off champion worker (7): ARTISAN", async () => {
 
   var expectedSolution = "ARTISAN";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -28,7 +29,8 @@ test("Suggest not starting in a flabby way (5): IMPLY", async () => {
 
   var expectedSolution = "IMPLY";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -45,7 +47,8 @@ test("Alter without finishing the last word (4): AMEN", async () => {
 
   var expectedSolution = "AMEN";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -62,7 +65,8 @@ test("Little shark edges away from diver's equipment (3): CUB", async () => {
 
   var expectedSolution = "CUB";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -79,7 +83,8 @@ test("Almost obstruct an alliance (4): BLOC", async () => {
 
   var expectedSolution = "BLOC";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)

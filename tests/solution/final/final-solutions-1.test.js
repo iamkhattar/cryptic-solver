@@ -1,4 +1,4 @@
-const generateSolution = require("../../../modules/solution/generate-solution");
+const Query = require("../../../modules/solution/Query");
 const checkIfSolutionListContains = require("../solution-contains");
 
 /**
@@ -11,7 +11,8 @@ test("Informer finally reports on the extra cook (5) : SNEAK", async () => {
 
   var expectedSolution = "SNEAK";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)

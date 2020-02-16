@@ -1,4 +1,4 @@
-const generateSolution = require("../../../modules/solution/generate-solution");
+const Query = require("../../../modules/solution/Query");
 const checkIfSolutionListContains = require("../solution-contains");
 
 /**
@@ -11,7 +11,8 @@ test("Dance starts by exhibiting ballet or polka (5) : BEBOP", async () => {
 
   var expectedSolution = "BEBOP";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -28,7 +29,8 @@ test("Initially amiable person eats primate (5) : APE", async () => {
 
   var expectedSolution = "APE";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -45,7 +47,8 @@ test("Bitter initially, but extremely enjoyable refreshment (4) : BEER", async (
 
   var expectedSolution = "BEER";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -62,7 +65,8 @@ test("Cooked food really is excellent; deserves tips (5) : FRIED", async () => {
 
   var expectedSolution = "FRIED";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -79,7 +83,8 @@ test("Starts to serve time in Russian prison (4) : STIR", async () => {
 
   var expectedSolution = "STIR";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -96,7 +101,8 @@ test("Black and white lamb starts to cry (4) : BAWL", async () => {
 
   var expectedSolution = "BAWL";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -113,7 +119,8 @@ test("Youngster initially babbles about being young (4) : BABY", async () => {
 
   var expectedSolution = "BABY";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -130,7 +137,8 @@ test("State first if one wants advice (4) : IOWA", async () => {
 
   var expectedSolution = "IOWA";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)

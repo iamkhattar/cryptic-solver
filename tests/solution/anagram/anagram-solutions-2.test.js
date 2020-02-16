@@ -1,4 +1,4 @@
-const generateSolution = require("../../../modules/solution/generate-solution");
+const Query = require("../../../modules/solution/Query");
 const checkIfSolutionListContains = require("../solution-contains");
 /**
  * Test to Check whether Damaged peach inexpensive (5) gives CHEAP
@@ -10,7 +10,8 @@ test("Damaged peach inexpensive (5): CHEAP", async () => {
 
   var expectedSolution = "CHEAP";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -27,7 +28,8 @@ test("Despicable evil organized (4): VILE", async () => {
 
   var expectedSolution = "VILE";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -44,7 +46,8 @@ test("Read about challenge (4): DARE", async () => {
 
   var expectedSolution = "DARE";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -61,7 +64,8 @@ test("Rate the remodelled operating place (7): THEATER", async () => {
 
   var expectedSolution = "THEATER";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -78,7 +82,8 @@ test("Pine veneer Reg destroyed (9): EVERGREEN", async () => {
 
   var expectedSolution = "EVERGREEN";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -95,7 +100,8 @@ test("Resolute priest sent in error (10): PERSISTENT", async () => {
 
   var expectedSolution = "PERSISTENT";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -112,7 +118,8 @@ test("Lap dancing friend (3): PAL", async () => {
 
   var expectedSolution = "PAL";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -129,7 +136,8 @@ test("Chaperone shredded corsets (7): ESCORTS", async () => {
 
   var expectedSolution = "ESCORTS";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -146,7 +154,8 @@ test("Go near fresh fruit (6): ORANGE", async () => {
 
   var expectedSolution = "ORANGE";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -163,7 +172,8 @@ test("Keeps dissolving in tear (7): RETAINS", async () => {
 
   var expectedSolution = "RETAINS";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -180,7 +190,8 @@ test("Upset piper eats canape (9): APPETISER", async () => {
 
   var expectedSolution = "APPETISER";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -197,7 +208,8 @@ test("Badly pare the fruit (4): PEAR", async () => {
 
   var expectedSolution = "PEAR";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)

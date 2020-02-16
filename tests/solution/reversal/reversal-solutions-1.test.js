@@ -1,4 +1,4 @@
-const generateSolution = require("../../../modules/solution/generate-solution");
+const Query = require("../../../modules/solution/Query");
 const checkIfSolutionListContains = require("../solution-contains");
 
 /**
@@ -11,7 +11,8 @@ test("Agree with the backward academic fellow (3) : NOD", async () => {
 
   var expectedSolution = "NOD";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -28,7 +29,8 @@ test("Agree with the backward academic fellow (3) : DIVA", async () => {
 
   var expectedSolution = "DIVA";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -45,7 +47,8 @@ test("Physician brings fish round (3) : DOC", async () => {
 
   var expectedSolution = "DOC";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -62,7 +65,8 @@ test("Containers for drinks taken back to bar (4) : POTS", async () => {
 
   var expectedSolution = "POTS";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -79,7 +83,8 @@ test("Tender god of love turns up (4) : SORE", async () => {
 
   var expectedSolution = "SORE";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -96,7 +101,8 @@ test("Sketcher went up to get reward (6) : DRAWER", async () => {
 
   var expectedSolution = "DRAWER";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)
@@ -113,7 +119,8 @@ test("Returned beer fit for a king (5) : REGAL", async () => {
 
   var expectedSolution = "REGAL";
 
-  var solutionList = await generateSolution(clue, length);
+  var query = new Query(clue, length);
+  var solutionList = await query.solveClue();
 
   expect(
     checkIfSolutionListContains(solutionList, expectedSolution)

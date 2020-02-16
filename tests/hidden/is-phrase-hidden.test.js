@@ -1,4 +1,4 @@
-const isSolutionHidden = require("../../modules/hidden/is-solution-hidden");
+const isSolutionHidden = require("../../modules/hidden/is-phrase-hidden");
 
 /**
  * Test to check whether A nice place contains nice

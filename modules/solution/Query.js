@@ -45,15 +45,6 @@ class Query {
 
     var solutionList = new Array();
 
-    //Generate General Solution
-    var general = new GeneralSolutions(this);
-    var generalSolution = general.generateSolutions();
-    generalSolution.forEach(currentGeneralSolution => {
-      if (!this.doesListContainSolution(solutionList, currentGeneralSolution)) {
-        solutionList.push(currentGeneralSolution);
-      }
-    });
-
     //Generate Solution For Each Combination
     for (const currentCombination of this.combinations) {
       var currentSolution = new CurrentSolution(this, currentCombination);
@@ -64,6 +55,15 @@ class Query {
         }
       });
     }
+
+    //Generate General Solution
+    var general = new GeneralSolutions(this);
+    var generalSolution = general.generateSolutions();
+    generalSolution.forEach(currentGeneralSolution => {
+      if (!this.doesListContainSolution(solutionList, currentGeneralSolution)) {
+        solutionList.push(currentGeneralSolution);
+      }
+    });
 
     //Rank Solutions
     var ranking = new Ranking(solutionList);
