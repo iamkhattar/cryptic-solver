@@ -2,9 +2,9 @@ const getSynonyms = require("../thesaurus/get-synonyms");
 const generatePossibleDefinitions = require("../definitions/generate-possible-definitions");
 
 class GeneralSolution {
-  constructor(query) {
+  constructor(query, currentCombination) {
     this.query = query;
-    this.combination = query.clueArray;
+    this.combination = currentCombination;
   }
 
   //Generates all general solutions and returns it
@@ -42,54 +42,10 @@ class GeneralSolution {
   }
 
   /**
-   * Generates the reason string for the word transformation
-   * @param {String} word : Intial Word
-   * @param {String} currentWord : Changed Word
+   * generateSolutionHelper() generates all possible general solutions for a given combination
+   * @param {Array} definitions List of definitions
+   * @param {Integer} definitionIndex index of definition in phrase
    */
-  getChangeReason(word, currentWord) {
-    if (currentWord.reason == "initial letter of") {
-      return (
-        currentWord.word.toUpperCase() +
-        " is the " +
-        currentWord.reason +
-        " of " +
-        word.toUpperCase() +
-        ". "
-      );
-    }
-
-    if (currentWord.reason == "synonym of") {
-      return (
-        currentWord.word.toUpperCase() +
-        " is the " +
-        currentWord.reason +
-        " of " +
-        word.toUpperCase() +
-        ". "
-      );
-    }
-
-    if (currentWord.reason == "same as") {
-      return (
-        currentWord.word.toUpperCase() +
-        " remains " +
-        currentWord.word.toUpperCase() +
-        ". "
-      );
-    }
-
-    if (currentWord.reason == "final letter of") {
-      return (
-        currentWord.word.toUpperCase() +
-        " is the " +
-        currentWord.reason +
-        " of " +
-        word.toUpperCase() +
-        ". "
-      );
-    }
-  }
-
   generateSolutionHelper(definitions, definitionIndex) {
     var solutionList = [];
     const combination = this.searchArr;
@@ -125,7 +81,11 @@ class GeneralSolution {
               currentStartingWord.word + currentSecondWord.word;
 
             //If the solution includes in the possible definitions it is one of the answers
-            if (definitions.includes(possibleSolution)) {
+            if (
+              definitions.includes(possibleSolution) &&
+              currentStartingWord.word.toUpperCase() != "" &&
+              currentSecondWord.word.toUpperCase() != ""
+            ) {
               var reasonString =
                 "This is a General Clue. The definition is " +
                 definitionWord +
@@ -185,50 +145,63 @@ class GeneralSolution {
                   currentThirdWord.word;
 
                 //If the solution includes in the possible definitions it is one of the answers
-                if (definitions.includes(possibleSolution)) {
-                  var reasonString =
-                    "This is a General Clue. The definition is " +
-                    definitionWord +
-                    ". " +
-                    possibleSolution.toUpperCase() +
-                    " is a synonym of " +
-                    definitionWord;
-                  var firstChangeReason = this.getChangeReason(
-                    this.combination[i],
-                    currentStartingWord
-                  );
+                if (
+                  definitions.includes(possibleSolution) &&
+                  currentStartingWord.word.toUpperCase() != ""
+                ) {
+                  var count = 0;
+                  if (currentStartingWord.word == "") count++;
+                  if (currentSecondWord.word == "") count++;
+                  if (currentThirdWord.word == "") count++;
+                  if (count < 2) {
+                    var reasonString =
+                      "This is a General Clue. The definition is " +
+                      definitionWord +
+                      ". " +
+                      possibleSolution.toUpperCase() +
+                      " is a synonym of " +
+                      definitionWord +
+                      ". ";
+                    var firstChangeReason = this.getChangeReason(
+                      this.combination[i],
+                      currentStartingWord
+                    );
 
-                  var secondChangeReason = this.getChangeReason(
-                    this.combination[i + 1],
-                    currentSecondWord
-                  );
+                    var secondChangeReason = this.getChangeReason(
+                      this.combination[i + 1],
+                      currentSecondWord
+                    );
 
-                  var thirdReasonChange = this.getChangeReason(
-                    this.combination[i + 2],
-                    currentThirdWord
-                  );
+                    var thirdReasonChange = this.getChangeReason(
+                      this.combination[i + 2],
+                      currentThirdWord
+                    );
 
-                  reasonString += firstChangeReason;
-                  reasonString += secondChangeReason;
-                  reasonString += thirdReasonChange;
+                    reasonString += firstChangeReason;
+                    reasonString += secondChangeReason;
+                    reasonString += thirdReasonChange;
 
-                  reasonString +=
-                    currentStartingWord.word.toUpperCase() +
-                    "+" +
-                    currentSecondWord.word.toUpperCase() +
-                    "+" +
-                    currentThirdWord.word.toUpperCase() +
-                    " gives us " +
-                    possibleSolution.toUpperCase();
+                    reasonString +=
+                      currentStartingWord.word.toUpperCase() + "+";
+                    if (currentSecondWord.word != "") {
+                      reasonString +=
+                        currentSecondWord.word.toUpperCase() + "+";
+                    }
+                    if (currentThirdWord.word != "") {
+                      reasonString += currentThirdWord.word.toUpperCase();
+                    }
+                    reasonString +=
+                      " gives us " + possibleSolution.toUpperCase();
 
-                  var currentSolution = {
-                    solution: possibleSolution.toUpperCase(),
-                    def: definitionWord.toLowerCase(),
-                    reason: reasonString,
-                    int: "general-clue",
-                    percentage: 0
-                  };
-                  solutionList.push(currentSolution);
+                    var currentSolution = {
+                      solution: possibleSolution.toUpperCase(),
+                      def: definitionWord.toLowerCase(),
+                      reason: reasonString,
+                      int: "general-clue",
+                      percentage: 0
+                    };
+                    solutionList.push(currentSolution);
+                  }
                 }
 
                 //Check if next index in bound
@@ -253,58 +226,75 @@ class GeneralSolution {
                       currentFinalWord.word;
 
                     //If the solution includes in the possible definitions it is one of the answers
-                    if (definitions.includes(possibleSolution)) {
-                      var reasonString =
-                        "This is a General Clue. The definition is " +
-                        definitionWord +
-                        ". " +
-                        possibleSolution.toUpperCase() +
-                        " is a synonym of " +
-                        definitionWord;
-                      var firstChangeReason = this.getChangeReason(
-                        this.combination[i],
-                        currentStartingWord
-                      );
+                    if (
+                      definitions.includes(possibleSolution) &&
+                      currentStartingWord.word.toUpperCase() != ""
+                    ) {
+                      var countt = 0;
+                      if (currentStartingWord.word == "") countt++;
+                      if (currentSecondWord.word == "") countt++;
+                      if (currentThirdWord.word == "") countt++;
+                      if (currentFinalWord.word == "") countt++;
+                      if (countt < 3) {
+                        var reasonString =
+                          "This is a General Clue. The definition is " +
+                          definitionWord +
+                          ". " +
+                          possibleSolution.toUpperCase() +
+                          " is a synonym of " +
+                          definitionWord +
+                          ". ";
+                        var firstChangeReason = this.getChangeReason(
+                          this.combination[i],
+                          currentStartingWord
+                        );
 
-                      var secondChangeReason = this.getChangeReason(
-                        this.combination[i + 1],
-                        currentSecondWord
-                      );
+                        var secondChangeReason = this.getChangeReason(
+                          this.combination[i + 1],
+                          currentSecondWord
+                        );
 
-                      var thirdReasonChange = this.getChangeReason(
-                        this.combination[i + 2],
-                        currentThirdWord
-                      );
+                        var thirdReasonChange = this.getChangeReason(
+                          this.combination[i + 2],
+                          currentThirdWord
+                        );
 
-                      var finalReasonChange = this.getChangeReason(
-                        this.combination[i + 3],
-                        currentThirdWord
-                      );
+                        var finalReasonChange = this.getChangeReason(
+                          this.combination[i + 3],
+                          currentFinalWord
+                        );
 
-                      reasonString += firstChangeReason;
-                      reasonString += secondChangeReason;
-                      reasonString += thirdReasonChange;
-                      reasonString += finalReasonChange;
+                        reasonString += firstChangeReason;
+                        reasonString += secondChangeReason;
+                        reasonString += thirdReasonChange;
+                        reasonString += finalReasonChange;
 
-                      reasonString +=
-                        currentStartingWord.word.toUpperCase() +
-                        "+" +
-                        currentSecondWord.word.toUpperCase() +
-                        "+" +
-                        currentThirdWord.word.toUpperCase() +
-                        "+" +
-                        currentFinalWord.word.toUpperCase() +
-                        " gives us " +
-                        possibleSolution.toUpperCase();
+                        reasonString +=
+                          currentStartingWord.word.toUpperCase() + "+";
+                        if (currentSecondWord.word != "") {
+                          reasonString +=
+                            currentSecondWord.word.toUpperCase() + "+";
+                        }
+                        if (currentThirdWord.word != "") {
+                          reasonString +=
+                            currentThirdWord.word.toUpperCase() + "+";
+                        }
+                        if (currentFinalWord != "") {
+                          reasonString += currentFinalWord.word.toUpperCase();
+                        }
 
-                      var currentSolution = {
-                        solution: possibleSolution.toUpperCase(),
-                        def: definitionWord.toLowerCase(),
-                        reason: reasonString,
-                        int: "general-clue",
-                        percentage: 0
-                      };
-                      solutionList.push(currentSolution);
+                        reasonString +=
+                          " gives us " + possibleSolution.toUpperCase();
+
+                        var currentSolution = {
+                          solution: possibleSolution.toUpperCase(),
+                          def: definitionWord.toLowerCase(),
+                          reason: reasonString,
+                          int: "general-clue",
+                          percentage: 0
+                        };
+                        solutionList.push(currentSolution);
+                      }
                     }
                   });
                 }
@@ -318,21 +308,117 @@ class GeneralSolution {
   }
 
   /**
+   * Generates the reason string for the word transformation
+   * @param {String} word : Intial Word
+   * @param {String} currentWord : Changed Word
+   */
+  getChangeReason(word, currentWord) {
+    if (
+      currentWord.reason == "initial letter of" ||
+      currentWord.reason == "synonym of" ||
+      currentWord.reason == "anagram of" ||
+      currentWord.reason == "final letter of" ||
+      currentWord.reason == "even letter of" ||
+      currentWord.reason == "odd letter of" ||
+      currentWord.reason == "word without the first letter" ||
+      currentWord.reason == "word without the last letter" ||
+      currentWord.reason == "word without the middle letters" ||
+      currentWord.reason == "reversal of" ||
+      currentWord.reason == "word without the first and last letters"
+    ) {
+      return (
+        currentWord.word.toUpperCase() +
+        " is the " +
+        currentWord.reason +
+        " of " +
+        word.toUpperCase() +
+        ". "
+      );
+    } else if (currentWord.reason == "same as") {
+      return (
+        currentWord.word.toUpperCase() +
+        " remains " +
+        currentWord.word.toUpperCase() +
+        ". "
+      );
+    } else if (currentWord.reason == "nothing") {
+      return word.toUpperCase() + " is a joining word. ";
+    } else {
+      return "";
+    }
+  }
+
+  /**
    * Generates all possible wordplays for each word in the combination
    */
   generatePossibleWordplays() {
     const combination = this.combination;
+
     var searchArr = [];
+    const getInitialLetters = require("../initial/initial-letters");
+    const getFinalLetters = require("../final/final-letters");
+    const getOddLetters = require("../alternate/odd-letters");
+    const getEvenLetters = require("../alternate/even-letters");
+    const deleteFirstLetter = require("../deletion/delete-first-letter");
+    const deleteLastLetter = require("../deletion/delete-last-letter");
+    const deleteMiddleLetters = require("../deletion/delete-middle-letters");
+    const deleteFirstAndLastLetter = require("../deletion/delete-first-and-last-letter");
+    const reversePhrase = require("../reversal/reverse-phrase");
 
     combination.forEach(currentElement => {
       var currentArr = [];
       currentArr.push({ word: currentElement, reason: "same as" });
-      currentArr.push({ word: currentElement[0], reason: "initial letter of" });
+
       currentArr.push({
-        word: currentElement[currentElement.length - 1],
+        word: getInitialLetters(currentElement),
+        reason: "initial letter of"
+      });
+      currentArr.push({
+        word: reversePhrase(currentElement),
+        reason: "reversal of"
+      });
+      currentArr.push({
+        word: deleteFirstLetter(currentElement),
+        reason: "word without the first letter"
+      });
+      currentArr.push({
+        word: deleteLastLetter(currentElement),
+        reason: "word without the last letter"
+      });
+      currentArr.push({
+        word: deleteMiddleLetters(currentElement),
+        reason: "word without the middle letters"
+      });
+      currentArr.push({
+        word: deleteFirstAndLastLetter(currentElement),
+        reason: "word without the first and last letters"
+      });
+      currentArr.push({
+        word: getFinalLetters(currentElement),
         reason: "final letter of"
       });
+      currentArr.push({
+        word: getOddLetters(currentElement),
+        reason: "odd letter of"
+      });
+      currentArr.push({
+        word: getEvenLetters(currentElement),
+        reason: "even letter of"
+      });
+      currentArr.push({
+        word: "",
+        reason: "nothing"
+      });
+      /**
+      var anagrams = generateAnagrams(currentElement);
+      anagrams.forEach(currentAnagram => {
+        currentArr.push({
+          word: currentAnagram,
+          reason: "anagram of"
+        });
+      }); */
       var synonyms = getSynonyms(this.query, currentElement);
+
       synonyms.forEach(currentSynonym => {
         currentArr.push({
           word: currentSynonym,
@@ -341,6 +427,7 @@ class GeneralSolution {
       });
       searchArr.push(currentArr);
     });
+
     this.searchArr = searchArr;
   }
 }

@@ -47,7 +47,7 @@ const Login = ({ login, setAlert, isAuthenticated }) => {
                   type="text"
                   className="main-input form-control form-control-lg"
                   name="email"
-                  id="email"
+                  id="login-email"
                   placeholder="Email"
                   value={email}
                   onChange={e => onChange(e)}
@@ -59,7 +59,7 @@ const Login = ({ login, setAlert, isAuthenticated }) => {
                   type="password"
                   className="main-input form-control form-control-lg"
                   name="password"
-                  id="password"
+                  id="login-password"
                   placeholder="Password"
                   value={password}
                   minLength="6"
@@ -71,6 +71,7 @@ const Login = ({ login, setAlert, isAuthenticated }) => {
                 <input
                   type="submit"
                   name="commit"
+                  id="login-button"
                   value="SIGN IN"
                   className="main-submit btn btn-block"
                 />
@@ -78,7 +79,9 @@ const Login = ({ login, setAlert, isAuthenticated }) => {
               <div className="col-12 p-2 " style={{ textAlign: "end" }}>
                 <label style={{ color: "white" }}>
                   Not an existing user?{" "}
-                  <Link to="/register">Register here.</Link>{" "}
+                  <Link to="/register" id="login-register-link">
+                    Register here.
+                  </Link>{" "}
                 </label>
               </div>
             </form>

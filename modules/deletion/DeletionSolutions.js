@@ -15,14 +15,10 @@ class DeletionSolutions {
     const firstDefinitions = this.CurrentSolution.firstDefinitions;
     const lastDefinitions = this.CurrentSolution.lastDefinitions;
 
-    var firstSolutions = this.getFirstSolutions(
-      currentCombination,
-      firstDefinitions
-    );
-
-    var lastSolutions = this.getLastSolutions(
-      currentCombination,
-      lastDefinitions
+    var firstSolutions = this.generateSolutionHelper(firstDefinitions, 0);
+    var lastSolutions = this.generateSolutionHelper(
+      lastDefinitions,
+      currentCombination.length - 1
     );
 
     solutionList = solutionList.concat(firstSolutions);
@@ -32,26 +28,36 @@ class DeletionSolutions {
   }
 
   /**
-   * getFirstSolutions() generates all possible solutions when the first phrase is the definition
-   * @param {Array} currentCombination : Combination to be checked
-   * @param {Array} firstDefinitions : Array of definitions for first phrase
+   * generateSolutionHelper() generates deletion solutions for a given solution
+   * @param {Array} definitions : List of Definitions
+   * @param {Integer} definitionIndex : Index of Definition in combination
    */
-  getFirstSolutions(currentCombination, firstDefinitions) {
+  generateSolutionHelper(definitions, definitionIndex) {
+    var currentCombination = this.CurrentSolution.currentCombination;
+    var start, end;
+    if (definitionIndex == 0) {
+      start = 1;
+      end = currentCombination.length;
+    } else {
+      start = 0;
+      end = definitionIndex;
+    }
+
     var solutionList = [];
     //Run Loop From Second Phrase to Last Phrase
-    for (var i = 1; i < currentCombination.length; i++) {
+    for (var i = start; i < end; i++) {
       var currentPhrase = currentCombination[i];
       //Generate All Possible Deletions
       var possibleDeletions = getAllDeletions(currentPhrase);
 
       //If phrase is the deletion indicator we can discard it
       if (currentPhrase != this.deletionIndicator) {
-        var solutions = firstDefinitions.map(currentDefinition =>
+        var solutions = definitions.map(currentDefinition =>
           possibleDeletions.includes(currentDefinition)
             ? {
                 solution: currentDefinition.toUpperCase(),
                 reason: this.getDirectReason(
-                  currentCombination[0],
+                  currentCombination[definitionIndex],
                   currentDefinition,
                   currentPhrase,
                   this.determineWhatDeletionTookPlace(
@@ -59,7 +65,7 @@ class DeletionSolutions {
                     possibleDeletions
                   )
                 ),
-                def: currentCombination[0],
+                def: currentCombination[definitionIndex],
                 int: "deletion-clue",
                 percentage: 0
               }
@@ -75,13 +81,13 @@ class DeletionSolutions {
 
       //Generate all possible indirect deletions. i.e. deletion of a synonym
       var indirectSolutions = currentSynonyms.map(currentSynonym =>
-        firstDefinitions.map(currentDefinition =>
+        definitions.map(currentDefinition =>
           currentPhrase != this.deletionIndicator &&
           getAllDeletions(currentSynonym).includes(currentDefinition)
             ? {
                 solution: currentDefinition.toUpperCase(),
                 reason: this.getIndirectReason(
-                  currentCombination[0],
+                  currentCombination[definitionIndex],
                   currentDefinition,
                   currentPhrase,
                   currentSynonym,
@@ -90,89 +96,7 @@ class DeletionSolutions {
                     getAllDeletions(currentSynonym)
                   )
                 ),
-                def: currentCombination[0],
-                int: "deletion-clue",
-                percentage: 0
-              }
-            : ""
-        )
-      );
-
-      //Remove Redundant Data
-      indirectSolutions = indirectSolutions.map(currentArray =>
-        currentArray.filter(currentArrayElement => currentArrayElement != "")
-      );
-
-      //Add Solution to Solution to Solution List
-      indirectSolutions.forEach(indirectSolution => {
-        if (indirectSolution.length > 0) {
-          solutionList = solutionList.concat(indirectSolution);
-        }
-      });
-    }
-    return solutionList;
-  }
-
-  /**
-   * getLastSolutions() generates all possible solutions when the last phrase is the definition
-   * @param {Array} currentCombination : Current Combination to be checked
-   * @param {Array} lastDefinitions : Array of definitions for last phrase
-   */
-  getLastSolutions(currentCombination, lastDefinitions) {
-    var solutionList = [];
-    //Run Loop From First Phrase to Second Last Phrase
-    for (var i = 0; i < currentCombination.length - 1; i++) {
-      var currentPhrase = currentCombination[i];
-      //Generate All Possible Deletions
-      var possibleDeletions = getAllDeletions(currentPhrase);
-
-      //If phrase is the deletion indicator we can discard it
-      if (currentPhrase != this.deletionIndicator) {
-        var solutions = lastDefinitions.map(currentDefinition =>
-          possibleDeletions.includes(currentDefinition)
-            ? {
-                solution: currentDefinition.toUpperCase(),
-                reason: this.getDirectReason(
-                  currentCombination[currentCombination.length - 1],
-                  currentDefinition,
-                  currentPhrase,
-                  this.determineWhatDeletionTookPlace(
-                    currentDefinition,
-                    possibleDeletions
-                  )
-                ),
-                def: currentCombination[currentCombination.length - 1],
-                int: "deletion-clue",
-                percentage: 0
-              }
-            : ""
-        );
-
-        //Add Solutions to Final List
-        solutions = solutions.filter(element => element != "");
-        solutionList = solutionList.concat(solutions);
-      }
-      //Get Synonyms of Current Phrase
-      var currentSynonyms = getSynonyms(this.query, currentPhrase);
-
-      //Generate all possible indirect deletions. i.e. deletion of a synonym
-      var indirectSolutions = currentSynonyms.map(currentSynonym =>
-        lastDefinitions.map(currentDefinition =>
-          currentPhrase != this.deletionIndicator &&
-          getAllDeletions(currentSynonym).includes(currentDefinition)
-            ? {
-                solution: currentDefinition.toUpperCase(),
-                reason: this.getIndirectReason(
-                  currentCombination[currentCombination.length - 1],
-                  currentDefinition,
-                  currentPhrase,
-                  currentSynonym,
-                  this.determineWhatDeletionTookPlace(
-                    currentDefinition,
-                    getAllDeletions(currentSynonym)
-                  )
-                ),
-                def: currentCombination[currentCombination.length - 1],
+                def: currentCombination[definitionIndex],
                 int: "deletion-clue",
                 percentage: 0
               }

@@ -29,6 +29,7 @@ const Navbar = ({
             onClick={clearSolutions}
             className="nav-link"
             style={navItemStyle}
+            id="navbar-home"
             to="/"
           >
             <i className="fa fa-fw fa-home"></i>Home
@@ -39,6 +40,7 @@ const Navbar = ({
             onClick={clearSolutions}
             className="nav-link"
             style={navItemStyle}
+            id="navbar-history"
             to="/history"
           >
             <i className="fa fa-fw fa-history"></i>Past Searches
@@ -49,6 +51,7 @@ const Navbar = ({
             className="nav-link"
             style={navItemStyle}
             onClick={logout}
+            id="navbar-logout"
             to="/"
           >
             <i className="fa fa-fw fa-sign-out"></i>Logout
@@ -61,6 +64,7 @@ const Navbar = ({
             href="https://devweb2019.cis.strath.ac.uk/~vib16216/documentation/"
             target="_blank"
             rel="noopener noreferrer"
+            id="navbar-documentation"
           >
             <i className="fa fa-fw fa-book"></i>Documentation
           </a>
@@ -76,13 +80,19 @@ const Navbar = ({
             onClick={clearSolutions}
             className="nav-link"
             style={navItemStyle}
+            id="navbar-home"
             to="/"
           >
             <i className="fa fa-fw fa-home"></i>Home
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" style={navItemStyle} to="/login">
+          <Link
+            className="nav-link"
+            style={navItemStyle}
+            to="/login"
+            id="navbar-login"
+          >
             <i className="fa fa-fw fa-user"></i>Account
           </Link>
         </li>
@@ -93,6 +103,7 @@ const Navbar = ({
             href="https://devweb2019.cis.strath.ac.uk/~vib16216/documentation/"
             target="_blank"
             rel="noopener noreferrer"
+            id="navbar-documentation"
           >
             <i className="fa fa-fw fa-book"></i>Documentation
           </a>
@@ -112,6 +123,7 @@ const Navbar = ({
             onClick={clearSolutions}
             className="navbar-brand"
             style={logoStyle}
+            id="navbar-logo"
             to="/"
           >
             <img

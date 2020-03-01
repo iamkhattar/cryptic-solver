@@ -53,6 +53,7 @@ tumult
 appearing as
 arising from
 around
+i jeer so
 arrange
 arranged
 arrangement
@@ -241,6 +242,7 @@ defective
 deformed
 delirious
 demented
+ancient
 demolish
 demolished
 deplorable
@@ -277,6 +279,8 @@ discordant
 disfigured
 disguise
 disguised
+
+filthy
 dished out
 dishevelled
 disintegrated
@@ -305,9 +309,12 @@ distilled
 distorted
 distracted
 distraught
+wriggling
 distressed
 distributed
 disturb
+back to front
+front to back
 disturbance
 disturbed
 dithering
@@ -460,6 +467,8 @@ go to the dogs
 go wrong
 going crazy
 gone
+wrongly
+flying
 gone off
 grim
 groomed
@@ -847,6 +856,10 @@ redistributed
 redrafted
 refashioned
 disturbing
+poisonous
+development
+developed
+develop
 to destroy
 refine
 refined

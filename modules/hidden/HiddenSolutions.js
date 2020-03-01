@@ -15,15 +15,12 @@ class HiddenSolutions {
     const lastDefinitions = this.CurrentSolution.lastDefinitions;
 
     //Generate Solution when First Phrase is Definition
-    var firstSolutions = this.getFirstSolutions(
-      currentCombination,
-      firstDefinitions
-    );
+    var firstSolutions = this.generateSolutionHelper(firstDefinitions, 0);
 
     //Generate Solution when Last Phrase is Definition
-    var lastSolutions = this.getLastSolutions(
-      currentCombination,
-      lastDefinitions
+    var lastSolutions = this.generateSolutionHelper(
+      lastDefinitions,
+      currentCombination.length - 1
     );
 
     solutionList = solutionList.concat(firstSolutions);
@@ -31,61 +28,32 @@ class HiddenSolutions {
     return solutionList;
   }
 
-  /**
-   * getFirstSolutions() generates all possible solutions when the first phrase is the definition
-   * @param {Array} currentCombination : Combination to be checked
-   * @param {Array} firstDefinitions : Array of definitions for first phrase
-   */
-  getFirstSolutions(currentCombination, firstDefinitions) {
+  generateSolutionHelper(definitions, definitionIndex) {
+    var currentCombination = this.CurrentSolution.currentCombination;
+    var start, end;
+    if (definitionIndex == 0) {
+      start = 1;
+      end = currentCombination.length;
+    } else {
+      start = 0;
+      end = definitionIndex;
+    }
+
     var solutionList = [];
     //Run Loop From Second Phrase to Last Phrase
-    for (var i = 1; i < currentCombination.length; i++) {
+    for (var i = start; i < end; i++) {
       var currentPhrase = currentCombination[i];
       //Check if Current Phrase is hidden in any of the possible first definitions
-      var solutions = firstDefinitions.map(currentDefinition =>
+      var solutions = definitions.map(currentDefinition =>
         isPhraseHidden(currentPhrase, currentDefinition)
           ? {
               solution: currentDefinition.toUpperCase(),
               reason: this.getReason(
-                currentCombination[0],
+                currentCombination[definitionIndex],
                 currentDefinition,
                 currentPhrase
               ),
-              def: currentCombination[0],
-              int: "hidden-clue",
-              percentage: 0
-            }
-          : ""
-      );
-
-      //Add Solutions to Final List
-      solutions = solutions.filter(element => element != "");
-      solutionList = solutionList.concat(solutions);
-    }
-    return solutionList;
-  }
-
-  /**
-   * getLastSolutions() generates all possible solutions when the last phrase is the definition
-   * @param {Array} currentCombination : Current Combination to be checked
-   * @param {Array} lastDefinitions : Array of definitions for last phrase
-   */
-  getLastSolutions(currentCombination, lastDefinitions) {
-    var solutionList = [];
-    //Run Loop From First Phrase to Second Last Phrase
-    for (var i = 0; i < currentCombination.length - 1; i++) {
-      var currentPhrase = currentCombination[i];
-      //Check if Current Phrase is hidden in any of the possible last word definitions
-      var solutions = lastDefinitions.map(currentDefinition =>
-        isPhraseHidden(currentPhrase, currentDefinition)
-          ? {
-              solution: currentDefinition.toUpperCase(),
-              reason: this.getReason(
-                currentCombination[currentCombination.length - 1],
-                currentDefinition,
-                currentPhrase
-              ),
-              def: currentCombination[currentCombination.length - 1],
+              def: currentCombination[definitionIndex],
               int: "hidden-clue",
               percentage: 0
             }

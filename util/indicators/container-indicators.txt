@@ -12,11 +12,14 @@ across
 admit
 admitted
 adopt
+to adopt
 amid
 amidst
 among
 apprehend
 around
+blocking
+block
 arrest
 ​assume
 astride
@@ -31,6 +34,8 @@ bear
 bedeck
 beset
 besiege
+beset by
+beset in
 between
 bind
 bite
@@ -120,6 +125,8 @@ drape
 ​drink
 ​drunk by
 dump in
+dumped
+dumped in
 during
 eat
 eclipse
@@ -142,6 +149,8 @@ entertain
 enthral 
 envelop
 ​environment
+entered
+entered in
 essentially
 external
 feature
@@ -200,6 +209,7 @@ import
 impound
 impress
 imprison
+imprisons
 in gear
 in the course of
 in the middle
@@ -323,6 +333,7 @@ repress
 reside
 restrain 
 restrict 
+after
 ​retain
 ride
 ring
@@ -394,7 +405,11 @@ surround
 swallow
 swamp
 swelling
+behind
+forward
 swig
+supports
+supporting
 tackle
 take
 take in
@@ -621,6 +636,8 @@ sheltered
 splitting
 stuffing
 surrounded
+is surrounded by
+surrounded by
 swallowed
 taken in
 tucked into
@@ -707,6 +724,7 @@ covering
 covers
 embrace
 embraces
+to embrace
 embracing
 encircle
 encircles

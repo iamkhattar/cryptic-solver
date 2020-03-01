@@ -19,6 +19,7 @@ characters
 close to
 concealed
 concealing
+through
 building
 conceals
 contained
@@ -96,7 +97,6 @@ partly
 production
 providing
 reduced
-regularly
 secreting
 secret
 secretly
@@ -116,6 +116,8 @@ took a bit off
 trimmed
 uncentered
 unlimited
+holding
+holding up
 veiled
 veiling
 veils

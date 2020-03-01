@@ -67,6 +67,9 @@ introduction
 lacking finish
 lead
 leader
+leaders
+leader of
+leaders of
 missing the last
 not completely
 not fully
@@ -120,5 +123,6 @@ principal
 source
 start
 starter
+starter of
 top 
 ​western border

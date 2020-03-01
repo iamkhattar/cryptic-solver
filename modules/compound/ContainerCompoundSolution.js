@@ -1,47 +1,33 @@
-const getContainers = require("./get-containers");
 const getSynonyms = require("../thesaurus/get-synonyms");
-
-class ContainerSolutions {
-  constructor(CurrentSolution, containerIndicator) {
-    this.CurrentSolution = CurrentSolution;
-    this.containerIndicator = containerIndicator;
-    this.query = CurrentSolution.query;
+const getContainers = require("../container/get-containers");
+class ContainerCompoundSolution {
+  constructor(CompoundSolution, currentCombination, indicator) {
+    this.CompoundSolution = CompoundSolution;
+    this.firstDefinitions = CompoundSolution.firstDefinitions;
+    this.lastDefinitions = CompoundSolution.lastDefinitions;
+    this.combination = currentCombination;
+    this.indicator = indicator;
+    this.query = CompoundSolution.query;
   }
 
-  //Generate Container Solutions for a given combination
-  generateSolutions() {
+  generateSolution() {
     var solutionList = [];
 
-    const currentCombination = this.CurrentSolution.currentCombination;
-    const firstDefinitions = this.CurrentSolution.firstDefinitions;
-    const lastDefinitions = this.CurrentSolution.lastDefinitions;
+    var firstSolutions = this.generateSolutionHelper(this.firstDefinitions, 0);
+    var lastSolutions = this.generateSolutionHelper(
+      this.lastDefinitions,
+      this.combination.comb.length - 1
+    );
 
-    var index = currentCombination.indexOf(this.containerIndicator);
-    var length = currentCombination.length;
-
-    //Check Index Out of Bounds
-    if (index != 0 && index != length - 1) {
-      var firstSolutions = this.generateSolutionHelper(
-        firstDefinitions,
-        0,
-        index
-      );
-
-      var lastSolutions = this.generateSolutionHelper(
-        lastDefinitions,
-        currentCombination.length - 1,
-        index
-      );
-
-      solutionList = solutionList.concat(firstSolutions);
-      solutionList = solutionList.concat(lastSolutions);
-    }
+    solutionList = solutionList.concat(firstSolutions);
+    solutionList = solutionList.concat(lastSolutions);
 
     return solutionList;
   }
 
-  generateSolutionHelper(definitions, definitionIndex, indicatorIndex) {
-    var currentCombination = this.CurrentSolution.currentCombination;
+  generateSolutionHelper(definitions, definitionIndex) {
+    var currentCombination = this.combination.comb;
+    var indicatorIndex = currentCombination.indexOf(this.indicator);
     var indexCheck;
     if (definitionIndex == 0) {
       indexCheck = 1;
@@ -57,6 +43,7 @@ class ContainerSolutions {
       var word1 = currentCombination[indicatorIndex - 1];
       var word2 = currentCombination[indicatorIndex + 1];
 
+      if (word1 == undefined || word2 == undefined) return solutionList;
       //Get Synonyms of both words
       var firstWordSynonyms = getSynonyms(this.query, word1);
       var secondWordSynonyms = getSynonyms(this.query, word2);
@@ -73,13 +60,16 @@ class ContainerSolutions {
       definitions.forEach(currentDefinition => {
         //Check if any definition is a direct container
         if (directContainers.includes(currentDefinition)) {
+          var currentReason = this.combination.reason;
+
           solutionList.push({
             solution: currentDefinition.toUpperCase(),
             reason: this.getDirectReason(
               currentCombination[definitionIndex],
               currentDefinition,
               word1,
-              word2
+              word2,
+              currentReason
             ),
             percentage: 0,
             def: currentCombination[definitionIndex],
@@ -87,7 +77,7 @@ class ContainerSolutions {
           });
         }
 
-        //Check for word1 + syn(word2) or syn(word1)+syn(word2)
+        //Check for syn(word1) + word2
         firstWordSynonyms.forEach(currentFirstWordSynonym => {
           //Generate Containers for synonym of first word and second word
           var firstWordContainers = getContainers(
@@ -102,6 +92,7 @@ class ContainerSolutions {
 
           //Check if Definition is in the container array
           if (firstWordContainers.includes(currentDefinition)) {
+            var currentReason = this.combination.reason;
             solutionList.push({
               solution: currentDefinition.toUpperCase(),
               reason: this.getFirstSynReason(
@@ -109,46 +100,14 @@ class ContainerSolutions {
                 currentDefinition,
                 word1,
                 currentFirstWordSynonym,
-                word2
+                word2,
+                currentReason
               ),
               percentage: 0,
               def: currentCombination[definitionIndex],
               int: "container-clue"
             });
           }
-
-          //Check for syn(word1) + syn(word2)
-          secondWordSynonyms.forEach(currentSecondWordSynonym => {
-            var firstWordLength = currentFirstWordSynonym.length;
-            //Check if container length would be valid else discard it
-            if (
-              this.query.length - firstWordLength ==
-              currentSecondWordSynonym.length
-            ) {
-              var bothContainers = getContainers(
-                currentFirstWordSynonym,
-                currentSecondWordSynonym
-              );
-
-              //If container list includes the current definition it is one of the solutions
-              if (bothContainers.includes(currentDefinition)) {
-                solutionList.push({
-                  solution: currentDefinition.toUpperCase(),
-                  reason: this.getBothSynReason(
-                    currentCombination[definitionIndex],
-                    currentDefinition,
-                    word1,
-                    currentFirstWordSynonym,
-                    word2,
-                    currentSecondWordSynonym
-                  ),
-                  percentage: 0,
-                  def: currentCombination[definitionIndex],
-                  int: "container-clue"
-                });
-              }
-            }
-          });
         });
 
         //Check for word1 + syn(word2)
@@ -164,6 +123,7 @@ class ContainerSolutions {
           );
           //Check if any one of the containers is the solution
           if (secondWordContainers.includes(currentDefinition)) {
+            var currentReason = this.combination.reason;
             solutionList.push({
               solution: currentDefinition.toUpperCase(),
               reason: this.getSecondSynReason(
@@ -171,7 +131,8 @@ class ContainerSolutions {
                 currentDefinition,
                 word1,
                 word2,
-                currentSecondWordSynonym
+                currentSecondWordSynonym,
+                currentReason
               ),
               percentage: 0,
               def: currentCombination[definitionIndex],
@@ -191,17 +152,26 @@ class ContainerSolutions {
    * @param definitionSyn : Synonym of Definition
    * @param firstWord : First Word
    * @param secondWord : Second word
+   * @param currentReason : CurrentReason
    */
-  getDirectReason(definition, definitionSyn, firstWord, secondWord) {
+  getDirectReason(
+    definition,
+    definitionSyn,
+    firstWord,
+    secondWord,
+    currentReason
+  ) {
     return (
-      "This clue is a Container Clue. The container indicator is " +
-      this.containerIndicator.toUpperCase() +
-      ". The definition is " +
+      "This clue is a Compound Clue. The definition is " +
       definition.toUpperCase() +
       ". " +
       definitionSyn.toUpperCase() +
       " is a synonym of " +
       definition.toUpperCase() +
+      ". " +
+      currentReason +
+      " The container indicator is " +
+      this.indicator.toUpperCase() +
       ". If we put " +
       firstWord.toUpperCase() +
       " in " +
@@ -218,24 +188,28 @@ class ContainerSolutions {
    * @param firstWord : First Word
    * @param firstWordSyn : Synonym of First word
    * @param secondWord : Second word
+   * @param currentReason : CurrentReason
    */
   getFirstSynReason(
-    definiton,
+    definition,
     definitionSyn,
     firstWord,
     firstWordSyn,
-    secondWord
+    secondWord,
+    currentReason
   ) {
     return (
-      "This clue is a Container Clue. The container indicator is " +
-      this.containerIndicator.toUpperCase() +
-      ". The definition is " +
-      definiton.toUpperCase() +
+      "This clue is a Compound Clue. The definition is " +
+      definition.toUpperCase() +
       ". " +
       definitionSyn.toUpperCase() +
       " is a synonym of " +
-      definiton.toUpperCase() +
+      definition.toUpperCase() +
       ". " +
+      currentReason +
+      " The container indicator is" +
+      this.indicator.toUpperCase() +
+      " " +
       firstWordSyn.toUpperCase() +
       " is a synonym of " +
       firstWord.toUpperCase() +
@@ -255,72 +229,33 @@ class ContainerSolutions {
    * @param firstWord : First Word
    * @param secondWord : Second word
    * @param secondWordSyn : Synonym of Second Word
+   * @param currentReason : CurrentReason
    */
   getSecondSynReason(
     definition,
     definitionSyn,
     firstWord,
     secondWord,
-    secondWordSyn
+    secondWordSyn,
+    currentReason
   ) {
     return (
-      "This clue is a Container Clue. The container indicator is " +
-      this.containerIndicator.toUpperCase() +
-      ". The definition is " +
+      "This clue is a Compound Clue. The definition is " +
       definition.toUpperCase() +
       ". " +
       definitionSyn.toUpperCase() +
       " is a synonym of " +
       definition.toUpperCase() +
       ". " +
+      currentReason +
+      " The container indicator is" +
+      this.indicator.toUpperCase() +
+      " " +
       secondWordSyn.toUpperCase() +
       " is a synonym of " +
       secondWord.toUpperCase() +
       ". If we put " +
       firstWord.toUpperCase() +
-      " in " +
-      secondWordSyn.toUpperCase() +
-      " we get " +
-      definitionSyn.toUpperCase()
-    );
-  }
-
-  /**
-   * getBothSynReason() generates the reason when there is a container with synonyms of both words
-   * @param definition : Definition in combination
-   * @param definitionSyn : Synonym of Definition
-   * @param firstWord : First Word
-   * @param firstWordSyn : Synonym of First Word
-   * @param secondWord : Second word
-   * @param secondWordSyn : Synonym of Second Word
-   */
-  getBothSynReason(
-    definition,
-    definitionSyn,
-    firstWord,
-    firstWordSyn,
-    secondWord,
-    secondWordSyn
-  ) {
-    return (
-      "This clue is a Container Clue. The container indicator is " +
-      this.containerIndicator.toUpperCase() +
-      ". The definition is " +
-      definition.toUpperCase() +
-      ". " +
-      definitionSyn.toUpperCase() +
-      " is a synonym of " +
-      definition.toUpperCase() +
-      ". " +
-      firstWordSyn.toUpperCase() +
-      " is a synonym of " +
-      firstWord.toUpperCase() +
-      ". " +
-      secondWordSyn.toUpperCase() +
-      " is a synonym of " +
-      secondWord.toUpperCase() +
-      ". If we put " +
-      firstWordSyn.toUpperCase() +
       " in " +
       secondWordSyn.toUpperCase() +
       " we get " +
@@ -329,4 +264,4 @@ class ContainerSolutions {
   }
 }
 
-module.exports = ContainerSolutions;
+module.exports = ContainerCompoundSolution;

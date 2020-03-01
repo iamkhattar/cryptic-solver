@@ -6,6 +6,7 @@ const generateSynonyms = require("../thesaurus/generate-synonyms");
 const CurrentSolution = require("./CurrentSolution");
 const Ranking = require("../ranking/Ranking");
 const GeneralSolutions = require("./GeneralSolution");
+const CompoundSolution = require("./CompoundSolution");
 
 /**
  * The Solution class generates the Solution for any given clue and length
@@ -41,12 +42,15 @@ class Query {
   //Solve Clue and return solution
   async solveClue() {
     //Query Thesaurus
+    console.time("Total Time");
+    console.time("Query Time");
     await this.fillSynonymList();
-
+    console.timeEnd("Query Time");
     var solutionList = new Array();
 
-    //Generate Solution For Each Combination
-    for (const currentCombination of this.combinations) {
+    console.time("Current Solution");
+    //Generate Indicator Solutions For Each Combination
+    this.combinations.forEach(currentCombination => {
       var currentSolution = new CurrentSolution(this, currentCombination);
       var currentSolutionResponse = currentSolution.getCurrentSolution();
       currentSolutionResponse.forEach(currentElement => {
@@ -54,16 +58,52 @@ class Query {
           solutionList.push(currentElement);
         }
       });
-    }
-
-    //Generate General Solution
-    var general = new GeneralSolutions(this);
-    var generalSolution = general.generateSolutions();
-    generalSolution.forEach(currentGeneralSolution => {
-      if (!this.doesListContainSolution(solutionList, currentGeneralSolution)) {
-        solutionList.push(currentGeneralSolution);
-      }
     });
+    console.timeEnd("Current Solution");
+
+    console.time("Compound Solution");
+    //Generate Compound Solutions for each combination
+    this.combinations.forEach(currentCombination => {
+      var compoundSolution = new CompoundSolution(this, currentCombination);
+      var compoundSolution = compoundSolution.generateSolutions();
+      compoundSolution.forEach(currentElement => {
+        if (!this.doesListContainSolution(solutionList, currentElement)) {
+          solutionList.push(currentElement);
+        }
+      });
+    });
+    console.timeEnd("Compound Solution");
+
+    console.time("General Solution");
+    //Generate General Solutions for each combination
+    if (this.clueArray.length < 9) {
+      this.combinations.forEach(currentCombination => {
+        if (currentCombination.length < 5 && this.length < 10) {
+          var general = new GeneralSolutions(this, currentCombination);
+          var generalSolution = general.generateSolutions();
+          generalSolution.forEach(currentGeneralSolution => {
+            if (
+              !this.doesListContainSolution(
+                solutionList,
+                currentGeneralSolution
+              )
+            ) {
+              solutionList.push(currentGeneralSolution);
+            }
+          });
+        }
+      });
+      var general = new GeneralSolutions(this, this.clueArray);
+      var generalSolution = general.generateSolutions();
+      generalSolution.forEach(currentGeneralSolution => {
+        if (
+          !this.doesListContainSolution(solutionList, currentGeneralSolution)
+        ) {
+          solutionList.push(currentGeneralSolution);
+        }
+      });
+    }
+    console.timeEnd("General Solution");
 
     //Rank Solutions
     var ranking = new Ranking(solutionList);
@@ -71,7 +111,7 @@ class Query {
 
     //Prepare data accoring to response Schema
     var response = this.prepareResponse(solutionList);
-
+    console.timeEnd("Total Time");
     return response;
   }
 

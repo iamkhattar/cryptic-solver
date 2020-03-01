@@ -34,18 +34,4 @@ router.post(
   }
 );
 
-function getJSON(solution) {
-  var arr = new Array();
-  solution.forEach(currentSolution => {
-    const currentObject = {
-      solution: currentSolution.solution,
-      reason: currentSolution.reason,
-      percentage: currentSolution.percentage
-    };
-    arr.push(currentObject);
-  });
-
-  return arr.sort((a, b) => parseInt(b.percentage) - parseInt(a.percentage));
-}
-
 module.exports = router;

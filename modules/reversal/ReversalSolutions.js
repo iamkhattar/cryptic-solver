@@ -16,14 +16,13 @@ class ReversalSolutions {
     const firstDefinitions = this.CurrentSolution.firstDefinitions;
     const lastDefinitions = this.CurrentSolution.lastDefinitions;
 
-    var firstSolutions = this.getFirstSolutions(
-      currentCombination,
-      firstDefinitions
-    );
+    //Generate Solution when First Phrase is Definition
+    var firstSolutions = this.generateSolutionHelper(firstDefinitions, 0);
 
-    var lastSolutions = this.getLastSolutions(
-      currentCombination,
-      lastDefinitions
+    //Generate Solution when Last Phrase is Definition
+    var lastSolutions = this.generateSolutionHelper(
+      lastDefinitions,
+      currentCombination.length - 1
     );
 
     solutionList = solutionList.concat(firstSolutions);
@@ -32,32 +31,37 @@ class ReversalSolutions {
     return solutionList;
   }
 
-  /**
-   * getFirstSolutions() generates all possible solutions when the first phrase is the definition
-   * @param {Array} currentCombination : Combination to be checked
-   * @param {Array} firstDefinitions : Array of definitions for first phrase
-   */
-  getFirstSolutions(currentCombination, firstDefinitions) {
+  generateSolutionHelper(definitions, definitionIndex) {
+    var currentCombination = this.CurrentSolution.currentCombination;
+    var start, end;
+    if (definitionIndex == 0) {
+      start = 1;
+      end = currentCombination.length;
+    } else {
+      start = 0;
+      end = definitionIndex;
+    }
+
     var solutionList = [];
 
     //Run Loop From Second Phrase to Last Phrase
-    for (var i = 1; i < currentCombination.length; i++) {
+    for (var i = start; i < end; i++) {
       var currentPhrase = currentCombination[i];
       var reversedPhrase = reversePhrase(currentPhrase);
 
       //Check if Reverse phrase length is solution length. If ot discard it
       if (reversedPhrase.length == this.query.length) {
         //Check for Direct Reversals. i.e. Reversal of one of the phrases is the definition
-        var directSolutions = firstDefinitions.map(currentDefinition =>
+        var directSolutions = definitions.map(currentDefinition =>
           reversedPhrase == currentDefinition
             ? {
                 solution: currentDefinition.toUpperCase(),
                 reason: this.getDirectReason(
-                  currentCombination[0],
+                  currentCombination[definitionIndex],
                   currentDefinition,
                   currentPhrase
                 ),
-                def: currentCombination[0],
+                def: currentCombination[definitionIndex],
                 int: "reversal-clue",
                 percentage: 0
               }
@@ -79,97 +83,17 @@ class ReversalSolutions {
 
       //Generate all indirect solutions. i.e. Reversal of synonym of a phrase
       var indirectSolutions = currentSynonyms.map(currentSynonym =>
-        firstDefinitions.map(currentDefinition =>
+        definitions.map(currentDefinition =>
           reversePhrase(currentSynonym) == currentDefinition
             ? {
                 solution: currentDefinition.toUpperCase(),
                 reason: this.getIndirectReason(
-                  currentCombination[0],
+                  currentCombination[definitionIndex],
                   currentDefinition,
                   currentPhrase,
                   currentSynonym
                 ),
-                def: currentCombination[0],
-                int: "reversal-clue",
-                percentage: 0
-              }
-            : ""
-        )
-      );
-
-      //Remove Redundant Data
-      indirectSolutions = indirectSolutions.map(currentArray =>
-        currentArray.filter(currentArrayElement => currentArrayElement != "")
-      );
-
-      //Add Solution to Solution to Solution List
-      indirectSolutions.forEach(indirectSolution => {
-        if (indirectSolution.length > 0) {
-          solutionList = solutionList.concat(indirectSolution);
-        }
-      });
-    }
-    return solutionList;
-  }
-
-  /**
-   * getLastSolutions() generates all possible solutions when the last phrase is the definition
-   * @param {Array} currentCombination : Current Combination to be checked
-   * @param {Array} lastDefinitions : Array of definitions for last phrase
-   */
-  getLastSolutions(currentCombination, lastDefinitions) {
-    var solutionList = [];
-
-    //Run Loop From First Phrase to Second Last Phrase
-    for (var i = 0; i < currentCombination.length - 1; i++) {
-      var currentPhrase = currentCombination[i];
-      var reversedPhrase = reversePhrase(currentPhrase);
-
-      //Check if Reverse phrase length is solution length. If ot discard it
-      if (reversedPhrase.length == this.query.length) {
-        //Check for Direct Reversals. i.e. Reversal of one of the phrases is the definition
-        var directSolutions = lastDefinitions.map(currentDefinition =>
-          reversedPhrase == currentDefinition
-            ? {
-                solution: currentDefinition.toUpperCase(),
-                reason: this.getDirectReason(
-                  currentCombination[currentCombination.length - 1],
-                  currentDefinition,
-                  currentPhrase
-                ),
-                def: currentCombination[currentCombination.length - 1],
-                int: "reversal-clue",
-                percentage: 0
-              }
-            : ""
-        );
-
-        //Add Direct Solutions to Final List
-        directSolutions = directSolutions.filter(element => element != "");
-        solutionList = solutionList.concat(directSolutions);
-      }
-
-      //Get Synonyms of Current Phrase
-      var currentSynonyms = getSynonyms(this.query, currentPhrase);
-
-      //Filter out synonyms whose length dont match solution length
-      currentSynonyms = currentSynonyms.filter(
-        current => current.length == this.query.length
-      );
-
-      //Generate all indirect solutions. i.e. Reversal of synonym of a phrase
-      var indirectSolutions = currentSynonyms.map(currentSynonym =>
-        lastDefinitions.map(currentDefinition =>
-          reversePhrase(currentSynonym) == currentDefinition
-            ? {
-                solution: currentDefinition.toUpperCase(),
-                reason: this.getIndirectReason(
-                  currentCombination[currentCombination.length - 1],
-                  currentDefinition,
-                  currentPhrase,
-                  currentSynonym
-                ),
-                def: currentCombination[currentCombination.length - 1],
+                def: currentCombination[definitionIndex],
                 int: "reversal-clue",
                 percentage: 0
               }

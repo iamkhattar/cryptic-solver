@@ -56,7 +56,7 @@ const Landing = ({
                   type="text"
                   className="main-input form-control form-control-lg "
                   name="clue"
-                  id="clue"
+                  id="search-clue"
                   value={clue}
                   onChange={e => onChange(e)}
                   placeholder="Cryptic Clue"
@@ -68,7 +68,7 @@ const Landing = ({
                   type="text"
                   className="main-input form-control form-control-lg"
                   name="length"
-                  id="length"
+                  id="search-length"
                   value={length}
                   onChange={e => onChange(e)}
                   placeholder="Length"
@@ -80,6 +80,7 @@ const Landing = ({
                   type="submit"
                   name="commit"
                   value="SEARCH"
+                  id="search-button"
                   className="main-submit btn btn-block"
                   style={{ color: "white" }}
                   disabled={loading}

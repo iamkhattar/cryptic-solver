@@ -20,7 +20,7 @@
     "jsonwebtoken": "^8.5.1",
     "moby": "^1.1.2",
     "mongoose": "^5.8.9",
-    "request": "^2.88.0"
+    "selenium-webdriver": "^4.0.0-alpha.5"
   },
   "devDependencies": {
     "concurrently": "^5.0.2",

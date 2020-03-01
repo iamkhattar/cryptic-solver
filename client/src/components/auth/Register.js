@@ -50,7 +50,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                   type="email"
                   className="main-input form-control form-control-lg"
                   name="email"
-                  id="email"
+                  id="register-email"
                   value={email}
                   onChange={e => onChange(e)}
                   placeholder="Email"
@@ -62,7 +62,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                   type="password"
                   className="main-input form-control form-control-lg"
                   name="password"
-                  id="password"
+                  id="register-password"
                   value={password}
                   onChange={e => onChange(e)}
                   minLength="6"
@@ -75,7 +75,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                   type="password"
                   className="main-input form-control form-control-lg"
                   name="password2"
-                  id="password2"
+                  id="register-password2"
                   value={password2}
                   onChange={e => onChange(e)}
                   minLength="6"
@@ -88,13 +88,17 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                 <input
                   type="submit"
                   name="commit"
+                  id="register-button"
                   value="SIGN UP"
                   className="main-submit btn btn-block"
                 />
               </div>
               <div className="col-12 p-2 " style={{ textAlign: "end" }}>
                 <label style={{ color: "white" }}>
-                  Already a user? <Link to="/login">Login here.</Link>
+                  Already a user?{" "}
+                  <Link to="/login" id="register-login-link">
+                    Login here.
+                  </Link>
                 </label>
               </div>
             </form>

@@ -79,6 +79,7 @@ retreating
 retrograde
 retrospective
 return
+returns
 returning
 returned
 reverse
