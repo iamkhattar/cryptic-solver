@@ -8,7 +8,8 @@ import {
   TextInput,
   TouchableOpacity,
   AsyncStorage,
-  ActivityIndicator
+  ActivityIndicator,
+  KeyboardAvoidingView
 } from "react-native";
 import axios from "axios";
 
@@ -112,47 +113,53 @@ const Landing = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.contentWrapper}>
-        <View style={styles.logoWrapper}>
-          <Image
-            style={styles.logoStyle}
-            source={require("../../assets/logo.png")}
-          />
+      <KeyboardAvoidingView
+        style={styles.keyboardWrapper}
+        behavior="padding"
+        enabled
+      >
+        <View style={styles.contentWrapper}>
+          <View style={styles.logoWrapper}>
+            <Image
+              style={styles.logoStyle}
+              source={require("../../assets/logo.png")}
+            />
+          </View>
+          <View style={styles.formWrapper}>
+            {error && (
+              <TouchableOpacity disabled={true} style={styles.errorWrapper}>
+                <Text style={styles.searchTextStyle}>{errorString}</Text>
+              </TouchableOpacity>
+            )}
+            <TextInput
+              style={styles.textInputStyle}
+              onChangeText={changeClue}
+              placeholder="Cryptic Clue"
+            ></TextInput>
+            <TextInput
+              style={styles.textInputStyle}
+              onChangeText={changeLength}
+              placeholder="Length"
+            ></TextInput>
+            {!searching && (
+              <TouchableOpacity
+                style={styles.touchableOpacityStyle}
+                onPress={e => onSubmit(e)}
+              >
+                <Text style={styles.searchTextStyle}>SEARCH</Text>
+              </TouchableOpacity>
+            )}
+            {searching && (
+              <TouchableOpacity
+                disabled={true}
+                style={styles.touchableOpacityStyle}
+              >
+                <ActivityIndicator size="large" color="white" />
+              </TouchableOpacity>
+            )}
+          </View>
         </View>
-        <View style={styles.formWrapper}>
-          {error && (
-            <TouchableOpacity disabled={true} style={styles.errorWrapper}>
-              <Text style={styles.searchTextStyle}>{errorString}</Text>
-            </TouchableOpacity>
-          )}
-          <TextInput
-            style={styles.textInputStyle}
-            onChangeText={changeClue}
-            placeholder="Cryptic Clue"
-          ></TextInput>
-          <TextInput
-            style={styles.textInputStyle}
-            onChangeText={changeLength}
-            placeholder="Length"
-          ></TextInput>
-          {!searching && (
-            <TouchableOpacity
-              style={styles.touchableOpacityStyle}
-              onPress={e => onSubmit(e)}
-            >
-              <Text style={styles.searchTextStyle}>SEARCH</Text>
-            </TouchableOpacity>
-          )}
-          {searching && (
-            <TouchableOpacity
-              disabled={true}
-              style={styles.touchableOpacityStyle}
-            >
-              <ActivityIndicator size="large" color="white" />
-            </TouchableOpacity>
-          )}
-        </View>
-      </View>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
@@ -166,6 +173,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     height: "100%"
   },
+  keyboardWrapper: { flex: 1 },
   contentWrapper: {
     flex: 1,
     height: "100%"

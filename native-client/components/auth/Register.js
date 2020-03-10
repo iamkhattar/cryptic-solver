@@ -7,7 +7,8 @@ import {
   TouchableOpacity,
   TextInput,
   AsyncStorage,
-  Text
+  Text,
+  KeyboardAvoidingView
 } from "react-native";
 import axios from "axios";
 import { StackActions } from "@react-navigation/native";
@@ -84,54 +85,60 @@ const Register = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.contentWrapper}>
-        <View style={styles.logoWrapper}>
-          <Image
-            style={styles.logoStyle}
-            source={require("../../assets/logo.png")}
-          />
-        </View>
-        <View style={styles.formWrapper}>
-          <Text style={styles.heading}>Sign up for an account</Text>
-          {error && (
-            <TouchableOpacity disabled={true} style={styles.errorWrapper}>
-              <Text style={styles.searchTextStyle}>{errorString}</Text>
+      <KeyboardAvoidingView
+        style={styles.keyboardWrapper}
+        behavior="padding"
+        enabled
+      >
+        <View style={styles.contentWrapper}>
+          <View style={styles.logoWrapper}>
+            <Image
+              style={styles.logoStyle}
+              source={require("../../assets/logo.png")}
+            />
+          </View>
+          <View style={styles.formWrapper}>
+            <Text style={styles.heading}>Sign up for an account</Text>
+            {error && (
+              <TouchableOpacity disabled={true} style={styles.errorWrapper}>
+                <Text style={styles.searchTextStyle}>{errorString}</Text>
+              </TouchableOpacity>
+            )}
+            <TextInput
+              style={styles.textInputStyle}
+              placeholder="Email ID"
+              onChangeText={changeEmail}
+              autoCapitalize="none"
+            ></TextInput>
+            <TextInput
+              style={styles.textInputStyle}
+              placeholder="Password"
+              secureTextEntry={true}
+              onChangeText={changePassword}
+            ></TextInput>
+            <TextInput
+              style={styles.textInputStyle}
+              secureTextEntry={true}
+              placeholder="Repeat Password"
+              onChangeText={changePassword2}
+            ></TextInput>
+            <TouchableOpacity
+              style={styles.touchableOpacityStyle}
+              onPress={e => handleSubmit(e)}
+            >
+              <Text style={styles.searchTextStyle}>REGISTER</Text>
             </TouchableOpacity>
-          )}
-          <TextInput
-            style={styles.textInputStyle}
-            placeholder="Email ID"
-            onChangeText={changeEmail}
-            autoCapitalize="none"
-          ></TextInput>
-          <TextInput
-            style={styles.textInputStyle}
-            placeholder="Password"
-            secureTextEntry={true}
-            onChangeText={changePassword}
-          ></TextInput>
-          <TextInput
-            style={styles.textInputStyle}
-            secureTextEntry={true}
-            placeholder="Repeat Password"
-            onChangeText={changePassword2}
-          ></TextInput>
-          <TouchableOpacity
-            style={styles.touchableOpacityStyle}
-            onPress={e => handleSubmit(e)}
-          >
-            <Text style={styles.searchTextStyle}>REGISTER</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.registerLinkWrapper}
-            onPress={() => navigation.navigate("Login")}
-          >
-            <Text style={styles.registerLinkText}>
-              Already a User? Login Here.
-            </Text>
-          </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.registerLinkWrapper}
+              onPress={() => navigation.navigate("Login")}
+            >
+              <Text style={styles.registerLinkText}>
+                Already a User? Login Here.
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
@@ -145,6 +152,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     height: "100%"
   },
+  keyboardWrapper: { flex: 1 },
   contentWrapper: {
     flex: 1,
     height: "100%"

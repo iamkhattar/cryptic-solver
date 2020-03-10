@@ -7,7 +7,8 @@ import {
   TouchableOpacity,
   TextInput,
   Text,
-  AsyncStorage
+  AsyncStorage,
+  KeyboardAvoidingView
 } from "react-native";
 import { StackActions } from "@react-navigation/native";
 import axios from "axios";
@@ -90,48 +91,54 @@ const Login = ({ navigation }) => {
   }, []);
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.contentWrapper}>
-        <View style={styles.logoWrapper}>
-          <Image
-            style={styles.logoStyle}
-            source={require("../../assets/logo.png")}
-          />
-        </View>
-        <View style={styles.formWrapper}>
-          <Text style={styles.heading}>Sign into your account</Text>
-          {error && (
-            <TouchableOpacity disabled={true} style={styles.errorWrapper}>
-              <Text style={styles.searchTextStyle}>{errorString}</Text>
+      <KeyboardAvoidingView
+        style={styles.keyboardWrapper}
+        behavior="padding"
+        enabled
+      >
+        <View style={styles.contentWrapper}>
+          <View style={styles.logoWrapper}>
+            <Image
+              style={styles.logoStyle}
+              source={require("../../assets/logo.png")}
+            />
+          </View>
+          <View style={styles.formWrapper}>
+            <Text style={styles.heading}>Sign into your account</Text>
+            {error && (
+              <TouchableOpacity disabled={true} style={styles.errorWrapper}>
+                <Text style={styles.searchTextStyle}>{errorString}</Text>
+              </TouchableOpacity>
+            )}
+            <TextInput
+              style={styles.textInputStyle}
+              onChangeText={changeEmail}
+              placeholder="Email ID"
+              autoCapitalize="none"
+            ></TextInput>
+            <TextInput
+              style={styles.textInputStyle}
+              secureTextEntry={true}
+              onChangeText={changePassword}
+              placeholder="Password"
+            ></TextInput>
+            <TouchableOpacity
+              style={styles.touchableOpacityStyle}
+              onPress={e => onSubmit(e)}
+            >
+              <Text style={styles.searchTextStyle}>LOGIN</Text>
             </TouchableOpacity>
-          )}
-          <TextInput
-            style={styles.textInputStyle}
-            onChangeText={changeEmail}
-            placeholder="Email ID"
-            autoCapitalize="none"
-          ></TextInput>
-          <TextInput
-            style={styles.textInputStyle}
-            secureTextEntry={true}
-            onChangeText={changePassword}
-            placeholder="Password"
-          ></TextInput>
-          <TouchableOpacity
-            style={styles.touchableOpacityStyle}
-            onPress={e => onSubmit(e)}
-          >
-            <Text style={styles.searchTextStyle}>LOGIN</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.registerLinkWrapper}
-            onPress={() => navigation.navigate("Register")}
-          >
-            <Text style={styles.registerLinkText}>
-              Not a user? Register Here.
-            </Text>
-          </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.registerLinkWrapper}
+              onPress={() => navigation.navigate("Register")}
+            >
+              <Text style={styles.registerLinkText}>
+                Not a user? Register Here.
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
@@ -145,6 +152,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     height: "100%"
   },
+  keyboardWrapper: { flex: 1 },
   contentWrapper: {
     flex: 1,
     height: "100%"
