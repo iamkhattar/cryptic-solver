@@ -8,7 +8,8 @@ import {
   TextInput,
   Text,
   AsyncStorage,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  Platform
 } from "react-native";
 import { StackActions } from "@react-navigation/native";
 import axios from "axios";
@@ -93,7 +94,7 @@ const Login = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView
         style={styles.keyboardWrapper}
-        behavior="padding"
+        behavior={Platform.OS === "ios" ? "padding" : null}
         enabled
       >
         <View style={styles.contentWrapper}>

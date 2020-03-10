@@ -8,7 +8,8 @@ import {
   TextInput,
   AsyncStorage,
   Text,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  Platform
 } from "react-native";
 import axios from "axios";
 import { StackActions } from "@react-navigation/native";
@@ -87,7 +88,7 @@ const Register = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView
         style={styles.keyboardWrapper}
-        behavior="padding"
+        behavior={Platform.OS === "ios" ? "padding" : null}
         enabled
       >
         <View style={styles.contentWrapper}>

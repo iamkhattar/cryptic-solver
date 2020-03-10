@@ -9,7 +9,8 @@ import {
   TouchableOpacity,
   AsyncStorage,
   ActivityIndicator,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  Platform
 } from "react-native";
 import axios from "axios";
 
@@ -115,7 +116,7 @@ const Landing = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView
         style={styles.keyboardWrapper}
-        behavior="padding"
+        behavior={Platform.OS === "ios" ? "padding" : null}
         enabled
       >
         <View style={styles.contentWrapper}>

@@ -61,7 +61,8 @@ const styles = StyleSheet.create({
   },
   clueText: {
     color: "white",
-    fontSize: 20
+    fontSize: 20,
+    fontWeight: "bold"
   },
   solutionWrapper: {
     flex: 18,
