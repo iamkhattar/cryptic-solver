@@ -4,6 +4,7 @@
  */
 function getEvenLetters(phrase) {
   phrase = phrase.replace(/\s+/g, "");
+  phrase = phrase.replace("-", "");
   phrase = phrase.toLowerCase();
   var result = "";
   for (var i = 1; i < phrase.length; i += 2) {

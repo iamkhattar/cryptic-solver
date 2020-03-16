@@ -4,6 +4,7 @@
  */
 function getOddLetters(phrase) {
   phrase = phrase.replace(/\s+/g, "");
+  phrase = phrase.replace("-", "");
   phrase = phrase.toLowerCase();
   var result = "";
   for (var i = 0; i < phrase.length; i += 2) {

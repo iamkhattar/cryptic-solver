@@ -327,17 +327,19 @@ class CompoundSolution {
   hidden(indicator) {
     var solutionList = [];
     this.possibleCombinations.forEach(comb => {
-      var hiddenCompoundSolution = new HiddenCompoundSolution(
-        this,
-        comb,
-        indicator
-      );
-      var solutions = hiddenCompoundSolution.generateSolution();
-      solutions.forEach(currentElement => {
-        if (!this.doesListContainSolution(solutionList, currentElement)) {
-          solutionList.push(currentElement);
-        }
-      });
+      if (comb.comb.includes(indicator)) {
+        var hiddenCompoundSolution = new HiddenCompoundSolution(
+          this,
+          comb,
+          indicator
+        );
+        var solutions = hiddenCompoundSolution.generateSolution();
+        solutions.forEach(currentElement => {
+          if (!this.doesListContainSolution(solutionList, currentElement)) {
+            solutionList.push(currentElement);
+          }
+        });
+      }
     });
     return solutionList;
   }

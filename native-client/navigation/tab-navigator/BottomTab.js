@@ -25,7 +25,7 @@ const BottomTab = () => {
         options={{
           title: "",
           tabBarIcon: ({ focused }) => (
-            <TabIcon focused={focused} name="md-home" />
+            <TabIcon focused={focused} name="md-search" />
           )
         }}
       />

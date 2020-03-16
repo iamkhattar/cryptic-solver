@@ -33,7 +33,7 @@ const Landing = ({
   const onSubmit = e => {
     e.preventDefault();
     if (isNaN(length)) {
-      setAlert("Length must be a number", "danger");
+      return setAlert("Length must be a number", "danger");
     }
     setLoading(true);
     searchClue(clue, length);

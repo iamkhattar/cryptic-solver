@@ -314,16 +314,16 @@ class GeneralSolution {
    */
   getChangeReason(word, currentWord) {
     if (
-      currentWord.reason == "initial letter of" ||
-      currentWord.reason == "synonym of" ||
-      currentWord.reason == "anagram of" ||
-      currentWord.reason == "final letter of" ||
-      currentWord.reason == "even letter of" ||
-      currentWord.reason == "odd letter of" ||
+      currentWord.reason == "initial letter" ||
+      currentWord.reason == "synonym" ||
+      currentWord.reason == "anagram" ||
+      currentWord.reason == "final letter" ||
+      currentWord.reason == "even letter" ||
+      currentWord.reason == "odd letter" ||
       currentWord.reason == "word without the first letter" ||
       currentWord.reason == "word without the last letter" ||
       currentWord.reason == "word without the middle letters" ||
-      currentWord.reason == "reversal of" ||
+      currentWord.reason == "reversal" ||
       currentWord.reason == "word without the first and last letters"
     ) {
       return (
@@ -371,11 +371,11 @@ class GeneralSolution {
 
       currentArr.push({
         word: getInitialLetters(currentElement),
-        reason: "initial letter of"
+        reason: "initial letter"
       });
       currentArr.push({
         word: reversePhrase(currentElement),
-        reason: "reversal of"
+        reason: "reversal"
       });
       currentArr.push({
         word: deleteFirstLetter(currentElement),
@@ -395,15 +395,15 @@ class GeneralSolution {
       });
       currentArr.push({
         word: getFinalLetters(currentElement),
-        reason: "final letter of"
+        reason: "final letter"
       });
       currentArr.push({
         word: getOddLetters(currentElement),
-        reason: "odd letter of"
+        reason: "odd letter"
       });
       currentArr.push({
         word: getEvenLetters(currentElement),
-        reason: "even letter of"
+        reason: "even letter"
       });
       currentArr.push({
         word: "",
@@ -422,7 +422,7 @@ class GeneralSolution {
       synonyms.forEach(currentSynonym => {
         currentArr.push({
           word: currentSynonym,
-          reason: "synonym of"
+          reason: "synonym"
         });
       });
       searchArr.push(currentArr);

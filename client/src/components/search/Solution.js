@@ -7,7 +7,16 @@ import { Redirect } from "react-router-dom";
 const Solution = ({ search: { solutions, clue, length } }) => {
   if (clue === "") {
     return <Redirect to="/" />;
+  } else {
+    if (solutions.length === 0) {
+      solutions.push({
+        solution: "No Solution Found",
+        reason: "We have logged this and will look into this soon",
+        percentage: ""
+      });
+    }
   }
+
   return (
     <div className="bdy">
       <div className="container">

@@ -33,6 +33,7 @@ class ReversalSolutions {
 
   generateSolutionHelper(definitions, definitionIndex) {
     var currentCombination = this.CurrentSolution.currentCombination;
+
     var start, end;
     if (definitionIndex == 0) {
       start = 1;

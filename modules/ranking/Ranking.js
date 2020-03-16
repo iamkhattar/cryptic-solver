@@ -71,7 +71,7 @@ class Ranking {
     percentage = (current / max) * 100;
 
     //If score wasnt found give it score of 1%
-    percentage = percentage == 0 ? "1" : percentage;
+    percentage = percentage == 0 || isNaN(percentage) ? "1" : percentage;
 
     return percentage;
   }

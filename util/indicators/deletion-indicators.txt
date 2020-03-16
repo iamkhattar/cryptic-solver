@@ -66,6 +66,11 @@ peeled
 shelled
 side-splitting
 topped and tailed
+cuts off tails
+cut off tail
+crop
+crops
+tailless 
 unlimited
 wingless
 deficit

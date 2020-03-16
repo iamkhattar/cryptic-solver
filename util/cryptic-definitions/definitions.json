@@ -1,5 +1,6 @@
 [
   { "word": "mountain", "synonyms": ["ben"] },
+  { "word": "evil", "synonyms": ["mean"] },
   { "word": "planet", "synonyms": ["mars"] },
   { "word": "current", "synonyms": ["i"] },
   { "word": "workers", "synonyms": ["ants"] },
@@ -27,6 +28,40 @@
   { "word": "container", "synonyms": ["can"] },
   { "word": "report", "synonyms": ["item"] },
   { "word": "dog", "synonyms": ["corgi"] },
+  { "word": "rose", "synonyms": ["rebelled"] },
+  { "word": "white area", "synonyms": ["antarctica"] },
+  { "word": "shading", "synonyms": ["cel"] },
+  { "word": "green", "synonyms": ["celadon"] },
+  { "word": "circuit", "synonyms": ["orbit"] },
+  { "word": "circuits", "synonyms": ["orbit"] },
+  { "word": "gate", "synonyms": ["or"] },
+  { "word": "without a charge", "synonyms": ["unionised"] },
+  { "word": "organised", "synonyms": ["unionised"] },
+  { "word": "queen", "synonyms": ["qu"] },
+  { "word": "queens", "synonyms": ["qu"] },
+  { "word": "volume", "synonyms": ["cc", "l", "ml", "oz"] },
+  { "word": "little volume cured", "synonyms": ["cc", "l", "ml", "oz"] },
+  { "word": "former lovers", "synonyms": ["ex"] },
+  { "word": "ten", "synonyms": ["ent"] },
+  { "word": "former lover", "synonyms": ["ex"] },
+  { "word": "to coerce", "synonyms": ["extort"] },
+  { "word": "state", "synonyms": ["va"] },
+  {
+    "word": "number",
+    "synonyms": [
+      "one",
+      "two",
+      "three",
+      "four",
+      "five",
+      "six",
+      "seven",
+      "eight",
+      "nine",
+      "zero"
+    ]
+  },
+  { "word": "rating", "synonyms": ["g", "pg", "r"] },
   { "word": "animal sound", "synonyms": ["oink", "woof", "meow"] },
   {
     "word": "figure",
@@ -79,6 +114,11 @@
   { "word": "gather", "synonyms": ["infer"] },
   { "word": "popular", "synonyms": ["in"] },
   { "word": "quiet", "synonyms": ["p"] },
+  { "word": "sheep", "synonyms": ["lambkin"] },
+  { "word": "verge", "synonyms": ["marginal"] },
+  { "word": "money", "synonyms": ["fiver", "tenner"] },
+  { "word": "scene 1", "synonyms": ["scenei"] },
+  { "word": "found in cheese", "synonyms": ["rennet"] },
   {
     "word": "relation",
     "synonyms": [
@@ -92,5 +132,33 @@
       "sister"
     ]
   },
-  { "word": "country-lover", "synonyms": ["ruralist"] }
+  {
+    "word": "relative",
+    "synonyms": [
+      "son",
+      "daughter",
+      "father",
+      "mother",
+      "niece",
+      "nephew",
+      "brother",
+      "sister"
+    ]
+  },
+  {
+    "word": "relatives",
+    "synonyms": [
+      "sons",
+      "daughters",
+      "fathers",
+      "mothers",
+      "nieces",
+      "nephews",
+      "brothers",
+      "sisters"
+    ]
+  },
+  { "word": "country-lover", "synonyms": ["ruralist"] },
+  { "word": "example", "synonyms": ["eg"] },
+  { "word": "nothing", "synonyms": ["o"] }
 ]

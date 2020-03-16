@@ -97,10 +97,20 @@ const Landing = ({ navigation }) => {
 
         setSearching(false);
 
+        var solutions = res.data;
+
+        if (solutions.length === 0) {
+          solutions.push({
+            solution: "No Solution Found",
+            reason: "We have logged this and will look into this soon",
+            percentage: ""
+          });
+        }
+
         navigation.navigate("Solution", {
           clue: clue,
           length: length,
-          solutions: res.data
+          solutions: solutions
         });
       } catch (err) {
         setSearching(false);

@@ -32,7 +32,7 @@ const Navbar = ({
             id="navbar-home"
             to="/"
           >
-            <i className="fa fa-fw fa-home"></i>Home
+            <i className="fa fa-fw fa-search"></i>New Search
           </Link>
         </li>
         <li className="nav-item">
@@ -52,7 +52,7 @@ const Navbar = ({
             style={navItemStyle}
             onClick={logout}
             id="navbar-logout"
-            to="/"
+            to="/login"
           >
             <i className="fa fa-fw fa-sign-out"></i>Logout
           </Link>
@@ -83,7 +83,7 @@ const Navbar = ({
             id="navbar-home"
             to="/"
           >
-            <i className="fa fa-fw fa-home"></i>Home
+            <i className="fa fa-fw fa-search"></i>New Search
           </Link>
         </li>
         <li className="nav-item">
