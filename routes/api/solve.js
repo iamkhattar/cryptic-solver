@@ -28,7 +28,7 @@ router.post(
       var solution = await query.solveClue();
       return res.json(solution);
     } catch (err) {
-      console.error(err.message);
+      console.error(err);
       return res.status(500).send("Server Error");
     }
   }

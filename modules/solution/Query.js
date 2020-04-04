@@ -64,13 +64,15 @@ class Query {
     console.time("Compound Solution");
     //Generate Compound Solutions for each combination
     this.combinations.forEach(currentCombination => {
-      var compoundSolution = new CompoundSolution(this, currentCombination);
-      var compoundSolution = compoundSolution.generateSolutions();
-      compoundSolution.forEach(currentElement => {
-        if (!this.doesListContainSolution(solutionList, currentElement)) {
-          solutionList.push(currentElement);
-        }
-      });
+      if (currentCombination.length < 6) {
+        var compoundSolution = new CompoundSolution(this, currentCombination);
+        var compoundSolution = compoundSolution.generateSolutions();
+        compoundSolution.forEach(currentElement => {
+          if (!this.doesListContainSolution(solutionList, currentElement)) {
+            solutionList.push(currentElement);
+          }
+        });
+      }
     });
     console.timeEnd("Compound Solution");
 
