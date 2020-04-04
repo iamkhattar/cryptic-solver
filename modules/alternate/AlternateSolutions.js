@@ -7,7 +7,9 @@ class AlternateSolutions {
     this.query = CurrentSolution.query;
   }
 
-  //generateSolutions() generates all possible solutions alternate letter solutions for a given combination
+  /**
+   * generateSolutions() generates all possible solutions alternate letter solutions for a given combination
+   */
   generateSolutions() {
     var solutionList = [];
 
@@ -20,6 +22,7 @@ class AlternateSolutions {
       lastDefinitions,
       currentCombination.length - 1
     );
+
     solutionList = solutionList.concat(firstSolutions);
     solutionList = solutionList.concat(lastSolutions);
 
@@ -28,8 +31,8 @@ class AlternateSolutions {
 
   /**
    * generateSolutionsHelper() generates all possible alternate letter solutions for a given combination
-   * @param {Array} definitions : List of possible definitions
-   * @param {Integer} definitionIndex : Index of phrase which is the definition
+   * @param {Array} definitions List of possible definitions
+   * @param {Integer} definitionIndex Index of the definition
    */
   generateSolutionsHelper(definitions, definitionIndex) {
     var start, end;
@@ -55,7 +58,7 @@ class AlternateSolutions {
         evenLetters.length == this.query.length
       ) {
         //Generate all possible Alternate Letter Solutions when appropriate phrase is definition
-        var solutions = definitions.map(currentDefinition =>
+        var solutions = definitions.map((currentDefinition) =>
           currentDefinition == oddLetters || currentDefinition == evenLetters
             ? {
                 solution: currentDefinition.toUpperCase(),
@@ -66,12 +69,12 @@ class AlternateSolutions {
                 ),
                 def: currentCombination[definitionIndex],
                 int: "alternate-clue",
-                percentage: 0
+                percentage: 0,
               }
             : ""
         );
         //Add Solutions to Final List
-        solutions = solutions.filter(element => element != "");
+        solutions = solutions.filter((element) => element != "");
         solutionList = solutionList.concat(solutions);
       }
     }

@@ -18,7 +18,7 @@ router.post(
     check(
       "password",
       "Please enter a password with 6 or more characters"
-    ).isLength({ min: 6 })
+    ).isLength({ min: 6 }),
   ],
   async (req, res) => {
     //Error Checking
@@ -30,32 +30,33 @@ router.post(
     const { email, password } = req.body;
 
     try {
-      //See if user exists
       let user = await User.findOne({ email });
 
+      //Check if the email is already registered to another User
       if (user) {
         return res
           .status(400)
           .json({ errors: [{ msg: "User already exists" }] });
       }
 
-      //Create User
+      //If the email isnt registered, create a user with the email and password
       user = new User({ email, password });
 
-      // Encrypt password
+      //Encrypt password using Hash & Salt and update User Password
       const salt = await bcrypt.genSalt(10);
       user.password = await bcrypt.hash(password, salt);
 
-      //Save to db
+      //Save User to the Database
       await user.save();
 
-      // Return jsonwebtoken
+      // Generate JSON WEB TOKEN
       const payload = {
         user: {
-          id: user.id
-        }
+          id: user.id,
+        },
       };
 
+      //Sign and Send JSON WEB TOKEN
       jwt.sign(
         payload,
         config.get("jwtToken"),
