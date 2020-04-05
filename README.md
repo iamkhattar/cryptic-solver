@@ -37,10 +37,11 @@ The Cryptic Solver API is based on conventional HTTP response codes to indicate 
 Before installing "Cryptic Solver", ensure that the following software is installed on the system. Additional Dependencies will install automatically on completing the next steps.
 
 1. Git
-2. Node v12.13+
+2. Node.js v12.13+
 3. Npm v6.12+
-4. MongoDB v4.2.2+ or MongoDB Atlas Account
-5. Heroku v7.0.0+ (Optional)
+4. MongoDB v4.2.2+ or a MongoDB Atlas Account
+5. Expo CLI v3.11.9+
+6. Chrome Driver v81+
 
 ## Downloading the Repository
 
@@ -57,17 +58,25 @@ The following changes need to be made to use your instance of MongoDB
 1. The **mongoURI** value in _/config/default.json_ needs to be changed to your MongoURI string
 2. The **dbName** value in _/config/db.js_ needs to be changed to your Database name
 
-## Server Dependencies
+## Installing Server Dependencies
 
-There are additional dependencies required for the server to run. To install these dependencies, use the following command in the root directory
+The server requires additional dependencies to be installed on the system to function as intended. To install these dependencies, use the following command in the root directory
 
 ```bash
   npm install
 ```
 
-## Client Dependencies
+## Running the Server in Development Mode
 
-There are additional dependencies required for the server to run. To install these dependencies, use the following command in the root directory
+The server will restart automatically if any changes are made in development mode. To run the server in development mode, use the following command in the root directory:
+
+```bash
+  npm run server
+```
+
+## Installing Client Dependencies
+
+The client requires additional dependencies to be installed on the system to function as intended. To install these dependencies, use the following command in the client directory.
 To navigate to the client directory use the following command:
 
 ```bash
@@ -80,7 +89,38 @@ Once in the client directory, use the following command to install the required 
   npm install
 ```
 
-## Running the Application in Developer Mode
+## Running the Client in Development Mode
+
+The client will reload automatically when changes are made in development mode. To run the client in development mode, use the following command in the root directory:
+
+```bash
+  npm run client
+```
+
+## Installing Mobile App Dependencies
+
+The mobile app requires additional dependencies to be installed on the system to function as intended. To install these dependencies, use the following command in the native-client directory.
+To navigate to the client directory use the following command:
+
+```bash
+  cd native-client
+```
+
+Once in the native-client directory, use the following command to install the required dependencies:
+
+```bash
+  npm install
+```
+
+## Running the Mobile App in Development Mode
+
+The application will reload automatically when changes are made in development mode. To run the client in development mode, use the following command in the root directory:
+
+```bash
+  npm run native
+```
+
+## Running the Application in Full Stack Mode
 
 To run the application in developer mode, use the following command:
 
