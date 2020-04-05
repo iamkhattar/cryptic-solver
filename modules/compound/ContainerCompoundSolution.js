@@ -10,6 +10,9 @@ class ContainerCompoundSolution {
     this.query = CompoundSolution.query;
   }
 
+  /**
+   * generateSolution() generates all Compound Container Solutions for a given combination
+   */
   generateSolution() {
     var solutionList = [];
 
@@ -25,6 +28,11 @@ class ContainerCompoundSolution {
     return solutionList;
   }
 
+  /**
+   * generateSolutionHelper() generates all Compound Container Solution for a given definition
+   * @param {Array} definitions List of defintions
+   * @param {Integer} definitionIndex Index of definition in phrase
+   */
   generateSolutionHelper(definitions, definitionIndex) {
     var currentCombination = this.combination.comb;
     var indicatorIndex = currentCombination.indexOf(this.indicator);
@@ -53,11 +61,11 @@ class ContainerCompoundSolution {
 
       //Remove Containers that dont need to be checked
       directContainers = directContainers.filter(
-        element => element.length == this.query.length
+        (element) => element.length == this.query.length
       );
 
       //Iterate through list of first definition
-      definitions.forEach(currentDefinition => {
+      definitions.forEach((currentDefinition) => {
         //Check if any definition is a direct container
         if (directContainers.includes(currentDefinition)) {
           var currentReason = this.combination.reason;
@@ -73,12 +81,12 @@ class ContainerCompoundSolution {
             ),
             percentage: 0,
             def: currentCombination[definitionIndex],
-            int: "container-clue"
+            int: "container-clue",
           });
         }
 
         //Check for syn(word1) + word2
-        firstWordSynonyms.forEach(currentFirstWordSynonym => {
+        firstWordSynonyms.forEach((currentFirstWordSynonym) => {
           //Generate Containers for synonym of first word and second word
           var firstWordContainers = getContainers(
             currentFirstWordSynonym,
@@ -87,7 +95,7 @@ class ContainerCompoundSolution {
 
           //Remove containers that can be discarded
           firstWordContainers = firstWordContainers.filter(
-            element => element.length == this.query.length
+            (element) => element.length == this.query.length
           );
 
           //Check if Definition is in the container array
@@ -105,13 +113,13 @@ class ContainerCompoundSolution {
               ),
               percentage: 0,
               def: currentCombination[definitionIndex],
-              int: "container-clue"
+              int: "container-clue",
             });
           }
         });
 
         //Check for word1 + syn(word2)
-        secondWordSynonyms.forEach(currentSecondWordSynonym => {
+        secondWordSynonyms.forEach((currentSecondWordSynonym) => {
           //Generate Containers
           var secondWordContainers = getContainers(
             word1,
@@ -119,7 +127,7 @@ class ContainerCompoundSolution {
           );
           //Remove Containers that can be disregarded
           secondWordContainers = secondWordContainers.filter(
-            element => element.length == this.query.length
+            (element) => element.length == this.query.length
           );
           //Check if any one of the containers is the solution
           if (secondWordContainers.includes(currentDefinition)) {
@@ -136,7 +144,7 @@ class ContainerCompoundSolution {
               ),
               percentage: 0,
               def: currentCombination[definitionIndex],
-              int: "container-clue"
+              int: "container-clue",
             });
           }
         });

@@ -40,6 +40,12 @@ class ContainerSolutions {
     return solutionList;
   }
 
+  /**
+   * generateSoltutionHelper() generates all possible Container Solutions for a given definition and indicator
+   * @param {Array} definitions List of defintions
+   * @param {Integer} definitionIndex Index of definition in phrase
+   * @param {Indicator} indicatorIndex Index of Indicator
+   */
   generateSolutionHelper(definitions, definitionIndex, indicatorIndex) {
     var currentCombination = this.CurrentSolution.currentCombination;
     var indexCheck;
@@ -66,11 +72,11 @@ class ContainerSolutions {
 
       //Remove Containers that dont need to be checked
       directContainers = directContainers.filter(
-        element => element.length == this.query.length
+        (element) => element.length == this.query.length
       );
 
       //Iterate through list of first definition
-      definitions.forEach(currentDefinition => {
+      definitions.forEach((currentDefinition) => {
         //Check if any definition is a direct container
         if (directContainers.includes(currentDefinition)) {
           solutionList.push({
@@ -83,12 +89,12 @@ class ContainerSolutions {
             ),
             percentage: 0,
             def: currentCombination[definitionIndex],
-            int: "container-clue"
+            int: "container-clue",
           });
         }
 
         //Check for word1 + syn(word2) or syn(word1)+syn(word2)
-        firstWordSynonyms.forEach(currentFirstWordSynonym => {
+        firstWordSynonyms.forEach((currentFirstWordSynonym) => {
           //Generate Containers for synonym of first word and second word
           var firstWordContainers = getContainers(
             currentFirstWordSynonym,
@@ -97,7 +103,7 @@ class ContainerSolutions {
 
           //Remove containers that can be discarded
           firstWordContainers = firstWordContainers.filter(
-            element => element.length == this.query.length
+            (element) => element.length == this.query.length
           );
 
           //Check if Definition is in the container array
@@ -113,12 +119,12 @@ class ContainerSolutions {
               ),
               percentage: 0,
               def: currentCombination[definitionIndex],
-              int: "container-clue"
+              int: "container-clue",
             });
           }
 
           //Check for syn(word1) + syn(word2)
-          secondWordSynonyms.forEach(currentSecondWordSynonym => {
+          secondWordSynonyms.forEach((currentSecondWordSynonym) => {
             var firstWordLength = currentFirstWordSynonym.length;
             //Check if container length would be valid else discard it
             if (
@@ -144,7 +150,7 @@ class ContainerSolutions {
                   ),
                   percentage: 0,
                   def: currentCombination[definitionIndex],
-                  int: "container-clue"
+                  int: "container-clue",
                 });
               }
             }
@@ -152,7 +158,7 @@ class ContainerSolutions {
         });
 
         //Check for word1 + syn(word2)
-        secondWordSynonyms.forEach(currentSecondWordSynonym => {
+        secondWordSynonyms.forEach((currentSecondWordSynonym) => {
           //Generate Containers
           var secondWordContainers = getContainers(
             word1,
@@ -160,7 +166,7 @@ class ContainerSolutions {
           );
           //Remove Containers that can be disregarded
           secondWordContainers = secondWordContainers.filter(
-            element => element.length == this.query.length
+            (element) => element.length == this.query.length
           );
           //Check if any one of the containers is the solution
           if (secondWordContainers.includes(currentDefinition)) {
@@ -175,7 +181,7 @@ class ContainerSolutions {
               ),
               percentage: 0,
               def: currentCombination[definitionIndex],
-              int: "container-clue"
+              int: "container-clue",
             });
           }
         });

@@ -28,6 +28,11 @@ class HiddenSolutions {
     return solutionList;
   }
 
+  /**
+   * generateSolutionHelper() generates all Hidden Word Solutions for a given definition
+   * @param {Array} definitions List of defintions
+   * @param {Integer} definitionIndex Index of definition in phrase
+   */
   generateSolutionHelper(definitions, definitionIndex) {
     var currentCombination = this.CurrentSolution.currentCombination;
     var start, end;
@@ -44,7 +49,7 @@ class HiddenSolutions {
     for (var i = start; i < end; i++) {
       var currentPhrase = currentCombination[i];
       //Check if Current Phrase is hidden in any of the possible first definitions
-      var solutions = definitions.map(currentDefinition =>
+      var solutions = definitions.map((currentDefinition) =>
         isPhraseHidden(currentPhrase, currentDefinition)
           ? {
               solution: currentDefinition.toUpperCase(),
@@ -55,13 +60,13 @@ class HiddenSolutions {
               ),
               def: currentCombination[definitionIndex],
               int: "hidden-clue",
-              percentage: 0
+              percentage: 0,
             }
           : ""
       );
 
       //Add Solutions to Final List
-      solutions = solutions.filter(element => element != "");
+      solutions = solutions.filter((element) => element != "");
       solutionList = solutionList.concat(solutions);
     }
     return solutionList;

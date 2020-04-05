@@ -27,24 +27,23 @@ class CompoundSolution {
       indicators = indicators.sort(
         (a, b) => parseInt(a.index) - parseInt(b.index)
       );
-      //console.log("@@@");
-      indicators.forEach(element => {
-        //console.log(element);
-      });
+
       var copy = indicators;
       for (var i = copy.length - 2; i >= 0; i--) {
         indicators.push(copy[i]);
       }
-      indicators.forEach(currentIndex => {
+
+      //Check Each Indicator and do appropriate action
+      indicators.forEach((currentIndex) => {
         var ind = currentIndex.indicators;
-        ind.forEach(currentIndicator => {
+        ind.forEach((currentIndicator) => {
           if (currentIndicator.type == "reversal") {
             this.reverse(currentIndicator.indicator);
           }
 
           if (currentIndicator.type == "hidden") {
             var solutions = this.hidden(currentIndicator.indicator);
-            solutions.forEach(currentElement => {
+            solutions.forEach((currentElement) => {
               if (!this.doesListContainSolution(solutionList, currentElement)) {
                 solutionList.push(currentElement);
               }
@@ -53,7 +52,7 @@ class CompoundSolution {
 
           if (currentIndicator.type == "container") {
             var solutions = this.container(currentIndicator.indicator);
-            solutions.forEach(currentElement => {
+            solutions.forEach((currentElement) => {
               if (!this.doesListContainSolution(solutionList, currentElement)) {
                 solutionList.push(currentElement);
               }
@@ -70,7 +69,7 @@ class CompoundSolution {
 
           if (currentIndicator.type == "anagram") {
             var solutions = this.anagram(currentIndicator.indicator);
-            solutions.forEach(currentElement => {
+            solutions.forEach((currentElement) => {
               if (!this.doesListContainSolution(solutionList, currentElement)) {
                 solutionList.push(currentElement);
               }
@@ -82,16 +81,20 @@ class CompoundSolution {
     return solutionList;
   }
 
+  /**
+   * anagram() generates all Compound Anagram Solutions
+   * @param {String} indicator Indicator Word
+   */
   anagram(indicator) {
     var solutionList = [];
-    this.possibleCombinations.forEach(comb => {
+    this.possibleCombinations.forEach((comb) => {
       var anagramCompoundSolution = new AnagramCompoundSolution(
         this,
         comb,
         indicator
       );
       var solutions = anagramCompoundSolution.generateSolution();
-      solutions.forEach(currentElement => {
+      solutions.forEach((currentElement) => {
         if (!this.doesListContainSolution(solutionList, currentElement)) {
           solutionList.push(currentElement);
         }
@@ -104,7 +107,7 @@ class CompoundSolution {
     const ContainerCompoundSolution = require("../compound/ContainerCompoundSolution");
     var solutionList = [];
     const getContainers = require("../container/get-containers");
-    this.possibleCombinations.forEach(curr => {
+    this.possibleCombinations.forEach((curr) => {
       if (curr.comb.includes(indicator)) {
         //console.log(curr.comb);
         var containerCompoundSolution = new ContainerCompoundSolution(
@@ -113,7 +116,7 @@ class CompoundSolution {
           indicator
         );
         var solutions = containerCompoundSolution.generateSolution();
-        solutions.forEach(currentElement => {
+        solutions.forEach((currentElement) => {
           if (!this.doesListContainSolution(solutionList, currentElement)) {
             solutionList.push(currentElement);
           }
@@ -126,7 +129,7 @@ class CompoundSolution {
           var nextSynonyms = getSynonyms(this.query, next);
           //Direct Container
           var directContainers = getContainers(prev, next);
-          directContainers.forEach(currentDirectContainer => {
+          directContainers.forEach((currentDirectContainer) => {
             var currentArr = [];
             for (var i = 0; i < index - 1; i++) {
               currentArr.push(curr.comb[i]);
@@ -146,14 +149,14 @@ class CompoundSolution {
                 next.toUpperCase() +
                 " we get " +
                 currentDirectContainer.toUpperCase() +
-                ". "
+                ". ",
             };
             this.possibleCombinations.push(currentObject);
           });
 
-          firstSynonyms.forEach(currentFirstSynonym => {
+          firstSynonyms.forEach((currentFirstSynonym) => {
             var firstContainers = getContainers(currentFirstSynonym, next);
-            firstContainers.forEach(currentFirstContainer => {
+            firstContainers.forEach((currentFirstContainer) => {
               var currentArr = [];
               for (var i = 0; i < index - 1; i++) {
                 currentArr.push(curr.comb[i]);
@@ -176,15 +179,15 @@ class CompoundSolution {
                   next.toUpperCase() +
                   " we get " +
                   currentFirstContainer.toUpperCase() +
-                  ". "
+                  ". ",
               };
               this.possibleCombinations.push(currentObject);
             });
           });
 
-          nextSynonyms.forEach(currentNextSynonym => {
+          nextSynonyms.forEach((currentNextSynonym) => {
             var nextContainers = getContainers(prev, currentNextSynonym);
-            nextContainers.forEach(currentNextContainer => {
+            nextContainers.forEach((currentNextContainer) => {
               var currentArr = [];
               for (var i = 0; i < index - 1; i++) {
                 currentArr.push(curr.comb[i]);
@@ -207,7 +210,7 @@ class CompoundSolution {
                   currentNextSynonym.toUpperCase() +
                   " we get " +
                   currentNextContainer.toUpperCase() +
-                  ". "
+                  ". ",
               };
               this.possibleCombinations.push(currentObject);
             });
@@ -220,7 +223,7 @@ class CompoundSolution {
 
   initial(indicator) {
     const getInitialLetters = require("../initial/initial-letters");
-    this.possibleCombinations.forEach(curr => {
+    this.possibleCombinations.forEach((curr) => {
       if (curr.comb.includes(indicator)) {
         var index = curr.comb.indexOf(indicator);
         if (index - 1 >= 0) {
@@ -242,7 +245,7 @@ class CompoundSolution {
               curr.comb[index - 1].toUpperCase() +
               " is " +
               prevFin.toUpperCase() +
-              ". "
+              ". ",
           });
         }
         if (index + 1 < curr.comb.length) {
@@ -264,7 +267,7 @@ class CompoundSolution {
               curr.comb[index + 1].toUpperCase() +
               " is " +
               prevFin.toUpperCase() +
-              ". "
+              ". ",
           });
         }
       }
@@ -273,7 +276,7 @@ class CompoundSolution {
 
   final(indicator) {
     const getFinalLetters = require("../final/final-letters");
-    this.possibleCombinations.forEach(curr => {
+    this.possibleCombinations.forEach((curr) => {
       if (curr.comb.includes(indicator)) {
         var index = curr.comb.indexOf(indicator);
         if (index - 1 >= 0) {
@@ -295,7 +298,7 @@ class CompoundSolution {
               curr.comb[index - 1].toUpperCase() +
               " is " +
               prevFin.toUpperCase() +
-              ". "
+              ". ",
           });
         }
         if (index + 1 < curr.comb.length) {
@@ -317,7 +320,7 @@ class CompoundSolution {
               curr.comb[index + 1].toUpperCase() +
               " is " +
               prevFin.toUpperCase() +
-              ". "
+              ". ",
           });
         }
       }
@@ -326,7 +329,7 @@ class CompoundSolution {
 
   hidden(indicator) {
     var solutionList = [];
-    this.possibleCombinations.forEach(comb => {
+    this.possibleCombinations.forEach((comb) => {
       if (comb.comb.includes(indicator)) {
         var hiddenCompoundSolution = new HiddenCompoundSolution(
           this,
@@ -334,7 +337,7 @@ class CompoundSolution {
           indicator
         );
         var solutions = hiddenCompoundSolution.generateSolution();
-        solutions.forEach(currentElement => {
+        solutions.forEach((currentElement) => {
           if (!this.doesListContainSolution(solutionList, currentElement)) {
             solutionList.push(currentElement);
           }
@@ -346,7 +349,7 @@ class CompoundSolution {
 
   reverse(indicator) {
     const reversePhrase = require("../reversal/reverse-phrase");
-    this.possibleCombinations.forEach(curr => {
+    this.possibleCombinations.forEach((curr) => {
       var currentPossibleCombination = curr.comb;
       for (var i = 0; i < currentPossibleCombination.length; i++) {
         var reversedPhrase = reversePhrase(currentPossibleCombination[i]);
@@ -367,7 +370,7 @@ class CompoundSolution {
             currentPossibleCombination[i].toUpperCase() +
             " we get " +
             reversedPhrase.toUpperCase() +
-            ". "
+            ". ",
         };
         this.possibleCombinations.push(currentObject);
       }
@@ -376,7 +379,7 @@ class CompoundSolution {
 
   doesListContainSolution(solutionList, currentSolution) {
     var flag = false;
-    solutionList.forEach(element => {
+    solutionList.forEach((element) => {
       if (
         element.solution.toUpperCase() == currentSolution.solution.toUpperCase()
       ) {

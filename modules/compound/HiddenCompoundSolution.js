@@ -9,6 +9,9 @@ class HiddenCompoundSolution {
     this.indicator = indicator;
   }
 
+  /**
+   * generateSolution() generates all Compound Hidden Word Solutions for a given combination
+   */
   generateSolution() {
     var solutionList = [];
 
@@ -24,8 +27,14 @@ class HiddenCompoundSolution {
     return solutionList;
   }
 
+  /**
+   * generateSolutionHelper() generates all Compound Hidden Word Solutionws for a given definition
+   * @param {Array} definitions List of defintions
+   * @param {Integer} definitionIndex Index of definition in phrase
+   */
   generateSolutionHelper(definitons, defintionIndex) {
     var combination = this.combination.comb;
+    //Define Start and End Phrase according to definitionIndex
     var start, end;
     if (defintionIndex == 0) {
       start = 1;
@@ -37,10 +46,11 @@ class HiddenCompoundSolution {
     }
 
     var solutionList = [];
-
+    //Run Loop From Start Phrase to End Phrase
     for (var i = start; i < end; i++) {
       var currentPhrase = combination[i];
-      var solutions = definitons.map(currentDefinition =>
+      var solutions = definitons.map((currentDefinition) =>
+        //Check only those phrases for which direct hidden words are possible
         isPhraseHidden(currentPhrase, currentDefinition)
           ? {
               solution: currentDefinition.toUpperCase(),
@@ -51,14 +61,14 @@ class HiddenCompoundSolution {
                 currentPhrase
               ),
               int: "compound-clue",
-              percentage: 0
+              percentage: 0,
             }
           : ""
       );
 
       //Add Solutions to Final List
-      solutions = solutions.filter(element => element != "");
-      solutions = solutions.filter(element => element != undefined);
+      solutions = solutions.filter((element) => element != "");
+      solutions = solutions.filter((element) => element != undefined);
       solutionList = solutionList.concat(solutions);
     }
     return solutionList;

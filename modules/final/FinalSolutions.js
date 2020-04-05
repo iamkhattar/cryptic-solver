@@ -27,6 +27,11 @@ class FinalSolution {
     return solutionList;
   }
 
+  /**
+   * generateSolutionHelper() generates all final letter solutions for a given definition
+   * @param {Array} definitions List of defintions
+   * @param {Integer} definitionIndex Index of definition in phrase
+   */
   generateSolutionHelper(definitions, definitionIndex) {
     var currentCombination = this.CurrentSolution.currentCombination;
     var start, end;
@@ -46,7 +51,7 @@ class FinalSolution {
       //If length of Final letters is not equal to query length discard it.
       if (finalLetters.length == this.query.length) {
         //Generate all possible Final Letter Solutions when first phrase is definition
-        var solutions = definitions.map(currentDefinition =>
+        var solutions = definitions.map((currentDefinition) =>
           currentDefinition == finalLetters
             ? {
                 solution: currentDefinition.toUpperCase(),
@@ -57,12 +62,12 @@ class FinalSolution {
                 ),
                 def: currentCombination[definitionIndex],
                 int: "final-clue",
-                percentage: 0
+                percentage: 0,
               }
             : ""
         );
         //Add Solutions to Final List
-        solutions = solutions.filter(element => element != "");
+        solutions = solutions.filter((element) => element != "");
         solutionList = solutionList.concat(solutions);
       }
     }

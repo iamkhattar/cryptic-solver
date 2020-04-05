@@ -30,6 +30,11 @@ class InitialSolutions {
     return solutionList;
   }
 
+  /**
+   * generateSolutionHelper() generates all initial letter solutions for a given definition
+   * @param {Array} definitions List of defintions
+   * @param {Integer} definitionIndex Index of definition in phrase
+   */
   generateSolutionHelper(definitions, definitionIndex) {
     var currentCombination = this.CurrentSolution.currentCombination;
     var start, end;
@@ -49,7 +54,7 @@ class InitialSolutions {
       //If length of Initial letters is not equal to query length discard it.
       if (initialLetters.length == this.query.length) {
         //Generate all possible Initial Letter Solutions when first phrase is definition
-        var solutions = definitions.map(currentDefinition =>
+        var solutions = definitions.map((currentDefinition) =>
           currentDefinition == initialLetters
             ? {
                 solution: currentDefinition.toUpperCase(),
@@ -60,13 +65,13 @@ class InitialSolutions {
                 ),
                 def: currentCombination[definitionIndex],
                 int: "initial-clue",
-                percentage: 0
+                percentage: 0,
               }
             : ""
         );
 
         //Add Solutions to Final List
-        solutions = solutions.filter(element => element != "");
+        solutions = solutions.filter((element) => element != "");
         solutionList = solutionList.concat(solutions);
       }
     }

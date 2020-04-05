@@ -8,6 +8,9 @@ class AnagramCompoundSolution {
     this.indicator = indicator;
   }
 
+  /**
+   * generateSolution() generates all possible compound anagram solutions for a given combination
+   */
   generateSolution() {
     var solutionList = [];
 
@@ -23,9 +26,15 @@ class AnagramCompoundSolution {
     return solutionList;
   }
 
+  /**
+   * generateSolutionHelper() generates all compound anagram soltuions for a given definition
+   * @param {Array} definitions List of defintions
+   * @param {Integer} definitionIndex Index of definition in phrase
+   */
   generateSolutionHelper(definitions, defintionIndex) {
     var combination = this.combination.comb;
 
+    //Define start and end phrase according to definitionIndex
     var start, end;
     if (defintionIndex == 0) {
       start = 1;
@@ -37,9 +46,11 @@ class AnagramCompoundSolution {
     }
 
     var solutionList = [];
+    //Run Loop From Start Phrase to End Phrase
     for (var i = start; i < end; i++) {
       var currentPhrase = combination[i];
-      definitions.forEach(currentDefinition => {
+      definitions.forEach((currentDefinition) => {
+        //Check only those phrases for which direct anagrams are possible
         if (checkAnagram(currentDefinition, currentPhrase)) {
           var currentReason = this.combination.reason;
           var reason = this.getDirectReason(
@@ -53,7 +64,7 @@ class AnagramCompoundSolution {
             def: combination[defintionIndex],
             reason: reason,
             int: "compound-clue",
-            percentage: 0
+            percentage: 0,
           };
           solutionList.push(currentSolution);
         }

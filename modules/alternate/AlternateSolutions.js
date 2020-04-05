@@ -35,6 +35,7 @@ class AlternateSolutions {
    * @param {Integer} definitionIndex Index of the definition
    */
   generateSolutionsHelper(definitions, definitionIndex) {
+    //Define Start and End phrase according to the definitionIndex
     var start, end;
     var currentCombination = this.CurrentSolution.currentCombination;
     if (definitionIndex == 0) {

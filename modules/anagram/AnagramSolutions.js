@@ -8,7 +8,9 @@ class AnagramSolutions {
     this.query = CurrentSolution.query;
   }
 
-  //generateSolution() generates all possible anagram solutions for a given combination
+  /**
+   * generateSolution() generates all possible anagram solutions for a given combination
+   */
   generateSolution() {
     var solutionList = [];
 
@@ -34,6 +36,7 @@ class AnagramSolutions {
    * @param {Integer} definitionIndex Index of definition in phrase
    */
   generateSolutionsHelper(definitions, definitionIndex) {
+    //Define start and end phrase according to definitionIndex
     var currentCombination = this.CurrentSolution.currentCombination;
     var start, end;
     if (definitionIndex == 0) {
@@ -46,14 +49,14 @@ class AnagramSolutions {
 
     var solutionList = [];
 
-    //Run Loop From Second Phrase to Last Phrase
+    //Run Loop From Start Phrase to End Phrase
     for (var i = start; i < end; i++) {
       var currentPhrase = currentCombination[i];
       var anagramLength = currentPhrase.replace(/\s+/g, "").length;
       //Check only those phrases for which direct anagrams are possible
       if (anagramLength == this.query.length) {
         //Generate All possible direct anagrams. i.e. anagrams of a phrase
-        var solutions = definitions.map(currentDefinition =>
+        var solutions = definitions.map((currentDefinition) =>
           currentPhrase != currentDefinition &&
           checkAnagrams(currentPhrase, currentDefinition)
             ? {
@@ -65,12 +68,12 @@ class AnagramSolutions {
                 ),
                 def: currentCombination[definitionIndex],
                 int: "anagram-clue",
-                percentage: 0
+                percentage: 0,
               }
             : ""
         );
         //Add Solutions to Final List
-        solutions = solutions.filter(element => element != "");
+        solutions = solutions.filter((element) => element != "");
         solutionList = solutionList.concat(solutions);
       }
 
@@ -79,12 +82,12 @@ class AnagramSolutions {
 
       //Filter out synonyms whose length dont match solution length
       currentSynonyms = currentSynonyms.filter(
-        current => current.length == this.query.length
+        (current) => current.length == this.query.length
       );
 
       //Generate all possible indirect anagrams. i.e. anagram of a synonym
-      var indirectSolutions = currentSynonyms.map(currentSynonym =>
-        definitions.map(currentDefinition =>
+      var indirectSolutions = currentSynonyms.map((currentSynonym) =>
+        definitions.map((currentDefinition) =>
           currentSynonym != currentDefinition &&
           checkAnagrams(currentSynonym, currentDefinition)
             ? {
@@ -97,18 +100,18 @@ class AnagramSolutions {
                 ),
                 def: currentCombination[definitionIndex],
                 int: "anagram-clue",
-                percentage: 0
+                percentage: 0,
               }
             : ""
         )
       );
       //Remove Redundant Data
-      indirectSolutions = indirectSolutions.map(currentArray =>
-        currentArray.filter(currentArrayElement => currentArrayElement != "")
+      indirectSolutions = indirectSolutions.map((currentArray) =>
+        currentArray.filter((currentArrayElement) => currentArrayElement != "")
       );
 
       //Add Solution to Solution to Solution List
-      indirectSolutions.forEach(indirectSolution => {
+      indirectSolutions.forEach((indirectSolution) => {
         if (indirectSolution.length > 0) {
           solutionList = solutionList.concat(indirectSolution);
         }
@@ -120,9 +123,9 @@ class AnagramSolutions {
 
   /**
    * getDirectReason() generates reason string for direct anagram clues
-   * @param definition : Definition in combination
-   * @param definitionSyn : Synonym of definition
-   * @param phrase : Anagrammed phrase
+   * @param definition Definition in combination
+   * @param definitionSyn Synonym of definition
+   * @param phrase Anagrammed phrase
    */
   getDirectReason(definition, definitionSyn, phrase) {
     return (
@@ -143,10 +146,10 @@ class AnagramSolutions {
 
   /**
    * getIndirectReason() generates reason string for indirect anagram clues
-   * @param definition : Definition in combination
-   * @param definitionSyn : Synonym of definition
-   * @param phrase : Phrase for which synonym is anagrammed
-   * @param phraseSyn : Anagrammed phrase
+   * @param definition Definition in combination
+   * @param definitionSyn Synonym of definition
+   * @param phrase Phrase for which synonym is anagrammed
+   * @param phraseSyn Anagrammed phrase
    */
   getIndirectReason(definition, definitionSyn, phrase, phraseSyn) {
     return (

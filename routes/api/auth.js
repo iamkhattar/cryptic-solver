@@ -31,7 +31,7 @@ router.post(
   "/",
   [
     check("email", "Please include a valid email").isEmail(),
-    check("password", "Password is required").exists()
+    check("password", "Password is required").exists(),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -42,16 +42,16 @@ router.post(
     const { email, password } = req.body;
 
     try {
-      //See if user exists
       let user = await User.findOne({ email });
 
+      //Check if user with that email isnt present
       if (!user) {
         return res
           .status(400)
           .json({ errors: [{ msg: "Invalid Credentials" }] });
       }
 
-      //Match email and password
+      //Check if password matches database
       const isMatch = await bcrypt.compare(password, user.password);
 
       if (!isMatch) {
@@ -60,13 +60,14 @@ router.post(
           .json({ errors: [{ msg: "Invalid Credentials" }] });
       }
 
-      // Return jsonwebtoken
+      //Generate JSON WEB TOKEN
       const payload = {
         user: {
-          id: user.id
-        }
+          id: user.id,
+        },
       };
 
+      //Sign and send JSON WEB TOKEN
       jwt.sign(
         payload,
         config.get("jwtToken"),
